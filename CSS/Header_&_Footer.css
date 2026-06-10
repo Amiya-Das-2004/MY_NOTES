@@ -1,0 +1,275 @@
+/* ============================================================================
+ * Header and Footer Styles - Extracted from Style.css
+ * This file contains styles specific to the header and footer components.
+ * ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+ * Breadcrumb Navigation Styles
+ * .breadcrumb - Container for breadcrumb navigation in the header
+ * .breadcrumb a - Individual breadcrumb links
+ * .breadcrumb li - Breadcrumb list items
+ * .breadcrumb li.is-active - Current page indicator in breadcrumb trail
+ * .breadcrumb a.is-disabled - Disabled breadcrumb links
+ * ---------------------------------------------------------------------------- */
+
+.breadcrumb {
+  font-size: 1rem;
+  white-space: nowrap;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.breadcrumb a {
+  align-items: center;
+  color: #2e63b8;
+  display: initial;
+  justify-content: center;
+  padding: 0 .75em
+}
+
+.breadcrumb a:hover {
+  color: #363636
+}
+
+.breadcrumb li {
+  align-items: center;
+  display: flex
+}
+
+.breadcrumb li:first-child a {
+  padding-left: 0
+}
+
+.breadcrumb li.is-active a {
+  color: #222;
+  cursor: default;
+  pointer-events: none
+}
+
+.breadcrumb li+li::before {
+  color: #b5b5b5;
+  content: "\\0002f"
+}
+
+.breadcrumb ul,
+.breadcrumb ol {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start
+}
+
+.breadcrumb .icon:first-child {
+  margin-right: .5em
+}
+
+.breadcrumb .icon:last-child {
+  margin-left: .5em
+}
+
+.breadcrumb.is-centered ol,
+.breadcrumb.is-centered ul {
+  justify-content: center
+}
+
+.breadcrumb.is-right ol,
+.breadcrumb.is-right ul {
+  justify-content: flex-end
+}
+
+.breadcrumb.is-small {
+  font-size: .75rem
+}
+
+.breadcrumb.is-medium {
+  font-size: 1.25rem
+}
+
+.breadcrumb.is-large {
+  font-size: 1.5rem
+}
+
+.breadcrumb.has-arrow-separator li+li::before {
+  content: "\\02192"
+}
+
+.breadcrumb.has-bullet-separator li+li::before {
+  content: "\\02022"
+}
+
+.breadcrumb.has-dot-separator li+li::before {
+  content: "\\000b7"
+}
+
+.breadcrumb.has-succeeds-separator li+li::before {
+  content: "\\0227B"
+}
+
+.breadcrumb a.is-disabled {
+  cursor: default;
+  pointer-events: none
+}
+
+.breadcrumb a.is-disabled,
+.breadcrumb a.is-disabled:hover {
+  color: #222
+}
+
+/* ----------------------------------------------------------------------------
+ * Responsive Visibility Utility Classes
+ * .is-hidden-mobile - Hides element on screens smaller than 769px (mobile)
+ * .is-hidden-tablet - Hides element on screens between 769px and 1055px (tablet)
+ * ---------------------------------------------------------------------------- */
+
+@media screen and (max-width: 768px) {
+  .is-hidden-mobile {
+    display: none !important
+  }
+}
+
+@media screen and (min-width: 769px),
+print {
+  .is-hidden-tablet {
+    display: none !important
+  }
+}
+
+.breadcrumb:not(:last-child) {
+  margin-bottom: 1.5rem
+}
+
+/* ----------------------------------------------------------------------------
+ * is-active Utility Class
+ * .is-active - Used for the active page indicator in breadcrumb navigation
+ *             (see .breadcrumb li.is-active within this file)
+ * Note: Generic .is-active styles for pagination, buttons, etc. are kept in Style.css
+ * ---------------------------------------------------------------------------- */
+
+/* ----------------------------------------------------------------------------
+ * Header Component Styles
+ * header.Header - Main header bar containing breadcrumb and icons
+ * .Header_Right_Side_Icons - Container for GitHub and theme toggle icons
+ * .Header_Link - Links/buttons in the header (sidebar toggle, GitHub, theme toggle)
+ * ---------------------------------------------------------------------------- */
+
+#Page .Main header.Header {
+  background-color: #fff;
+  border-bottom: 1px solid #dbdbdb;
+  z-index: 2;
+  min-height: 4rem;
+  margin-bottom: 1rem;
+  display: flex
+}
+
+#Page .Main header.Header .breadcrumb {
+  flex-grow: 1;
+  overflow: hidden
+}
+
+#Page .Main header.Header .Sidebar_Button_Class {
+  display: block;
+  font-size: 1.5rem;
+  padding-bottom: 0.1rem;
+  margin-right: 1rem
+}
+
+#Page .Main header.Header .Header_Right_Side_Icons {
+  display: flex;
+  white-space: nowrap;
+  gap: 1rem;
+  align-items: center
+}
+
+#Page .Main header.Header .Header_Right_Side_Icons .docs-icon,
+#Page .Main header.Header .Header_Right_Side_Icons .docs-label {
+  display: inline-block
+}
+
+#Page .Main header.Header .Header_Right_Side_Icons .docs-label {
+  padding: 0;
+  margin-left: 0.3em
+}
+
+@media screen and (max-width: 1055px) {
+  #Page .Main header.Header .Header_Right_Side_Icons .Header_Link {
+    margin-left: 0.4rem;
+    margin-right: 0.4rem
+  }
+}
+
+#Page .Main header.Header>* {
+  margin: auto 0
+}
+
+@media screen and (max-width: 1055px) {
+  #Page .Main header.Header {
+    position: sticky;
+    top: 0;
+    padding: 0 1rem;
+    transition-property: top, box-shadow;
+    -webkit-transition-property: top, box-shadow;
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s
+  }
+
+  #Page .Main header.Header.headroom--not-top {
+    box-shadow: .2rem 0rem .4rem #bbb;
+    transition-duration: 0.7s;
+    -webkit-transition-duration: 0.7s
+  }
+
+  #Page .Main header.Header.headroom--unpinned.headroom--not-top.headroom--not-bottom {
+    top: -4.5rem;
+    transition-duration: 0.7s;
+    -webkit-transition-duration: 0.7s
+  }
+}
+
+/* ----------------------------------------------------------------------------
+ * Footer Component Styles
+ * .Footer - Main footer container with navigation and attribution
+ * .Footer_Previous - Previous page navigation link (left side)
+ * .Footer_Next - Next page navigation link (right side)
+ * .Footer_Break - Flexbox break element between prev/next
+ * .Footer_Message - Centered footer attribution message
+ * ---------------------------------------------------------------------------- */
+
+#Page .Main .Footer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+  border-top: 1px solid #dbdbdb;
+  padding-top: 1rem;
+  padding-bottom: 1rem
+}
+
+@media screen and (max-width: 1055px) {
+  #Page .Main .Footer {
+    padding-left: 1rem;
+    padding-right: 1rem
+  }
+}
+
+#Page .Main .Footer .Footer_Next,
+#Page .Main .Footer .Footer_Previous {
+  flex-grow: 1
+}
+
+#Page .Main .Footer .Footer_Next {
+  text-align: right
+}
+
+#Page .Main .Footer .Footer_Break {
+  flex-basis: 100%;
+  height: 0
+}
+
+#Page .Main .Footer .Footer_Message {
+  font-size: 0.8em;
+  margin: 0.5em auto 0 auto;
+  text-align: center
+}

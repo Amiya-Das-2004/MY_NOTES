@@ -1,0 +1,187 @@
+:root {
+
+    /* Fonts */
+    --font-body: 'Lora', Georgia, serif;
+    --font-sans: 'Lato', sans-serif;
+    --font-mono: 'JuliaMono', monospace;
+
+    /* Reading measure */
+    --measure: 65ch;
+    --measure-wide: 80ch;
+
+    /* Layout */
+    --sidebar-width: 280px;
+    --header-height: 4rem;
+    --content-max-width: 1400px;
+
+    /* Rhythm */
+    --gap: 1.75rem;
+
+    /* Font scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+
+    /* Line heights */
+    --lh-tight: 1.25;
+    --lh-snug: 1.4;
+    --lh-normal: 1.6;
+    --lh-relaxed: 1.75;
+    --lh-loose: 1.9;
+
+    /* Spacing */
+    --sp-0: 0;
+    --sp-1: 0.25rem;
+    --sp-2: 0.5rem;
+    --sp-3: 0.75rem;
+    --sp-4: 1rem;
+    --sp-5: 1.25rem;
+    --sp-6: 1.5rem;
+    --sp-8: 2rem;
+    --sp-10: 2.5rem;
+    --sp-12: 3.5rem;
+    --sp-16: 4rem;
+    --sp-20: 5rem;
+    --sp-24: 6rem;
+
+    /* Border Radius */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm:
+        0 1px 2px rgba(0, 0, 0, .05);
+
+    --shadow-md:
+        0 4px 6px rgba(0, 0, 0, .08);
+
+    --shadow-lg:
+        0 10px 15px rgba(0, 0, 0, .12);
+
+    /* Motion */
+    --t-fast: 150ms cubic-bezier(.4, 0, .2, 1);
+    --t-normal: 250ms cubic-bezier(.4, 0, .2, 1);
+    --t-slow: 350ms ;
+}
+
+
+/* ==========================================================================
+   ROOT : Light Theme
+   ========================================================================== */
+:root,
+:root[data-theme="light"] {
+
+    /* Text Color */
+    --color-text: #1a1a18;
+    --color-text-secondary: #3d3d39;
+    --color-text-muted: #6b6b65;
+    --color-text-inverse: #ffffff;
+
+    /* Backgrounds Color */
+    --color-bg: #faf9f6;
+    --color-bg-alt: #f2f0ea;
+    --color-surface: #ffffff;
+    --color-surface-hover: #f7f6f2;
+
+    /* Borders Color */
+    --color-border: #d4d0c8;
+    --color-border-light: #eceae4;
+
+    /* Hover states */
+    --color-bg-hover: #e8e6de;
+    --color-bg-hover-dark: #2a2927;
+
+    /* Link Color */
+    --color-primary: #11031f;
+    --color-primary-hover: #6057c2;
+
+    /* Semantic Color */
+    --color-success: #0f6e56;
+    --color-warning: #854f0b;
+    --color-danger: #993c1d;
+
+    /* Code Color */
+    --color-code-bg: #f2f0ea;
+    --color-code-text: #993c1d;
+
+    /* Selection Color */
+    --color-selection-bg: #d4d0f5;
+    --color-selection-text: #3c3489;
+}
+
+
+/* ==========================================================================
+   ROOT : Dark Theme
+   ========================================================================== */
+:root[data-theme="dark"] {
+
+  /* Text */
+  --color-text: #e8e6e0;
+  --color-text-secondary: #b8b4aa;
+  --color-text-muted: #888880;
+  --color-text-inverse: #1a1918;
+
+  /* Backgrounds */
+  --color-bg: #1a1918;
+  --color-bg-alt: #222120;
+  --color-surface: #252422;
+  --color-surface-hover: #2d2c2a;
+
+  /* Borders */
+  --color-border: #3a3835;
+  --color-border-light: #2e2c2a;
+
+  /* Brand */
+  --color-primary: #0d074b;
+  --color-primary-hover: #a59ef5;
+
+  /* Semantic */
+  --color-success: #2db891;
+  --color-warning: #e0972a;
+  --color-danger: #e8745a;
+
+  /* Code */
+  --color-code-bg: #222120;
+  --color-code-text: #e8e6e0;
+
+  /* Selection */
+  --color-selection-bg: #3c3489;
+  --color-selection-text: #ffffff;
+
+  /* Hover states */
+  --color-bg-hover: #2a2927;
+}
+
+
+/* HEADINGS */
+:is(h1,h2,h3,h4,h5,h6) .Heading_Anchor,
+:is(h1,h2,h3,h4,h5,h6) .Heading_Anchor:hover,
+:is(h1,h2,h3,h4,h5,h6) .Heading_Anchor:visited{
+  color:#222
+}
+
+:is(h1,h2,h3,h4,h5,h6) .Heading_Anchor_Permalink{
+  visibility:hidden;
+  vertical-align:middle;
+  margin-left:.5em;
+  font-size:.7rem
+}
+
+:is(h1,h2,h3,h4,h5,h6) .Heading_Anchor_Permalink::before{
+  font-family:"Font Awesome 6 Free";
+  font-weight:900;
+  content:"\f0c1"
+}
+
+:is(h1,h2,h3,h4,h5,h6):hover .Heading_Anchor_Permalink{
+  visibility:visible
+}

@@ -1,0 +1,450 @@
+/* ==========================================================
+   SIDEBAR
+   ========================================================== */
+
+.Sidebar {
+    display: flex;
+    flex-direction: column;
+
+    width: var(--sidebar-width, 280px);
+    min-width: var(--sidebar-width, 280px);
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: calc(-1 * var(--sidebar-width, 280px));
+
+    z-index: 50;
+
+    background: var(--color-bg-alt);
+    border-right: 1px solid var(--color-border);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    font-size: 1rem;
+
+    transition:
+        left var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1));
+}
+
+.Sidebar.visible {
+    left: 0;
+    box-shadow: .4rem 0 .8rem rgba(187, 187, 187, .7);
+}
+
+
+/* ==========================================================
+   LOGO
+   ========================================================== */
+
+.Sidebar .Logo {
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+.Sidebar .Logo > img {
+    max-height: 6rem;
+    margin: auto;
+}
+
+/* Base image container */
+.image,
+#Page .Sidebar .Logo > img {
+    display: block;
+    position: relative;
+}
+
+/* Image element */
+.image img,
+#Page .Sidebar .Logo > img img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Rounded images */
+.image img.is-rounded,
+#Page .Sidebar .Logo > img img.is-rounded {
+    border-radius: 9999px;
+}
+
+/* Full width */
+.image.is-fullwidth,
+#Page .Sidebar .Logo > img.is-fullwidth {
+    width: 100%;
+}
+
+/* Fixed aspect-ratio images */
+.image[class*="is-"] img,
+.image[class*="is-"] .has-ratio,
+#Page .Sidebar .Logo > img[class*="is-"] img,
+#Page .Sidebar .Logo > img[class*="is-"] .has-ratio {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* ==========================================================
+   REPOSITORY NAME
+   ========================================================== */
+
+.Sidebar .Repo_Name {
+    flex-shrink: 0;
+
+    padding: .5rem 0;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.Sidebar .Repo_Name .Repo_Name_Autofit {
+    max-width: 16.2rem;
+}
+
+.Sidebar .Repo_Name a,
+.Sidebar .Repo_Name a:hover {
+    color: var(--color-text);
+}
+
+
+/* ==========================================================
+   VERSION SELECTOR
+   ========================================================== */
+
+.Sidebar .docs-version-selector {
+    display: none;
+    padding: .5rem;
+
+    border-top: 1px solid var(--color-border);
+}
+
+.Sidebar .docs-version-selector.visible {
+    display: flex;
+}
+
+
+/* ==========================================================
+   MENU CONTAINER
+   ========================================================== */
+
+.docs-menu {
+    list-style: none;
+
+    margin: 0;
+    padding: 0 0 1.5rem;
+
+    flex-grow: 1;
+
+    user-select: none;
+
+    border-top: 1px solid var(--color-border);
+}
+
+
+/* ==========================================================
+   MENU ITEMS
+   ========================================================== */
+
+.docs-menu .tocitem {
+    display: block;
+
+    padding: .5rem;
+
+    color: var(--color-text);
+    background: var(--color-bg-alt);
+}
+
+.docs-menu a.tocitem:hover,
+.docs-menu label.tocitem:hover {
+    color: var(--color-text);
+    background: var(--color-bg-hover);
+}
+
+/* Top-level items with bullet prefix (like • Introduction) - only for anchor links, not folder buttons */
+.docs-menu > li > a.tocitem::before {
+    content: "• ";
+    margin-right: .2em;
+}
+
+/* Files inside folder dropdowns get the bullet (•) - but NOT inside file-menu permalinks */
+.docs-menu .nav-sub > li > a.tocitem::before {
+    content: "• ";
+    margin-right: .2em;
+}
+
+/* Folder toggle buttons do not get the bullet */
+.docs-menu .nav-folder-btn.tocitem::before {
+    content: none;
+}
+
+/* Remove bold from submenu items */
+.docs-menu .nav-sub .tocitem {
+    font-weight: normal;
+}
+
+
+/* ==========================================================
+   ACTIVE MENU ITEM
+   ========================================================== */
+
+.docs-menu li.is-active {
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+
+    background: var(--color-surface);
+}
+
+.docs-menu li.is-active .tocitem,
+.docs-menu li.is-active .tocitem:hover {
+    color: var(--color-text);
+    background: var(--color-surface);
+}
+
+.docs-menu > li.is-active:first-child {
+    border-top: none;
+}
+
+a.tocitem.is-active,
+a.is-active {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   INTERNAL PAGE TOC (file-menu for heading permalinks)
+   ========================================================== */
+
+ul.internal,
+ul.file-menu {
+    margin: 0 .5rem .5rem;
+
+    border-top: 1px solid var(--color-border);
+}
+
+ul.internal li,
+ul.file-menu li {
+    margin-top: .5rem;
+
+    font-size: .85rem;
+
+    border-left: none;
+    margin-left: 0;
+}
+
+ul.internal .tocitem,
+ul.file-menu .tocitem {
+    width: 100%;
+    padding: 0;
+}
+
+ul.internal .tocitem::before,
+ul.file-menu li > a.tocitem::before {
+    content: "∘";
+    margin-right: .4em;
+}
+
+/* Permalink items inside active file menu - no bold highlight, transparent background by default */
+li.is-active ul.file-menu .tocitem {
+    font-weight: normal;
+    background: transparent;
+}
+
+/* Permalink items hover inside active file menu - use sidebar hover color */
+li.is-active ul.file-menu .tocitem:hover {
+    color: var(--color-text);
+    background: var(--color-bg-hover);
+}
+
+/* Active permalink item (currently selected heading) - white background with primary color */
+li.is-active ul.file-menu .tocitem.is-active {
+    background: var(--color-surface);
+    color: var(--color-primary);
+}
+
+
+/* ==========================================================
+   FOLDER TREE
+   ========================================================== */
+
+.nav-sub,
+.folder-menu {
+    overflow: hidden;
+
+    max-height: 0;
+
+    transition:
+        max-height var(--t-slow, 350ms cubic-bezier(.4, 0, .2, 1))
+        ease-out;
+}
+
+.nav-sub.is-open,
+.folder-menu.is-open {
+    max-height: 500px;
+}
+
+.nav-sub.folder-menu {
+    margin-left: 1rem;
+}
+
+/* ==========================================================
+   FOLDER BUTTON
+   ========================================================== */
+
+.nav-folder-btn {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    padding: .5rem 1rem;
+
+    border: none;
+    background: transparent;
+
+    text-align: left;
+    font: inherit;
+
+    cursor: pointer;
+}
+
+.nav-folder-btn:hover {
+    background: var(--color-bg-hover);
+}
+
+.nav-folder-label {
+    flex: 1;
+}
+
+
+/* ==========================================================
+   FOLDER ARROW
+   ========================================================== */
+
+.nav-folder-arrow {
+    display: inline-block;
+
+    margin-left: .75rem;
+
+    font-size: 1rem;
+    line-height: 1;
+
+    transition:
+        transform var(--t-slow, 350ms cubic-bezier(.4, 0, .2, 1))
+        ease-out;
+}
+
+.folder-toggle[aria-expanded="true"] .nav-folder-arrow,
+.folder.is-open .nav-folder-arrow,
+.nav-folder[aria-expanded="true"] .nav-folder-arrow {
+    transform: rotate(90deg);
+}
+
+
+/* ==========================================================
+   MOBILE TOGGLE
+   ========================================================== */
+
+.sidebar-toggle,
+.Sidebar_Button_Class {
+    padding: var(--sp-2);
+
+    border: none;
+    background: transparent;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+}
+
+.sidebar-toggle[aria-expanded="true"] {
+    background: transparent;
+}
+
+body.sidebar-open {
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   OVERLAY
+   ========================================================== */
+
+.sidebar-overlay {
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1)),
+        visibility var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1));
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ==========================================================
+   DESKTOP
+   ========================================================== */
+
+@media (min-width: 1056px) {
+
+    .Sidebar {
+        left: 0;
+        box-shadow: none;
+    }
+
+    .Sidebar.visible {
+        box-shadow: none;
+    }
+
+    .docs-menu {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .docs-menu::-webkit-scrollbar {
+        width: .3rem;
+    }
+
+    .docs-menu::-webkit-scrollbar-thumb {
+        background: var(--color-border);
+        border-radius: 5px 0 0 5px;
+    }
+
+    .docs-menu::-webkit-scrollbar-thumb:hover {
+        background: #ccc;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 1055px) {
+
+    .Sidebar {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .Sidebar::-webkit-scrollbar {
+        width: .3rem;
+    }
+
+    .Sidebar::-webkit-scrollbar-thumb {
+        background: var(--color-border);
+        border-radius: 5px 0 0 5px;
+    }
+
+    .Sidebar::-webkit-scrollbar-thumb:hover {
+        background: #ccc;
+    }
+}
