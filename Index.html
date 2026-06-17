@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8" />
@@ -37,6 +37,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
     <script defer src="JS/Theme_Changer.js"></script>
     <script defer src="JS/Sidebar_Menu.js"></script>
+    <script defer src="JS/Copy_Code.js"></script>
 
 </head>
 
@@ -104,8 +105,8 @@
                     </a>
 
                     <!-- Change Theme -->
-                    <button class="Header_Link" id="theme-toggle" data-theme-toggle aria-label="Toggle theme">
-                        ⊙
+                    <button class="Header_Link" id="theme-toggle" data-theme-toggle type="button" aria-label="Switch to dark theme">
+                        <i class="fa-solid fa-sun" aria-hidden="true"></i>
                     </button>
                 </div>
 
@@ -121,6 +122,8 @@
                     </a>
                     <a class="Heading_Anchor_Permalink" href="#Introduction" title="Permalink"></a>
                 </h1>
+
+                <!-- <pre><code class="language-julia hljs">model = DiscreteModelFromFile(<span class="hljs-string">"../models/model.json"</span>)</code><button class="copy-button fa-solid fa-copy" aria-label="Copy this code block" title="Copy"></button></pre> -->
 
             </article>
 

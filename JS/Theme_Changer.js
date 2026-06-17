@@ -1,17 +1,38 @@
 /**
  * Theme_Changer.js
- * Light/dark/auto theme switching with localStorage persistence.
+ * Light/dark theme switching with localStorage persistence.
  */
 
 (function () {
     'use strict';
 
-    var themes = ['auto', 'light', 'dark'];
-    var currentTheme = localStorage.getItem('theme') || 'auto';
+    var themes = ['light', 'dark'];
+    var storedTheme = localStorage.getItem('theme');
+    var currentTheme = themes.indexOf(storedTheme) !== -1 ? storedTheme : 'light';
     var toggleBtn = document.getElementById('theme-toggle');
+
+    function updateThemeIcon() {
+        if (!toggleBtn) {
+            return;
+        }
+
+        var iconClass = currentTheme === 'dark' ? 'fa-moon' : 'fa-sun';
+        var icon = toggleBtn.querySelector('i');
+
+        if (!icon) {
+            icon = document.createElement('i');
+            icon.setAttribute('aria-hidden', 'true');
+            toggleBtn.textContent = '';
+            toggleBtn.appendChild(icon);
+        }
+
+        icon.className = 'fa-solid ' + iconClass;
+        toggleBtn.setAttribute('aria-label', currentTheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    }
 
     // Initialize theme
     document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon();
 
     if (toggleBtn) {
         toggleBtn.addEventListener('click', function () {
@@ -20,19 +41,7 @@
 
             document.documentElement.setAttribute('data-theme', currentTheme);
             localStorage.setItem('theme', currentTheme);
+            updateThemeIcon();
         });
-    }
-
-    // Handle auto theme with system preference
-    if (currentTheme === 'auto') {
-        var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        mediaQuery.addListener(function (e) {
-            if (localStorage.getItem('theme') === 'auto') {
-                document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-            }
-        });
-
-        // Set initial theme based on system preference
-        document.documentElement.setAttribute('data-theme', mediaQuery.matches ? 'dark' : 'light');
     }
 })();
