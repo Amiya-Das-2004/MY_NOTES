@@ -3,7 +3,9 @@
    ========================================================================= */
 
 /* 1. Base code and pre element styling */
+/* Class/ID: `code, pre` — Purpose: Base font stack for code (JuliaMono) */
 code,
+/* Class/ID: `pre` — Purpose: Preformatted text block styling */
 pre {
   font-family: "JuliaMono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
   -moz-osx-font-smoothing: auto;
@@ -11,19 +13,21 @@ pre {
 }
 
 /* Inline code styling */
+/* Class/ID: `code` — Purpose: Inline code styling */
 code {
   background-color: var(--color-code-bg);
-  color: #000;
+  color: #dfdcdc;
   font-size: .875em;
   font-weight: normal;
   padding: .1em;
 }
 
 /* Preformatted text block styling */
+/* Class/ID: `pre (position)` — Purpose: Code block positioning for copy button */
 pre {
   -webkit-overflow-scrolling: touch;
-  background-color: #f5f5f5;
-  color: #222;
+  background-color: #858080;
+  color: #0f0f0f;
   font-size: .875em;
   overflow-x: auto;
   padding: 1.25rem 1.5rem;
@@ -32,6 +36,7 @@ pre {
 }
 
 /* Code inside pre - transparent background */
+/* Class/ID: `pre code` — Purpose: Code inside pre - transparent background */
 pre code {
   background-color: transparent;
   color: currentColor;
@@ -40,6 +45,7 @@ pre code {
 }
 
 /* 2. Content pre styling */
+/* Class/ID: `.Content pre` — Purpose: Content area pre block styling with border */
 .Content pre {
   -webkit-overflow-scrolling: touch;
   overflow-x: auto;
@@ -51,12 +57,13 @@ pre code {
 }
 
 /* Content code styling variants */
+/* Class/ID: `.Content code` — Purpose: Content code styling variants */
 .Content code {
   font-weight: inherit;
 }
 
 .Content a code {
-  color: #2e63b8;
+  color: #000a1b;
 }
 
 .Content a:hover code {
@@ -69,10 +76,11 @@ pre code {
 .Content h4 code,
 .Content h5 code,
 .Content h6 code {
-  color: #222;
+  color: #1d1c1c;
 }
 
 /* Disable ligature for code */
+/* Class/ID: `pre, code` — Purpose: Disable ligature for code */
 pre,
 code {
   font-variant-ligatures: no-contextual;
@@ -84,6 +92,7 @@ code {
 }
 
 /* Dark mode visibility toggle */
+/* Class/ID: `.docs-dark-only` — Purpose: Hide elements in light mode only */
 .docs-dark-only {
   display: none !important;
 }
@@ -94,7 +103,9 @@ pre {
   overflow: hidden;
 }
 
+/* Class/ID: `pre code.hljs` — Purpose: Highlight.js code block padding */
 pre code,
+/* Class/ID: `pre code.hljs (theme)` — Purpose: Highlight.js theme colors */
 pre code.hljs {
   padding: 0 .75rem !important;
   overflow: auto;
@@ -112,6 +123,7 @@ pre code.hljs:last-of-type {
 }
 
 /* 4. Copy button styling */
+/* Class/ID: `pre .copy-button` — Purpose: Copy button positioning and styling */
 pre .copy-button {
   opacity: 0.2;
   transition: opacity 0.2s;
@@ -152,11 +164,13 @@ pre:hover .copy-button {
 
 /* 5. Context-specific code styling */
 /* Documenter example output */
+/* Class/ID: `.documenter-example-output` — Purpose: Example output container styling */
 .documenter-example-output {
   background-color: #fff;
 }
 
 /* Admonition code styling */
+/* Class/ID: `.admonition-body pre/code` — Purpose: Admonition code styling */
 .admonition-body pre {
   background-color: #f5f5f5;
 }
@@ -170,6 +184,7 @@ details.docstring>summary code {
 }
 
 /* Notification code styling */
+/* Class/ID: `.notification pre/code` — Purpose: Notification code styling */
 .notification code,
 .notification pre {
   background: #fff;
@@ -180,6 +195,7 @@ details.docstring>summary code {
 }
 
 /* Message body code styling */
+/* Class/ID: `.message-body pre/code` — Purpose: Message body code styling */
 .message-body code,
 .message-body pre {
   background-color: #fff;
@@ -210,6 +226,7 @@ code.hljs {
   padding: 3px 5px;
 }
 
+/* Class/ID: `.hljs` — Purpose: Highlight.js background reset */
 .hljs {
   background: #F3F3F3;
   color: #444;
@@ -294,6 +311,7 @@ code.hljs {
 }
 
 /* Julia REPL specific styling */
+/* Class/ID: `code.language-julia-repl` — Purpose: Julia REPL specific styling */
 code.language-julia-repl>span.hljs-meta {
   color: #066f00;
   font-weight: bolder;

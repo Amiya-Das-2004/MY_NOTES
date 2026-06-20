@@ -1,3 +1,5 @@
+// Function: addCopyButtonCallbacks()
+// Purpose: Adds copy buttons to all code blocks and updates icon state after copy
 function addCopyButtonCallbacks() {
   for (const el of document.getElementsByTagName("pre")) {
     const button = document.createElement("button");
@@ -28,6 +30,8 @@ function addCopyButtonCallbacks() {
   }
 }
 
+// Function: copyToClipboard(text)
+// Purpose: Copies text using Clipboard API with textarea fallback for insecure contexts
 function copyToClipboard(text) {
   // clipboard API is only available in secure contexts
   if (window.navigator && window.navigator.clipboard) {

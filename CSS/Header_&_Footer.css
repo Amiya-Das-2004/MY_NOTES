@@ -12,6 +12,7 @@
  * .breadcrumb a.is-disabled - Disabled breadcrumb links
  * ---------------------------------------------------------------------------- */
 
+/* Class/ID: `.breadcrumb` — Purpose: Breadcrumb container */
 .breadcrumb {
   font-size: 1rem;
   white-space: nowrap;
@@ -22,6 +23,7 @@
   user-select: none
 }
 
+/* Class/ID: `.breadcrumb a` — Purpose: Breadcrumb link */
 .breadcrumb a {
   align-items: center;
   color: #2e63b8;
@@ -30,30 +32,36 @@
   padding: 0 .75em
 }
 
+/* Class/ID: `.breadcrumb a:hover` — Purpose: Breadcrumb hover */
 .breadcrumb a:hover {
   color: #363636
 }
 
+/* Class/ID: `.breadcrumb li` — Purpose: Breadcrumb list item */
 .breadcrumb li {
   align-items: center;
   display: flex
 }
 
+/* Class/ID: `.breadcrumb li:first-child a` — Purpose: First breadcrumb padding */
 .breadcrumb li:first-child a {
   padding-left: 0
 }
 
+/* Class/ID: `.breadcrumb li.is-active a` — Purpose: Current page indicator */
 .breadcrumb li.is-active a {
   color: #222;
   cursor: default;
   pointer-events: none
 }
 
+/* Class/ID: `.breadcrumb li+li::before` — Purpose: Breadcrumb separator */
 .breadcrumb li+li::before {
   color: #b5b5b5;
   content: "\\0002f"
 }
 
+/* Class/ID: `.breadcrumb ul, .breadcrumb ol` — Purpose: Breadcrumb flex list */
 .breadcrumb ul,
 .breadcrumb ol {
   align-items: flex-start;
@@ -70,16 +78,19 @@
   margin-left: .5em
 }
 
+/* Class/ID: `.breadcrumb.is-centered` — Purpose: Centered breadcrumb */
 .breadcrumb.is-centered ol,
 .breadcrumb.is-centered ul {
   justify-content: center
 }
 
+/* Class/ID: `.breadcrumb.is-right` — Purpose: Right breadcrumb */
 .breadcrumb.is-right ol,
 .breadcrumb.is-right ul {
   justify-content: flex-end
 }
 
+/* Class/ID: `.breadcrumb.is-small/medium/large` — Purpose: Breadcrumb font sizes */
 .breadcrumb.is-small {
   font-size: .75rem
 }
@@ -92,6 +103,7 @@
   font-size: 1.5rem
 }
 
+/* Class/ID: `.breadcrumb.has-arrow/bullet/dot etc.` — Purpose: Breadcrumb custom separators */
 .breadcrumb.has-arrow-separator li+li::before {
   content: "\\02192"
 }
@@ -108,6 +120,7 @@
   content: "\\0227B"
 }
 
+/* Class/ID: `.breadcrumb a.is-disabled` — Purpose: Disabled breadcrumb link */
 .breadcrumb a.is-disabled {
   cursor: default;
   pointer-events: none
@@ -125,6 +138,7 @@
  * ---------------------------------------------------------------------------- */
 
 @media screen and (max-width: 768px) {
+/* Class/ID: `.is-hidden-mobile` — Purpose: Hide below 769px */
   .is-hidden-mobile {
     display: none !important
   }
@@ -132,6 +146,7 @@
 
 @media screen and (min-width: 769px),
 print {
+/* Class/ID: `.is-hidden-tablet` — Purpose: Hide tablet breakpoint */
   .is-hidden-tablet {
     display: none !important
   }
@@ -155,6 +170,7 @@ print {
  * .Header_Link - Links/buttons in the header (sidebar toggle, GitHub, theme toggle)
  * ---------------------------------------------------------------------------- */
 
+/* Class/ID: `header.Header` — Purpose: Sticky header bar */
 #Page .Main header.Header {
   background-color: #fff;
   border-bottom: 1px solid #dbdbdb;
@@ -164,11 +180,13 @@ print {
   display: flex
 }
 
+/* Class/ID: `header.Header .breadcrumb` — Purpose: Header breadcrumb flex */
 #Page .Main header.Header .breadcrumb {
   flex-grow: 1;
   overflow: hidden
 }
 
+/* Class/ID: `header.Header .Sidebar_Button_Class` — Purpose: Header sidebar toggle */
 #Page .Main header.Header .Sidebar_Button_Class {
   display: block;
   font-size: 1.5rem;
@@ -176,6 +194,7 @@ print {
   margin-right: 1rem
 }
 
+/* Class/ID: `.Header_Right_Side_Icons` — Purpose: Header icon container */
 #Page .Main header.Header .Header_Right_Side_Icons {
   display: flex;
   white-space: nowrap;
@@ -183,7 +202,9 @@ print {
   align-items: center
 }
 
+/* Class/ID: `.Header_Right_Side_Icons .docs-icon` — Purpose: Header icon display */
 #Page .Main header.Header .Header_Right_Side_Icons .docs-icon,
+/* Class/ID: `.Header_Right_Side_Icons .docs-label` — Purpose: Header label padding */
 #Page .Main header.Header .Header_Right_Side_Icons .docs-label {
   display: inline-block
 }
@@ -215,12 +236,14 @@ print {
     -webkit-transition-duration: 0.3s
   }
 
+/* Class/ID: `header.Header.headroom--not-top` — Purpose: Header shadow when scrolled */
   #Page .Main header.Header.headroom--not-top {
     box-shadow: .2rem 0rem .4rem #bbb;
     transition-duration: 0.7s;
     -webkit-transition-duration: 0.7s
   }
 
+/* Class/ID: `header.Header.headroom--unpinned` — Purpose: Hidden header when scrolling down */
   #Page .Main header.Header.headroom--unpinned.headroom--not-top.headroom--not-bottom {
     top: -4.5rem;
     transition-duration: 0.7s;
@@ -237,6 +260,7 @@ print {
  * .Footer_Message - Centered footer attribution message
  * ---------------------------------------------------------------------------- */
 
+/* Class/ID: `.Footer` — Purpose: Footer container */
 #Page .Main .Footer {
   display: flex;
   flex-wrap: wrap;
@@ -254,6 +278,7 @@ print {
   }
 }
 
+/* Class/ID: `.Footer .Footer_Next/Previous` — Purpose: Footer prev/next flex */
 #Page .Main .Footer .Footer_Next,
 #Page .Main .Footer .Footer_Previous {
   flex-grow: 1
@@ -263,11 +288,13 @@ print {
   text-align: right
 }
 
+/* Class/ID: `.Footer .Footer_Break` — Purpose: Footer flex break */
 #Page .Main .Footer .Footer_Break {
   flex-basis: 100%;
   height: 0
 }
 
+/* Class/ID: `.Footer .Footer_Message` — Purpose: Footer attribution */
 #Page .Main .Footer .Footer_Message {
   font-size: 0.8em;
   margin: 0.5em auto 0 auto;

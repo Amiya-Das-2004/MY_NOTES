@@ -1,3 +1,4 @@
+/* Class/ID: `.pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis, .file-cta, .file-name, .button` — Purpose: Base button/input styles */
 .pagination-previous,
 .pagination-next,
 .pagination-link,
@@ -8,6 +9,7 @@
 .textarea,
 .input,
 #Page .Sidebar form.docs-search>input,
+/* Class/ID: `.button base` — Purpose: Button base */
 .button {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -38,6 +40,7 @@
 .textarea:focus,
 .input:focus,
 #Page .Sidebar form.docs-search>input:focus,
+/* Class/ID: `.button:focus, .button:active, .button.is-active` — Purpose: Button focus/active states */
 .button:focus,
 .is-focused.pagination-previous,
 .is-focused.pagination-next,
@@ -98,6 +101,7 @@ fieldset[disabled] .textarea,
 fieldset[disabled] .input,
 fieldset[disabled] #Page .Sidebar form.docs-search>input,
 #Page .Sidebar fieldset[disabled] form.docs-search>input,
+/* Class/ID: `.button[disabled], fieldset[disabled] .button` — Purpose: Disabled button cursor */
 fieldset[disabled] .button {
   cursor: not-allowed
 }
@@ -107,6 +111,7 @@ fieldset[disabled] .button {
 .pagination-next,
 .pagination-link,
 .pagination-ellipsis,
+/* Class/ID: `.tabs, .button, .is-unselectable` — Purpose: User-select none */
 .file,
 .button,
 .is-unselectable {
@@ -117,6 +122,7 @@ fieldset[disabled] .button {
   user-select: none
 }
 
+/* Class/ID: `.navbar-link:not(.is-arrowless)::after, .select:not(.is-multiple):not(.is-loading)::after` — Purpose: Dropdown arrow */
 .navbar-link:not(.is-arrowless)::after,
 .select:not(.is-multiple):not(.is-loading)::after {
   border: 3px solid rgba(0, 0, 0, 0);
@@ -135,6 +141,7 @@ fieldset[disabled] .button {
   width: 0.625em
 }
 
+/* Class/ID: `.admonition, .tabs, .pagination, .message, .Content, .box` — Purpose: Bottom margin */
 .admonition:not(:last-child),
 .tabs:not(:last-child),
 .pagination:not(:last-child),
@@ -152,6 +159,7 @@ fieldset[disabled] .button {
   margin-bottom: 1.5rem
 }
 
+/* Class/ID: `.modal-close, .delete` — Purpose: Modal close button */
 .modal-close,
 .delete {
   -webkit-touch-callout: none;
@@ -252,6 +260,7 @@ fieldset[disabled] .button {
 }
 
 .control.is-loading::after,
+/* Class/ID: `.button.is-loading::after, .loader` — Purpose: Loading spinner */
 .select.is-loading::after,
 .loader,
 .button.is-loading::after {
@@ -334,6 +343,7 @@ fieldset[disabled] .button {
 #Page .Sidebar .Logo>img.is-1by3 img,
 .image.is-1by3 .has-ratio,
 #Page .Sidebar .Logo>img.is-1by3 .has-ratio,
+/* Class/ID: `.hero-video, .modal-background, .modal, .is-overlay` — Purpose: Overlay positioning */
 .is-overlay {
   bottom: 0;
   left: 0;
@@ -342,6 +352,7 @@ fieldset[disabled] .button {
   top: 0
 }
 
+/* Class/ID: `.navbar-burger` — Purpose: Navbar burger */
 .navbar-burger {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -355,6 +366,7 @@ fieldset[disabled] .button {
   padding: 0
 }
 
+/* Class/ID: `.has-text-white, .has-text-black, .has-text-light, .has-text-dark, .has-text-primary, .has-text-link, .has-text-info, .has-text-success, .has-text-warning, .has-text-danger` — Purpose: Text color utilities */
 .has-text-white {
   color: #fff !important
 }
@@ -364,6 +376,7 @@ a.has-text-white:focus {
   color: #e6e6e6 !important
 }
 
+/* Class/ID: `.has-background-white, .has-background-black, .has-background-light, .has-background-dark, .has-background-primary, .has-background-link, .has-background-info, .has-background-success, .has-background-warning, .has-background-danger` — Purpose: Background color utilities */
 .has-background-white {
   background-color: #fff !important
 }
@@ -713,6 +726,7 @@ a.has-text-danger-dark:focus {
   background-color: #fafafa !important
 }
 
+/* Class/ID: `.is-flex-direction-row, .is-flex-direction-row-reverse, .is-flex-direction-column, .is-flex-direction-column-reverse` — Purpose: Flex direction */
 .is-flex-direction-row {
   flex-direction: row !important
 }
@@ -729,6 +743,7 @@ a.has-text-danger-dark:focus {
   flex-direction: column-reverse !important
 }
 
+/* Class/ID: `.is-flex-wrap-nowrap, .is-flex-wrap-wrap, .is-flex-wrap-wrap-reverse` — Purpose: Flex wrap */
 .is-flex-wrap-nowrap {
   flex-wrap: nowrap !important
 }
@@ -741,6 +756,7 @@ a.has-text-danger-dark:focus {
   flex-wrap: wrap-reverse !important
 }
 
+/* Class/ID: `.is-justify-content-flex-start, .is-justify-content-flex-end, .is-justify-content-center, .is-justify-content-space-between, .is-justify-content-space-around, .is-justify-content-space-evenly, .is-justify-content-start, .is-justify-content-end, .is-justify-content-left, .is-justify-content-right` — Purpose: Justify content */
 .is-justify-content-flex-start {
   justify-content: flex-start !important
 }
@@ -781,6 +797,7 @@ a.has-text-danger-dark:focus {
   justify-content: right !important
 }
 
+/* Class/ID: `.is-align-content-flex-start, .is-align-content-flex-end, .is-align-content-center, .is-align-content-space-between, .is-align-content-space-around, .is-align-content-space-evenly, .is-align-content-stretch, .is-align-content-start, .is-align-content-end, .is-align-content-baseline` — Purpose: Align content */
 .is-align-content-flex-start {
   align-content: flex-start !important
 }
@@ -821,6 +838,7 @@ a.has-text-danger-dark:focus {
   align-content: baseline !important
 }
 
+/* Class/ID: `.is-align-items-stretch, .is-align-items-flex-start, .is-align-items-flex-end, .is-align-items-center, .is-align-items-baseline, .is-align-items-start, .is-align-items-end, .is-align-items-self-start, .is-align-items-self-end` — Purpose: Align items */
 .is-align-items-stretch {
   align-items: stretch !important
 }
@@ -857,6 +875,7 @@ a.has-text-danger-dark:focus {
   align-items: self-end !important
 }
 
+/* Class/ID: `.is-align-self-auto, .is-align-self-flex-start, .is-align-self-flex-end, .is-align-self-center, .is-align-self-baseline, .is-align-self-stretch` — Purpose: Align self */
 .is-align-self-auto {
   align-self: auto !important
 }
@@ -881,6 +900,7 @@ a.has-text-danger-dark:focus {
   align-self: stretch !important
 }
 
+/* Class/ID: `.is-flex-grow-0 through .is-flex-grow-5` — Purpose: Flex grow */
 .is-flex-grow-0 {
   flex-grow: 0 !important
 }
@@ -905,6 +925,7 @@ a.has-text-danger-dark:focus {
   flex-grow: 5 !important
 }
 
+/* Class/ID: `.is-flex-shrink-0 through .is-flex-shrink-5` — Purpose: Flex shrink */
 .is-flex-shrink-0 {
   flex-shrink: 0 !important
 }
@@ -929,12 +950,14 @@ a.has-text-danger-dark:focus {
   flex-shrink: 5 !important
 }
 
+/* Class/ID: `.is-clearfix::after` — Purpose: Clearfix */
 .is-clearfix::after {
   clear: both;
   content: " ";
   display: table
 }
 
+/* Class/ID: `.is-pulled-left, .is-pulled-right` — Purpose: Float utilities */
 .is-pulled-left {
   float: left !important
 }
@@ -943,6 +966,7 @@ a.has-text-danger-dark:focus {
   float: right !important
 }
 
+/* Class/ID: `.is-radiusless, .is-shadowless, .is-clickable, .is-clipped, .is-relative, .is-marginless, .is-paddingless` — Purpose: Misc utilities */
 .is-radiusless {
   border-radius: 0 !important
 }
@@ -972,6 +996,7 @@ a.has-text-danger-dark:focus {
   padding: 0 !important
 }
 
+/* Class/ID: `.m-0, .mt-0, .mr-0, .mb-0, .ml-0, .mx-0, .my-0` — Purpose: Margin 0 utilities */
 .m-0 {
   margin: 0 !important
 }
@@ -1002,6 +1027,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: 0 !important
 }
 
+/* Class/ID: `.m-1 through .my-1` — Purpose: Margin 0.25rem utilities */
 .m-1 {
   margin: .25rem !important
 }
@@ -1032,6 +1058,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: .25rem !important
 }
 
+/* Class/ID: `.m-2 through .my-2` — Purpose: Margin 0.5rem utilities */
 .m-2 {
   margin: .5rem !important
 }
@@ -1062,6 +1089,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: .5rem !important
 }
 
+/* Class/ID: `.m-3 through .my-3` — Purpose: Margin 0.75rem utilities */
 .m-3 {
   margin: .75rem !important
 }
@@ -1092,6 +1120,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: .75rem !important
 }
 
+/* Class/ID: `.m-4 through .my-4` — Purpose: Margin 1rem utilities */
 .m-4 {
   margin: 1rem !important
 }
@@ -1122,6 +1151,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: 1rem !important
 }
 
+/* Class/ID: `.m-5 through .my-5` — Purpose: Margin 1.5rem utilities */
 .m-5 {
   margin: 1.5rem !important
 }
@@ -1152,6 +1182,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: 1.5rem !important
 }
 
+/* Class/ID: `.m-6 through .my-6` — Purpose: Margin 3rem utilities */
 .m-6 {
   margin: 3rem !important
 }
@@ -1198,6 +1229,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: auto !important
 }
 
+/* Class/ID: `.ml-auto, .mx-auto, .my-auto` — Purpose: Auto margin utilities */
 .ml-auto {
   margin-left: auto !important
 }
@@ -1212,6 +1244,7 @@ a.has-text-danger-dark:focus {
   margin-bottom: auto !important
 }
 
+/* Class/ID: `.p-0, .pt-0, .pr-0, .pb-0, .pl-0, .px-0, .py-0` — Purpose: Padding 0 utilities */
 .p-0 {
   padding: 0 !important
 }
@@ -1242,6 +1275,7 @@ a.has-text-danger-dark:focus {
   padding-bottom: 0 !important
 }
 
+/* Class/ID: `.p-1 through .py-1` — Purpose: Padding 0.25rem utilities */
 .p-1 {
   padding: .25rem !important
 }
@@ -1272,6 +1306,7 @@ a.has-text-danger-dark:focus {
   padding-bottom: .25rem !important
 }
 
+/* Class/ID: `.p-2 through .py-2` — Purpose: Padding 0.5rem utilities */
 .p-2 {
   padding: .5rem !important
 }
@@ -1302,6 +1337,7 @@ a.has-text-danger-dark:focus {
   padding-bottom: .5rem !important
 }
 
+/* Class/ID: `.p-3 through .py-3` — Purpose: Padding 0.75rem utilities */
 .p-3 {
   padding: .75rem !important
 }
@@ -1332,6 +1368,7 @@ a.has-text-danger-dark:focus {
   padding-bottom: .75rem !important
 }
 
+/* Class/ID: `.p-4 through .py-4` — Purpose: Padding 1rem utilities */
 .p-4 {
   padding: 1rem !important
 }
@@ -1362,6 +1399,7 @@ a.has-text-danger-dark:focus {
   padding-bottom: 1rem !important
 }
 
+/* Class/ID: `.p-5 through .py-5` — Purpose: Padding 1.5rem utilities */
 .p-5 {
   padding: 1.5rem !important
 }
@@ -1392,6 +1430,7 @@ a.has-text-danger-dark:focus {
   padding-bottom: 1.5rem !important
 }
 
+/* Class/ID: `.p-6 through .pb-6` — Purpose: Padding 3rem utilities */
 .p-6 {
   padding: 3rem !important
 }
@@ -2370,7 +2409,9 @@ print {
 }
 
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+/* Class/ID: `html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre, iframe, hr, h1-h6` — Purpose: Minireset base */
 html,
+/* Class/ID: `body, button, input, optgroup, select, textarea` — Purpose: Base font family */
 body,
 p,
 ol,
@@ -2387,6 +2428,7 @@ textarea,
 pre,
 iframe,
 hr,
+/* Class/ID: `h1-h6 reset` — Purpose: Heading reset */
 h1,
 h2,
 h3,
@@ -2407,10 +2449,12 @@ h6 {
   font-weight: normal
 }
 
+/* Class/ID: `ul` — Purpose: Remove default list style */
 ul {
   list-style: none
 }
 
+/* Class/ID: `button, input, select, textarea` — Purpose: Reset input margins */
 button,
 input,
 select,
@@ -2418,26 +2462,31 @@ textarea {
   margin: 0
 }
 
+/* Class/ID: `html box-sizing` — Purpose: Set box-sizing model */
 html {
   box-sizing: border-box
 }
 
+/* Class/ID: `*, *::before, *::after` — Purpose: Inherit box-sizing */
 *,
 *::before,
 *::after {
   box-sizing: inherit
 }
 
+/* Class/ID: `img, video` — Purpose: Responsive images */
 img,
 video {
   height: auto;
   max-width: 100%
 }
 
+/* Class/ID: `iframe` — Purpose: Remove iframe border */
 iframe {
   border: 0
 }
 
+/* Class/ID: `table` — Purpose: Table border collapse */
 table {
   border-collapse: collapse;
   border-spacing: 0
@@ -2453,6 +2502,7 @@ th:not([align]) {
   text-align: inherit
 }
 
+/* Class/ID: `html font` — Purpose: Base html font */
 html {
   background-color: #fff;
   font-size: 16px;
@@ -2465,6 +2515,7 @@ html {
   text-size-adjust: 100%
 }
 
+/* Class/ID: `article, aside, figure, footer, header, hgroup, section` — Purpose: Semantic block display */
 article,
 aside,
 figure,
@@ -2486,6 +2537,7 @@ textarea {
 
 /* Code-related styles moved to Code.css */
 
+/* Class/ID: `body` — Purpose: Body text color and line-height */
 body {
   color: #222;
   font-size: 1em;
@@ -2493,6 +2545,7 @@ body {
   line-height: 1.5
 }
 
+/* Class/ID: `a` — Purpose: Default link styling */
 a {
   color: #2e63b8;
   cursor: pointer;
@@ -2503,12 +2556,14 @@ a strong {
   color: currentColor
 }
 
+/* Class/ID: `a:hover` — Purpose: Link hover color */
 a:hover {
   color: #363636
 }
 
 /* Code-related styles moved to Code.css */
 
+/* Class/ID: `hr` — Purpose: Horizontal rule */
 hr {
   background-color: #f5f5f5;
   border: none;
@@ -2522,11 +2577,13 @@ img {
   max-width: 100%
 }
 
+/* Class/ID: `input[type="checkbox"], input[type="radio"]` — Purpose: Checkbox/radio alignment */
 input[type="checkbox"],
 input[type="radio"] {
   vertical-align: baseline
 }
 
+/* Class/ID: `small` — Purpose: Small text size */
 small {
   font-size: .875em
 }
@@ -2536,6 +2593,7 @@ span {
   font-weight: inherit
 }
 
+/* Class/ID: `strong` — Purpose: Bold text */
 strong {
   color: #222;
   font-weight: 700
@@ -2571,6 +2629,7 @@ table th {
   }
 }
 
+/* Class/ID: `.box` — Purpose: Content box */
 .box {
   background-color: #fff;
   border-radius: 6px;
@@ -2633,6 +2692,7 @@ a.box:active {
   margin-right: calc(-0.5em - 1px)
 }
 
+/* Class/ID: `.button:hover, .button:focus` — Purpose: Button hover/focus */
 .button:hover,
 .button.is-hovered {
   border-color: #b5b5b5;
@@ -2656,6 +2716,7 @@ a.box:active {
   color: #363636
 }
 
+/* Class/ID: `.button.is-text, .button.is-text:hover, .button.is-text:focus` — Purpose: Text button variant */
 .button.is-text {
   background-color: transparent;
   border-color: transparent;
@@ -2684,6 +2745,7 @@ fieldset[disabled] .button.is-text {
   box-shadow: none
 }
 
+/* Class/ID: `.button.is-ghost` — Purpose: Ghost button */
 .button.is-ghost {
   background: none;
   border-color: rgba(0, 0, 0, 0);
@@ -2697,6 +2759,7 @@ fieldset[disabled] .button.is-text {
   text-decoration: underline
 }
 
+/* Class/ID: `.button.is-white, .button.is-black, .button.is-light, .button.is-dark, .button.is-primary, .button.is-link, .button.is-info, .button.is-success, .button.is-warning, .button.is-danger` — Purpose: Button color variants */
 .button.is-white {
   background-color: #fff;
   border-color: transparent;
@@ -2943,6 +3006,7 @@ fieldset[disabled] .button.is-black.is-inverted.is-outlined {
   color: #fff
 }
 
+/* Class/ID: `.button.is-light variants` — Purpose: Light button styles */
 .button.is-light {
   background-color: #f5f5f5;
   border-color: transparent;
@@ -4130,6 +4194,7 @@ fieldset[disabled] .button.is-danger.is-inverted.is-outlined {
   color: #c03930
 }
 
+/* Class/ID: `.button.is-small` — Purpose: Small button font size */
 .button.is-small,
 #Page .Sidebar form.docs-search>input.button {
   font-size: .75rem
@@ -4140,14 +4205,17 @@ fieldset[disabled] .button.is-danger.is-inverted.is-outlined {
   border-radius: 2px
 }
 
+/* Class/ID: `.button.is-normal` — Purpose: Normal button font size */
 .button.is-normal {
   font-size: 1rem
 }
 
+/* Class/ID: `.button.is-medium` — Purpose: Medium button font size */
 .button.is-medium {
   font-size: 1.25rem
 }
 
+/* Class/ID: `.button.is-large` — Purpose: Large button font size */
 .button.is-large {
   font-size: 1.5rem
 }
@@ -4160,11 +4228,13 @@ fieldset[disabled] .button {
   opacity: .5
 }
 
+/* Class/ID: `.button.is-fullwidth` — Purpose: Full-width button */
 .button.is-fullwidth {
   display: flex;
   width: 100%
 }
 
+/* Class/ID: `.button.is-loading` — Purpose: Loading button transparency */
 .button.is-loading {
   color: transparent !important;
   pointer-events: none
@@ -4177,6 +4247,7 @@ fieldset[disabled] .button {
   position: absolute !important
 }
 
+/* Class/ID: `.button.is-static` — Purpose: Static button */
 .button.is-static {
   background-color: #f5f5f5;
   border-color: #dbdbdb;
@@ -4185,6 +4256,7 @@ fieldset[disabled] .button {
   pointer-events: none
 }
 
+/* Class/ID: `.button.is-rounded` — Purpose: Rounded button */
 .button.is-rounded,
 #Page .Sidebar form.docs-search>input.button {
   border-radius: 9999px;
@@ -4192,6 +4264,7 @@ fieldset[disabled] .button {
   padding-right: calc(1em + 0.25em)
 }
 
+/* Class/ID: `.buttons` — Purpose: Button group */
 .buttons {
   align-items: center;
   display: flex;
@@ -4199,6 +4272,7 @@ fieldset[disabled] .button {
   justify-content: flex-start
 }
 
+/* Class/ID: `.buttons .button` — Purpose: Button group spacing */
 .buttons .button {
   margin-bottom: 0.5rem
 }
@@ -4231,6 +4305,7 @@ fieldset[disabled] .button {
   font-size: 1.5rem
 }
 
+/* Class/ID: `.buttons.has-addons .button` — Purpose: Addon button group */
 .buttons.has-addons .button:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0
@@ -4376,10 +4451,12 @@ fieldset[disabled] .button {
   }
 }
 
+/* Class/ID: `.Content li+li` — Purpose: List item spacing */
 .Content li+li {
   margin-top: 0.25em
 }
 
+/* Class/ID: `.Content p, .Content dl, .Content ol, .Content ul, .Content blockquote, .Content pre, .Content table` — Purpose: Content spacing */
 .Content p:not(:last-child),
 .Content dl:not(:last-child),
 .Content ol:not(:last-child),
@@ -4390,17 +4467,20 @@ fieldset[disabled] .button {
   margin-bottom: 1em
 }
 
+/* Class/ID: `.Content h1-h6` — Purpose: Content heading styles */
 .Content h1,
 .Content h2,
 .Content h3,
 .Content h4,
 .Content h5,
+/* Class/ID: `.Content h6` — Purpose: H6 size and margin */
 .Content h6 {
   color: #222;
   font-weight: 600;
   line-height: 1.125
 }
 
+/* Class/ID: `.Content h1` — Purpose: H1 size and margin */
 .Content h1 {
   font-size: 2em;
   margin-bottom: 0.5em
@@ -4410,6 +4490,7 @@ fieldset[disabled] .button {
   margin-top: 1em
 }
 
+/* Class/ID: `.Content h2` — Purpose: H2 size and margin */
 .Content h2 {
   font-size: 1.75em;
   margin-bottom: 0.5714em
@@ -4419,6 +4500,7 @@ fieldset[disabled] .button {
   margin-top: 1.1428em
 }
 
+/* Class/ID: `.Content h3` — Purpose: H3 size and margin */
 .Content h3 {
   font-size: 1.5em;
   margin-bottom: 0.6666em
@@ -4428,11 +4510,13 @@ fieldset[disabled] .button {
   margin-top: 1.3333em
 }
 
+/* Class/ID: `.Content h4` — Purpose: H4 size and margin */
 .Content h4 {
   font-size: 1.25em;
   margin-bottom: 0.8em
 }
 
+/* Class/ID: `.Content h5` — Purpose: H5 size and margin */
 .Content h5 {
   font-size: 1.125em;
   margin-bottom: 0.8888em
@@ -4443,12 +4527,14 @@ fieldset[disabled] .button {
   margin-bottom: 1em
 }
 
+/* Class/ID: `.Content blockquote` — Purpose: Blockquote */
 .Content blockquote {
   background-color: #f5f5f5;
   border-left: 5px solid #dbdbdb;
   padding: 1.25em 1.5em
 }
 
+/* Class/ID: `.Content ol` — Purpose: Ordered list */
 .Content ol {
   list-style-position: outside;
   margin-left: 2em;
@@ -4459,6 +4545,7 @@ fieldset[disabled] .button {
   list-style-type: decimal
 }
 
+/* Class/ID: `.Content ol.is-lower-alpha, .Content ol.is-lower-roman, .Content ol.is-upper-alpha, .Content ol.is-upper-roman` — Purpose: Ordered list variants */
 .Content ol.is-lower-alpha:not([type]) {
   list-style-type: lower-alpha
 }
@@ -4475,6 +4562,7 @@ fieldset[disabled] .button {
   list-style-type: upper-roman
 }
 
+/* Class/ID: `.Content ul` — Purpose: Unordered list */
 .Content ul {
   list-style: disc outside;
   margin-left: 2em;
@@ -4494,6 +4582,7 @@ fieldset[disabled] .button {
   margin-left: 2em
 }
 
+/* Class/ID: `.Content figure` — Purpose: Figure styling */
 .Content figure {
   margin-left: 2em;
   margin-right: 2em;
@@ -4518,11 +4607,13 @@ fieldset[disabled] .button {
 
 /* Code-related styles moved to Code.css */
 
+/* Class/ID: `.Content sup, .Content sub` — Purpose: Superscript/subscript */
 .Content sup,
 .Content sub {
   font-size: 75%
 }
 
+/* Class/ID: `.Content table` — Purpose: Content table */
 .Content table {
   width: 100%
 }
@@ -4564,6 +4655,7 @@ fieldset[disabled] .button {
   margin-top: 0
 }
 
+/* Class/ID: `.Content.is-small, .Content.is-normal, .Content.is-medium, .Content.is-large` — Purpose: Content font sizes */
 .Content.is-small,
 #Page .Sidebar form.docs-search>input.Content {
   font-size: .75rem
@@ -4581,6 +4673,7 @@ fieldset[disabled] .button {
   font-size: 1.5rem
 }
 
+/* Class/ID: `.icon, .icon.is-small, .icon.is-medium, .icon.is-large` — Purpose: Icon sizing */
 .icon {
   align-items: center;
   display: inline-flex;
@@ -4605,6 +4698,7 @@ fieldset[disabled] .button {
   width: 3rem
 }
 
+/* Class/ID: `.icon-text` — Purpose: Icon text */
 .icon-text {
   align-items: flex-start;
   color: inherit;
@@ -4722,6 +4816,7 @@ div.icon-text {
   width: 100%
 } */
 
+/* Class/ID: `.image.is-square, .image.is-1by1, .image.is-5by4, .image.is-4by3, .image.is-3by2, .image.is-5by3, .image.is-16by9, .image.is-2by1, .image.is-3by1, .image.is-4by5, .image.is-3by4, .image.is-2by3, .image.is-3by5, .image.is-9by16, .image.is-1by2, .image.is-1by3` — Purpose: Aspect ratio image utilities */
 .image.is-square,
 #Page .Sidebar .Logo>img.is-square,
 .image.is-1by1,
@@ -4799,6 +4894,7 @@ div.icon-text {
   padding-top: 300%
 }
 
+/* Class/ID: `.image.is-16x16, .image.is-24x24, .image.is-32x32, .image.is-48x48, .image.is-64x64, .image.is-96x96, .image.is-128x128` — Purpose: Fixed image containers */
 .image.is-16x16,
 #Page .Sidebar .Logo>img.is-16x16 {
   height: 16px;
@@ -4841,6 +4937,7 @@ div.icon-text {
   width: 150px
 }
 
+/* Class/ID: `.notification` — Purpose: Notification banner */
 .notification {
   background-color: #f5f5f5;
   border-radius: 4px;
@@ -4848,11 +4945,13 @@ div.icon-text {
   padding: 1.25rem 2.5rem 1.25rem 1.5rem
 }
 
+/* Class/ID: `.notification a:not(.button)` — Purpose: Notification link */
 .notification a:not(.button):not(.dropdown-item) {
   color: currentColor;
   text-decoration: underline
 }
 
+/* Class/ID: `.notification strong` — Purpose: Notification strong */
 .notification strong {
   color: currentColor
 }
@@ -4871,6 +4970,7 @@ div.icon-text {
   color: currentColor
 }
 
+/* Class/ID: `.notification.is-white, .is-black, .is-light, .is-dark, .is-primary, .is-link, .is-info, .is-success, .is-warning, .is-danger` — Purpose: Notification color variants */
 .notification.is-white {
   background-color: #fff;
   color: #0a0a0a
@@ -4881,6 +4981,7 @@ div.icon-text {
   color: #fff
 }
 
+/* Class/ID: `.notification.is-light variants` — Purpose: Light notification styles */
 .notification.is-light {
   background-color: #f5f5f5;
   color: rgba(0, 0, 0, 0.7)
@@ -4954,6 +5055,7 @@ details.docstring>section>a.notification.is-light.docs-sourcelink {
   color: #c03930
 }
 
+/* Class/ID: `.progress` — Purpose: Progress bar */
 .progress {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -4966,6 +5068,7 @@ details.docstring>section>a.notification.is-light.docs-sourcelink {
   width: 100%
 }
 
+/* Class/ID: `.progress::-webkit-progress-bar, .progress::-webkit-progress-value` — Purpose: Webkit progress bar */
 .progress::-webkit-progress-bar {
   background-color: #ededed
 }
@@ -5198,11 +5301,13 @@ details.docstring>section>a.progress.docs-sourcelink:indeterminate {
   }
 }
 
+/* Class/ID: `.table` — Purpose: Table width/overflow */
 .table {
   background-color: #fff;
   color: #222
 }
 
+/* Class/ID: `.table td, .table th` — Purpose: Table cells */
 .table td,
 .table th {
   border: 1px solid #dbdbdb;
@@ -5329,6 +5434,7 @@ details.docstring>section>a.progress.docs-sourcelink:indeterminate {
   color: currentColor
 }
 
+/* Class/ID: `.table thead, .table tfoot` — Purpose: Table header/footer */
 .table thead {
   background-color: rgba(0, 0, 0, 0)
 }
@@ -5358,6 +5464,7 @@ details.docstring>section>a.progress.docs-sourcelink:indeterminate {
   border-bottom-width: 0
 }
 
+/* Class/ID: `.table.is-bordered, .table.is-fullwidth, .table.is-hoverable, .table.is-striped, .table.is-narrow` — Purpose: Table modifiers */
 .table.is-bordered td,
 .table.is-bordered th {
   border-width: 1px
@@ -5393,6 +5500,7 @@ details.docstring>section>a.progress.docs-sourcelink:indeterminate {
   background-color: #fafafa
 }
 
+/* Class/ID: `.table-container` — Purpose: Table scroll container */
 .table-container {
   -webkit-overflow-scrolling: touch;
   overflow: auto;
@@ -5400,6 +5508,7 @@ details.docstring>section>a.progress.docs-sourcelink:indeterminate {
   max-width: 100%
 }
 
+/* Class/ID: `.tags` — Purpose: Tag container */
 .tags {
   align-items: center;
   display: flex;
@@ -5514,6 +5623,7 @@ details.docstring>section>a.docs-sourcelink:not(body) {
   white-space: nowrap
 }
 
+/* Class/ID: `.tag:not(body)` — Purpose: Tag chip */
 .tag:not(body) .delete,
 .Content kbd:not(body) .delete,
 details.docstring>section>a.docs-sourcelink:not(body) .delete {
@@ -5521,6 +5631,7 @@ details.docstring>section>a.docs-sourcelink:not(body) .delete {
   margin-right: -.375rem
 }
 
+/* Class/ID: `.tag.is-white, .tag.is-black, .tag.is-light, .tag.is-dark, .tag.is-primary, .tag.is-link, .tag.is-info, .tag.is-success, .tag.is-warning, .tag.is-danger` — Purpose: Tag color variants */
 .tag.is-white:not(body),
 .Content kbd.is-white:not(body),
 details.docstring>section>a.docs-sourcelink.is-white:not(body) {
@@ -5634,6 +5745,7 @@ details.docstring>section>a.docs-sourcelink.is-danger.is-light:not(body) {
   color: #c03930
 }
 
+/* Class/ID: `.tag.is-normal, .tag.is-medium, .tag.is-large` — Purpose: Tag size variants */
 .tag.is-normal:not(body),
 .Content kbd.is-normal:not(body),
 details.docstring>section>a.docs-sourcelink.is-normal:not(body) {
@@ -13595,6 +13707,7 @@ h6:hover .Heading_Anchor_Permalink {
   color: #2e63b8
 }
 
+/* Class/ID: `.admonition` — Purpose: Admonition box */
 .admonition {
   background-color: #f5f5f5;
   border-style: solid;
@@ -13635,6 +13748,7 @@ h6:hover .Heading_Anchor_Permalink {
   color: rgba(0, 0, 0, 0.7)
 }
 
+/* Class/ID: `.admonition.is-info, .admonition.is-success, .admonition.is-warning, .admonition.is-danger, .admonition.is-compat, .admonition.is-todo` — Purpose: Admonition color variants */
 .admonition.is-info {
   background-color: #f5f5f5;
   border-color: #3c5dcd
@@ -13719,6 +13833,7 @@ h6:hover .Heading_Anchor_Permalink {
   color: rgba(0, 0, 0, 0.7)
 }
 
+/* Class/ID: `.admonition-header` — Purpose: Admonition header */
 .admonition-header {
   color: #4a4a4a;
   background-color: rgba(0, 0, 0, 0);
@@ -13737,6 +13852,7 @@ h6:hover .Heading_Anchor_Permalink {
   content: "\f06a"
 }
 
+/* Class/ID: `.admonition-header .admonition-anchor` — Purpose: Admonition permalink anchor */
 .admonition-header .admonition-anchor {
   opacity: 0;
   margin-left: 0.5em;
@@ -13777,6 +13893,7 @@ details.admonition.is-details[open]>.admonition-header:before {
   content: "\f056"
 }
 
+/* Class/ID: `.admonition-body` — Purpose: Admonition body */
 .admonition-body {
   color: #222;
   padding: 0.5rem .75rem
@@ -13784,6 +13901,7 @@ details.admonition.is-details[open]>.admonition-header:before {
 
 /* Code-related styles moved to Code.css */
 
+/* Class/ID: `details.docstring` — Purpose: Docstring details */
 details.docstring {
   margin-bottom: 1em;
   background-color: rgba(0, 0, 0, 0);
@@ -13951,45 +14069,16 @@ details.docstring[open]>summary::before {
 
 /* Code-related styles moved to Code.css */
 
-.katex .katex-mathml {
-  top: 0;
-  right: 0
-}
-
-.katex-display,
-mjx-container,
-.MathJax_Display {
-  margin: 0.5em 0 !important
-}
-
-html {
-  -moz-osx-font-smoothing: auto;
-  -webkit-font-smoothing: auto
-}
+/* Math-related styles moved to Math.css */
 
 li.no-marker {
   list-style: none
 }
 
-#Page .Main>article {
-  overflow-wrap: break-word
-}
 
-#Page .Main>article h1,
-#Page .Main>article h2,
-#Page .Main>article h3,
-#Page .Main>article h4,
-#Page .Main>article h5,
-#Page .Main>article h6 {
-  scroll-margin-top: 4.5rem
-}
 
-#Page .Main>article .Math {
-  overflow-x: auto;
-  overflow-y: hidden;
-  background-color: var(--color-code-bg);
-}
 
+/* Class/ID: `#Page .Main` — Purpose: Main content layout */
 @media screen and (min-width: 1056px) {
   #Page .Main {
     max-width: 52rem;
@@ -14020,6 +14109,7 @@ li.no-marker {
 }
 
 
+/* Class/ID: `#Page .Main section.footnotes` — Purpose: Footnotes border */
 #Page .Main section.footnotes {
   border-top: 1px solid #dbdbdb
 }
@@ -14032,6 +14122,7 @@ li.no-marker {
   margin-bottom: 0.4em
 }
 
+/* Class/ID: `kbd.search-modal-key-hints` — Purpose: Search modal key hints */
 kbd.search-modal-key-hints {
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.6);
@@ -14058,6 +14149,7 @@ kbd.search-modal-key-hints {
   max-height: calc(100vh - 15rem)
 }
 
+/* Class/ID: `.search-result-link` — Purpose: Search result link */
 .search-result-link {
   border-radius: 0.7em;
   transition: all 300ms;
@@ -14077,6 +14169,7 @@ kbd.search-modal-key-hints {
 }
 
 .property-search-result-badge,
+/* Class/ID: `.search-filter` — Purpose: Search filter */
 .search-filter {
   padding: 0.15em 0.5em;
   font-size: 0.8em;
@@ -14088,6 +14181,7 @@ kbd.search-modal-key-hints {
   border-radius: 0.6rem
 }
 
+/* Class/ID: `.search-result-link:hover` — Purpose: Search result hover */
 .search-result-link:hover .property-search-result-badge,
 .search-result-link:hover .search-filter,
 .search-result-link:focus .property-search-result-badge,
@@ -14107,6 +14201,7 @@ kbd.search-modal-key-hints {
   color: #333
 }
 
+/* Class/ID: `.search-filter-selected` — Purpose: Selected search filter */
 .search-filter-selected {
   color: #f5f5f5;
   background-color: rgba(139, 0, 139, 0.5)
@@ -14117,6 +14212,7 @@ kbd.search-modal-key-hints {
   color: #f5f5f5
 }
 
+/* Class/ID: `.search-result-highlight` — Purpose: Search highlight */
 .search-result-highlight {
   background-color: #ffdd57;
   color: black
@@ -14126,16 +14222,19 @@ kbd.search-modal-key-hints {
   border-bottom: 1px solid #dbdbdb
 }
 
+/* Class/ID: `.search-result-title` — Purpose: Search result title */
 .search-result-title {
   width: 85%;
   color: #333
 }
 
+/* Class/ID: `.search-result-code-title` — Purpose: Search result code title */
 .search-result-code-title {
   font-size: 0.875rem;
   font-family: "JuliaMono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace
 }
 
+/* Class/ID: `#search-modal .modal-card-body::-webkit-scrollbar` — Purpose: Search modal scrollbar */
 #search-modal .modal-card-body::-webkit-scrollbar,
 #search-modal .filter-tabs::-webkit-scrollbar {
   height: 10px;
@@ -14378,6 +14477,7 @@ kbd.search-modal-key-hints {
   margin: 0 auto;
 }
 
+/* Class/ID: `figcaption, .figcaption` — Purpose: Figure caption */
 figcaption,
 .figcaption {
   margin-top: var(--sp-2);
@@ -14392,6 +14492,7 @@ figcaption,
 /* ─── 5. SVG flowchart node colour classes ───────────────────── */
 /* Carried over from Html_Outlay verbatim.                        */
 
+/* Class/ID: `.th, .ts, .t` — Purpose: SVG flowchart text */
 .th {
   font-family: var(--font-sans) !important;
   font-size: 14px;
@@ -14410,6 +14511,7 @@ figcaption,
   fill: #1a1a18;
 }
 
+/* Class/ID: `.c-gray, .c-blue, .c-teal, .c-amber, .c-coral, .c-purple` — Purpose: SVG node colors */
 .c-gray  rect, .c-gray  circle { fill: #f1efe8; stroke: #888780; }
 .c-gray  .th, .c-gray  .ts     { fill: #444441; }
 .c-blue  rect, .c-blue  circle { fill: #e6f1fb; stroke: #185fa5; }
@@ -14428,11 +14530,13 @@ figcaption,
 .c-purple .th                  { fill: #3c3489; }
 .c-purple .ts                  { fill: #534ab7; }
 
+/* Class/ID: `.arr` — Purpose: SVG arrow stroke */
 .arr {
   stroke: #888780;
   stroke-width: 1.2;
   fill: none;
 }
+/* Class/ID: `.leader` — Purpose: SVG leader line */
 .leader {
   stroke: #b4b2a9;
   stroke-width: 0.5;

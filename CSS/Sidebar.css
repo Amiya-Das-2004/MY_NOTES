@@ -2,6 +2,7 @@
    SIDEBAR
    ========================================================== */
 
+/* Class/ID: `.Sidebar` — Purpose: Main sidebar container */
 .Sidebar {
     display: flex;
     flex-direction: column;
@@ -28,6 +29,7 @@
         left var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1));
 }
 
+/* Class/ID: `.Sidebar.visible` — Purpose: Active mobile sidebar state */
 .Sidebar.visible {
     left: 0;
     box-shadow: .4rem 0 .8rem rgba(187, 187, 187, .7);
@@ -38,11 +40,13 @@
    LOGO
    ========================================================== */
 
+/* Class/ID: `.Sidebar .Logo` — Purpose: Logo container */
 .Sidebar .Logo {
     margin-top: 1rem;
     padding: 0 1rem;
 }
 
+/* Class/ID: `.Sidebar .Logo > img` — Purpose: Logo image sizing */
 .Sidebar .Logo > img {
     max-height: 6rem;
     margin: auto;
@@ -89,6 +93,7 @@
    REPOSITORY NAME
    ========================================================== */
 
+/* Class/ID: `.Sidebar .Repo_Name` — Purpose: Repository name text */
 .Sidebar .Repo_Name {
     flex-shrink: 0;
 
@@ -102,10 +107,12 @@
     overflow: hidden;
 }
 
+/* Class/ID: `.Sidebar .Repo_Name .Repo_Name_Autofit` — Purpose: Repo name max-width */
 .Sidebar .Repo_Name .Repo_Name_Autofit {
     max-width: 16.2rem;
 }
 
+/* Class/ID: `.Sidebar .Repo_Name a` — Purpose: Repo name link coloring */
 .Sidebar .Repo_Name a,
 .Sidebar .Repo_Name a:hover {
     color: var(--color-text);
@@ -132,6 +139,7 @@
    MENU CONTAINER
    ========================================================== */
 
+/* Class/ID: `.docs-menu` — Purpose: Navigation menu list */
 .docs-menu {
     list-style: none;
 
@@ -150,6 +158,7 @@
    MENU ITEMS
    ========================================================== */
 
+/* Class/ID: `.docs-menu .tocitem` — Purpose: Menu item styling */
 .docs-menu .tocitem {
     display: block;
 
@@ -159,6 +168,7 @@
     background: var(--color-bg-alt);
 }
 
+/* Class/ID: `.docs-menu a.tocitem:hover` — Purpose: Menu hover state */
 .docs-menu a.tocitem:hover,
 .docs-menu label.tocitem:hover {
     color: var(--color-text);
@@ -166,23 +176,27 @@
 }
 
 /* Top-level items with bullet prefix (like • Introduction) - only for anchor links, not folder buttons */
+/* Class/ID: `.docs-menu > li > a.tocitem::before` — Purpose: Top-level bullet */
 .docs-menu > li > a.tocitem::before {
     content: "• ";
     margin-right: .2em;
 }
 
 /* Files inside folder dropdowns get the bullet (•) - but NOT inside file-menu permalinks */
+/* Class/ID: `.docs-menu .nav-sub .tocitem::before` — Purpose: Submenu bullet */
 .docs-menu .nav-sub > li > a.tocitem::before {
     content: "• ";
     margin-right: .2em;
 }
 
 /* Folder toggle buttons do not get the bullet */
+/* Class/ID: `.docs-menu .nav-folder-btn.tocitem::before` — Purpose: Folder button no bullet */
 .docs-menu .nav-folder-btn.tocitem::before {
     content: none;
 }
 
 /* Remove bold from submenu items */
+/* Class/ID: `.docs-menu .nav-sub .tocitem` — Purpose: Submenu normal weight */
 .docs-menu .nav-sub .tocitem {
     font-weight: normal;
 }
@@ -192,6 +206,7 @@
    ACTIVE MENU ITEM
    ========================================================== */
 
+/* Class/ID: `.docs-menu li.is-active` — Purpose: Active menu item */
 .docs-menu li.is-active {
     border-top: 1px solid var(--color-border);
     border-bottom: 1px solid var(--color-border);
@@ -199,16 +214,19 @@
     background: var(--color-surface);
 }
 
+/* Class/ID: `.docs-menu li.is-active .tocitem` — Purpose: Active item styling */
 .docs-menu li.is-active .tocitem,
 .docs-menu li.is-active .tocitem:hover {
     color: var(--color-text);
     background: var(--color-surface);
 }
 
+/* Class/ID: `.docs-menu > li.is-active:first-child` — Purpose: Remove first active top border */
 .docs-menu > li.is-active:first-child {
     border-top: none;
 }
 
+/* Class/ID: `a.tocitem.is-active` — Purpose: Active link bold primary color */
 a.tocitem.is-active,
 a.is-active {
     color: var(--color-primary);
@@ -220,6 +238,7 @@ a.is-active {
    INTERNAL PAGE TOC (file-menu for heading permalinks)
    ========================================================== */
 
+/* Class/ID: `ul.internal, ul.file-menu` — Purpose: Internal TOC container */
 ul.internal,
 ul.file-menu {
     margin: 0 .5rem .5rem;
@@ -227,6 +246,7 @@ ul.file-menu {
     border-top: 1px solid var(--color-border);
 }
 
+/* Class/ID: `ul.internal li, ul.file-menu li` — Purpose: Internal TOC item spacing */
 ul.internal li,
 ul.file-menu li {
     margin-top: .5rem;
@@ -237,12 +257,14 @@ ul.file-menu li {
     margin-left: 0;
 }
 
+/* Class/ID: `ul.internal .tocitem, ul.file-menu .tocitem` — Purpose: Full-width TOC links */
 ul.internal .tocitem,
 ul.file-menu .tocitem {
     width: 100%;
     padding: 0;
 }
 
+/* Class/ID: `ul.internal .tocitem::before, ul.file-menu .tocitem::before` — Purpose: TOC permalink bullets */
 ul.internal .tocitem::before,
 ul.file-menu li > a.tocitem::before {
     content: "∘";
@@ -250,18 +272,21 @@ ul.file-menu li > a.tocitem::before {
 }
 
 /* Permalink items inside active file menu - no bold highlight, transparent background by default */
+/* Class/ID: `li.is-active ul.file-menu .tocitem` — Purpose: Permalink default state */
 li.is-active ul.file-menu .tocitem {
     font-weight: normal;
     background: transparent;
 }
 
 /* Permalink items hover inside active file menu - use sidebar hover color */
+/* Class/ID: `li.is-active ul.file-menu .tocitem:hover` — Purpose: Permalink hover state */
 li.is-active ul.file-menu .tocitem:hover {
     color: var(--color-text);
     background: var(--color-bg-hover);
 }
 
 /* Active permalink item (currently selected heading) - white background with primary color */
+/* Class/ID: `li.is-active ul.file-menu .tocitem.is-active` — Purpose: Active permalink state */
 li.is-active ul.file-menu .tocitem.is-active {
     background: var(--color-surface);
     color: var(--color-primary);
@@ -272,6 +297,7 @@ li.is-active ul.file-menu .tocitem.is-active {
    FOLDER TREE
    ========================================================== */
 
+/* Class/ID: `.nav-sub, .folder-menu` — Purpose: Folder submenu animation */
 .nav-sub,
 .folder-menu {
     overflow: hidden;
@@ -283,11 +309,13 @@ li.is-active ul.file-menu .tocitem.is-active {
         ease-out;
 }
 
+/* Class/ID: `.nav-sub.is-open, .folder-menu.is-open` — Purpose: Open folder state */
 .nav-sub.is-open,
 .folder-menu.is-open {
     max-height: 500px;
 }
 
+/* Class/ID: `.nav-sub.folder-menu` — Purpose: Nested folder margin */
 .nav-sub.folder-menu {
     margin-left: 1rem;
 }
@@ -296,6 +324,7 @@ li.is-active ul.file-menu .tocitem.is-active {
    FOLDER BUTTON
    ========================================================== */
 
+/* Class/ID: `.nav-folder-btn` — Purpose: Folder toggle button */
 .nav-folder-btn {
     display: flex;
     align-items: center;
@@ -313,10 +342,12 @@ li.is-active ul.file-menu .tocitem.is-active {
     cursor: pointer;
 }
 
+/* Class/ID: `.nav-folder-btn:hover` — Purpose: Folder button hover */
 .nav-folder-btn:hover {
     background: var(--color-bg-hover);
 }
 
+/* Class/ID: `.nav-folder-label` — Purpose: Folder label flex */
 .nav-folder-label {
     flex: 1;
 }
@@ -326,6 +357,7 @@ li.is-active ul.file-menu .tocitem.is-active {
    FOLDER ARROW
    ========================================================== */
 
+/* Class/ID: `.nav-folder-arrow` — Purpose: Folder arrow icon */
 .nav-folder-arrow {
     display: inline-block;
 
@@ -339,6 +371,7 @@ li.is-active ul.file-menu .tocitem.is-active {
         ease-out;
 }
 
+/* Class/ID: `.folder-toggle[aria-expanded="true"] .nav-folder-arrow` — Purpose: Rotated folder arrow */
 .folder-toggle[aria-expanded="true"] .nav-folder-arrow,
 .folder.is-open .nav-folder-arrow,
 .nav-folder[aria-expanded="true"] .nav-folder-arrow {
@@ -350,6 +383,7 @@ li.is-active ul.file-menu .tocitem.is-active {
    MOBILE TOGGLE
    ========================================================== */
 
+/* Class/ID: `.sidebar-toggle, .Sidebar_Button_Class` — Purpose: Mobile toggle button */
 .sidebar-toggle,
 .Sidebar_Button_Class {
     padding: var(--sp-2);
@@ -366,6 +400,7 @@ li.is-active ul.file-menu .tocitem.is-active {
     background: transparent;
 }
 
+/* Class/ID: `body.sidebar-open` — Purpose: Body scroll lock */
 body.sidebar-open {
     overflow: hidden;
 }
@@ -375,6 +410,7 @@ body.sidebar-open {
    OVERLAY
    ========================================================== */
 
+/* Class/ID: `.sidebar-overlay` — Purpose: Mobile overlay */
 .sidebar-overlay {
     opacity: 0;
     visibility: hidden;
@@ -384,6 +420,7 @@ body.sidebar-open {
         visibility var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1));
 }
 
+/* Class/ID: `.sidebar-overlay.active` — Purpose: Active overlay */
 .sidebar-overlay.active {
     opacity: 1;
     visibility: visible;
