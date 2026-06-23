@@ -1,77 +1,27 @@
 :root {
-    /* Fonts */
-    /* Variable: `--font-body` — Purpose: Body font stack (Lora, Georgia, serif) */
-    --font-body: 'Lora', Georgia, serif;
-    /* Variable: `--font-sans` — Purpose: Sans-serif font stack (Lato) */
-    --font-sans: 'Lato', sans-serif;
-    /* Variable: `--font-mono` — Purpose: Monospace font for code (JuliaMono) */
-    --font-mono: 'JuliaMono', monospace;
 
-    /* Reading measure */
-    /* Variable: `--measure` — Purpose: Reading measure width (65ch) */
-    --measure: 65ch;
-    --measure-wide: 80ch;
+  /* Margins */
+  --m-3: .75rem;
+  --m-4: 1rem;
+  --m-5: 1.5rem;
+  --m-6: 3rem;
 
-    /* Layout */
-    /* Variable: `--sidebar-width` — Purpose: Sidebar width (280px) */
-    --sidebar-width: 280px;
-    /* Variable: `--header-height` — Purpose: Header height (4rem) */
-    --header-height: 4rem;
-    --content-max-width: 1400px;
+  /* Permalink */
+  --Permalink-size: 0.75rem;
+  --Permalink-spacing: 0.5rem;
 
-    /* Rhythm */
-    --gap: 1.75rem;
+  /* Fonts */
+  --font-body: 'Lora', Georgia, serif;
+  --font-sans: 'Lato', sans-serif;
+  --font-mono: 'JuliaMono', monospace;
 
-    /* Permalink */
-    --Permalink-size: 0.75rem;
-    --Permalink-spacing: 0.5rem;
+  /* Sidebar Width */
+  --sidebar-width: 280px;
 
-    /* Line heights */
-    --lh-tight: 1.25;
-    --lh-snug: 1.4;
-    --lh-normal: 1.6;
-    --lh-relaxed: 1.75;
-    --lh-loose: 1.9;
-
-    /* Spacing */
-    --sp-0: 0;
-    --sp-1: 0.25rem;
-    --sp-2: 0.5rem;
-    --sp-3: 0.75rem;
-    --sp-4: 1rem;
-    --sp-5: 1.25rem;
-    --sp-6: 1.5rem;
-    --sp-8: 2rem;
-    --sp-10: 2.5rem;
-    --sp-12: 3.5rem;
-    --sp-16: 4rem;
-    --sp-20: 5rem;
-    --sp-24: 6rem;
-
-    /* Border Radius */
-    --radius-sm: 2px;
-    --radius-md: 4px;
-    --radius-lg: 8px;
-    --radius-xl: 16px;
-    --radius-full: 9999px;
-
-    /* Shadows */
-    --shadow-sm:
-        0 1px 2px rgba(0, 0, 0, 0.05);
-
-    --shadow-md:
-        0 4px 6px rgba(0, 0, 0, .08);
-
-    --shadow-lg:
-        0 10px 15px rgba(0, 0, 0, .12);
-
-    /* Motion */
-    /* Variable: `--t-fast` — Purpose: Fast transition timing variable */
-    --t-fast: 150ms ;
-    /* Variable: `--t-normal` — Purpose: Normal transition timing variable */
-    --t-normal: 250ms ;
-    /* Variable: `--t-slow` — Purpose: Slow transition timing variable */
-    --t-slow: 350ms ;
+  /* Motion */
+  --t-fast: 150ms;
+  --t-normal: 250ms;
+  --t-slow: 350ms;
 }
 
 
@@ -81,61 +31,27 @@ ROOT : Light Theme
 :root,
 :root[data-theme="light"] {
 
-    /* Text Color */
-    /* Variable: `--color-text` — Purpose: Primary text color */
-    --color-text: #1a1a18;
-    --color-text-secondary: #3d3d39;
-    --color-text-muted: #6b6b65;
-    --color-text-inverse: #ffffff;
+  /* Sidebar */
+  --sidebar-bg: #dddddd;
+  --color-border: #3b3b3b;
 
-    /* Backgrounds Color */
-    /* Variable: `--color-bg` — Purpose: Primary background color */
-    --color-bg: #faf9f6;
-    --color-bg-alt: #f2f0ea;
-    --color-surface: #ffffff;
-    --color-surface-hover: #f7f6f2;
+  /* Page Color */
+  --bg-color: #ffffff;
 
-    /* Borders Color */
-    /* Variable: `--color-border` — Purpose: Border color */
-    --color-border: #d4d0c8;
-    --color-border-light: #eceae4;
+  /* Math */
+  --math-color-bg: #e6e2df;
+  --math-color-text: #050505;
 
-    /* Hover states */
-    --color-bg-hover: #e8e6de;
-    --color-bg-hover-dark: #2a2927;
+  /* Code Color */
+  --color-code-bg: #f2f0ea;
+  --color-code-text: #a3320d;
 
-    /* Link Color */
-    /* Variable: `--color-primary` — Purpose: Primary link/action color */
-    --color-primary: #11031f;
-    --color-primary-hover: #6057c2;
-
-    /* Semantic Color */
-    /* Variable: `--color-success` — Purpose: Success semantic color */
-    --color-success: #0f6e56;
-    /* Variable: `--color-warning` — Purpose: Warning semantic color */
-    --color-warning: #854f0b;
-    /* Variable: `--color-danger` — Purpose: Danger semantic color */
-    --color-danger: #993c1d;
-
-    /* Math */
-    --math-color-bg: #e6e2df;
-    --math-color-text: #050505;
-
-    /* Code Color */
-    /* Variable: `--color-code-bg` — Purpose: Code background color */
-    --color-code-bg: #f2f0ea;
-    --color-code-text: #993c1d;
-
-    /* Selection Color */
-    --color-selection-bg: #d4d0f5;
-    --color-selection-text: #3c3489;
-
-    /* HEADINGS */
-    :is(h1,h2,h3,h4,h5,h6) .Heading_Anchor,
-    :is(h1,h2,h3,h4,h5,h6) .Heading_Anchor:hover,
-    :is(h1,h2,h3,h4,h5,h6) .Heading_Anchor:visited{
-      color:#000000
-    }
+  /* HEADINGS */
+  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor,
+  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:hover,
+  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:visited {
+    color: #000000
+  }
 }
 
 
@@ -144,58 +60,125 @@ ROOT : Dark Theme
 ========================================================================== */
 :root[data-theme="dark"] {
 
-    /* Text */
-    --color-text: #e8e6e0;
-    --color-text-secondary: #b8b4aa;
-    --color-text-muted: #888880;
-    --color-text-inverse: #1a1918;
+  /* Page Color */
+  --bg-color: #6c6b6e;
 
-    /* Backgrounds */
-    --color-bg: #1a1918;
-    --color-bg-alt: #222120;
-    --color-surface: #252422;
-    --color-surface-hover: #2d2c2a;
+  /* Math */
+  --math-color-bg: #222221;
+  --math-color-text: #f3f2f0;
 
-    /* Borders */
-    --color-border: #3a3835;
-    --color-border-light: #2e2c2a;
+  /* Code */
+  --color-code-bg: #292926;
+  --color-code-text: #e8e6e0;
 
-    /* Brand */
-    --color-primary: #0d074b;
-    --color-primary-hover: #a59ef5;
+  /* HEADINGS */
+  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor,
+  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:hover,
+  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:visited {
+    color: #5e5c5c
+  }
+}
 
-    /* Semantic */
-    --color-success: #2db891;
-    --color-warning: #e0972a;
-    --color-danger: #e8745a;
 
-    /* Math */
-    --math-color-bg: #222221;
-    --math-color-text: #f3f2f0;
+@media screen and (max-width: 768px) {
+  .media-content {
+    overflow-x: auto
+  }
+}
 
-    /* Code */
-    --color-code-bg: #292926;
-    --color-code-text: #e8e6e0;
+/* Class/ID: `html font` — Purpose: Base html font */
+html {
+  background-color: var(--bg-color);
+  font-size: 16px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  min-width: 300px;
+  overflow-x: auto;
+  overflow-y: scroll;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%
+}
 
-    /* Selection */
-    --color-selection-bg: #3c3489;
-    --color-selection-text: #ffffff;
+/* Class/ID: `html box-sizing` — Purpose: Set box-sizing model */
+html {
+  box-sizing: border-box
+}
 
-    /* Hover states */
-    --color-bg-hover: #2a2927;
-
-    /* HEADINGS */
-    :is(h1,h2,h3,h4,h5,h6) .Heading_Anchor,
-    :is(h1,h2,h3,h4,h5,h6) .Heading_Anchor:hover,
-    :is(h1,h2,h3,h4,h5,h6) .Heading_Anchor:visited{
-    color:#5e5c5c
-    }
-
+/* Class/ID: Minireset base */
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0
 }
 
 html {
   -moz-osx-font-smoothing: auto;
   -webkit-font-smoothing: auto
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: "Lato Medium", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+}
+
+/* Class/ID: `body` — Purpose: Body text color and line-height */
+body {
+  color: #000000;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5
+}
+
+@media screen and (min-width: 769px),
+print {
+  .field-body {
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 5;
+    flex-shrink: 1
+  }
+
+  .field-body .field {
+    margin-bottom: 0
+  }
+
+  .field-body>.field {
+    flex-shrink: 1
+  }
+
+  .field-body>.field:not(.is-narrow) {
+    flex-grow: 1
+  }
+
+  .field-body>.field:not(:last-child) {
+    margin-right: .75rem
+  }
 }
 
 /* Class/ID: `#Page .Main>article` — Purpose: Main article overflow-wrap */
@@ -213,23 +196,30 @@ html {
   scroll-margin-top: 4.5rem
 }
 
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal
+} */
+
 /* Headings Permalink */
-:is(h1,h2,h3,h4,h5,h6) .Heading_Anchor_Permalink{
-  visibility:hidden;
-  vertical-align:middle;
+:is(h1, h2, h3, h4, h5, h6) .Heading_Anchor_Permalink {
+  visibility: hidden;
+  vertical-align: middle;
   margin-left: var(--Permalink-spacing);
   font-size: var(--Permalink-size)
 }
 
-:is(h1,h2,h3,h4,h5,h6) .Heading_Anchor_Permalink::before{
-  font-family:"Font Awesome 6 Free";
-  font-weight:900;
-  content:"\f0c1"
+:is(h1, h2, h3, h4, h5, h6) .Heading_Anchor_Permalink::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content: "\f0c1"
 }
 
-:is(h1,h2,h3,h4,h5,h6):hover .Heading_Anchor_Permalink{
-  visibility:visible
+:is(h1, h2, h3, h4, h5, h6):hover .Heading_Anchor_Permalink {
+  visibility: visible
 }
-
-
-

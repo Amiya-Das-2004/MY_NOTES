@@ -1,0 +1,111 @@
+/* ─────  SVG / figure containers ────────────────────────────── */
+/* #vis-container matches Html_Outlay exactly; .figure-container */
+/* is the generic Gridap image wrapper.                          */
+
+#Columns {
+  margin: var(--sp-10, 1.5rem) auto;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    #Columns {
+        flex-direction: column;
+    }
+}
+
+#vis-container svg {
+  filter: drop-shadow(0 2px 12px rgba(60, 52, 137, .07));
+  border-radius: 10px;
+  background: var(--color-surface);
+  padding: 1rem;
+  border: 1px solid var(--color-border-light);
+}
+
+#vis-container svg text {
+  font-family: var(--font-body) !important;
+}
+
+/* Generic figure wrapper (tutorial images from Gridap) --------- */
+.figure-container {
+  margin: var(--sp-8) 0;
+  text-align: center;
+}
+
+.figure-container img,
+.tutorial-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border-light);
+  margin: 0 auto;
+}
+
+/* Class/ID: `figcaption, .figcaption` — Purpose: Figure caption */
+figcaption,
+.figcaption {
+  margin-top: var(--sp-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--lh-snug);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+
+/* ─── 5. SVG flowchart node colour classes ───────────────────── */
+/* Carried over from Html_Outlay verbatim.                        */
+
+/* Class/ID: `.th, .ts, .t` — Purpose: SVG flowchart text */
+.th {
+  font-family: var(--font-sans) !important;
+  font-size: 14px;
+  font-weight: 500;
+  fill: #1a1a18;
+}
+.ts {
+  font-family: var(--font-sans) !important;
+  font-size: 12px;
+  font-weight: 400;
+  fill: #3d3d39;
+}
+.t {
+  font-family: var(--font-sans) !important;
+  font-size: 14px;
+  fill: #1a1a18;
+}
+
+/* Class/ID: `.c-gray, .c-blue, .c-teal, .c-amber, .c-coral, .c-purple` — Purpose: SVG node colors */
+.c-gray  rect, .c-gray  circle { fill: #f1efe8; stroke: #888780; }
+.c-gray  .th, .c-gray  .ts     { fill: #444441; }
+.c-blue  rect, .c-blue  circle { fill: #e6f1fb; stroke: #185fa5; }
+.c-blue  .th                   { fill: #0c447c; }
+.c-blue  .ts                   { fill: #185fa5; }
+.c-teal  rect, .c-teal  circle { fill: #e1f5ee; stroke: #0f6e56; }
+.c-teal  .th                   { fill: #085041; }
+.c-teal  .ts                   { fill: #0f6e56; }
+.c-amber rect, .c-amber circle { fill: #faeeda; stroke: #ba7517; }
+.c-amber .th                   { fill: #633806; }
+.c-amber .ts                   { fill: #854f0b; }
+.c-coral rect, .c-coral circle { fill: #faece7; stroke: #993c1d; }
+.c-coral .th                   { fill: #712b13; }
+.c-coral .ts                   { fill: #993c1d; }
+.c-purple rect, .c-purple circle { fill: #eeedfe; stroke: #534ab7; }
+.c-purple .th                  { fill: #3c3489; }
+.c-purple .ts                  { fill: #534ab7; }
+
+/* Class/ID: `.arr` — Purpose: SVG arrow stroke */
+.arr {
+  stroke: #888780;
+  stroke-width: 1.2;
+  fill: none;
+}
+/* Class/ID: `.leader` — Purpose: SVG leader line */
+.leader {
+  stroke: #b4b2a9;
+  stroke-width: 0.5;
+  stroke-dasharray: 4 3;
+  fill: none;
+}

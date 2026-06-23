@@ -7,17 +7,17 @@
     display: flex;
     flex-direction: column;
 
-    width: var(--sidebar-width, 280px);
-    min-width: var(--sidebar-width, 280px);
+    width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
     height: 100vh;
 
     position: fixed;
     top: 0;
-    left: calc(-1 * var(--sidebar-width, 280px));
+    left: calc(-1 * var(--sidebar-width));
 
     z-index: 50;
 
-    background: var(--color-bg-alt);
+    background: var(--sidebar-bg);
     border-right: 1px solid var(--color-border);
 
     overflow-y: auto;
@@ -32,7 +32,7 @@
 /* Class/ID: `.Sidebar.visible` — Purpose: Active mobile sidebar state */
 .Sidebar.visible {
     left: 0;
-    box-shadow: .4rem 0 .8rem rgba(187, 187, 187, .7);
+    box-shadow: .4rem 0 .8rem rgba(0, 0, 0, 0.7);
 }
 
 
@@ -457,7 +457,7 @@ body.sidebar-open {
     }
 
     .docs-menu::-webkit-scrollbar-thumb:hover {
-        background: #ccc;
+        background: #aaaaaa;
     }
 }
 
@@ -482,6 +482,6 @@ body.sidebar-open {
     }
 
     .Sidebar::-webkit-scrollbar-thumb:hover {
-        background: #ccc;
+        background: #b4b4b4;
     }
 }

@@ -26,8 +26,8 @@ code {
 /* Class/ID: `pre (position)` — Purpose: Code block positioning for copy button */
 pre {
   -webkit-overflow-scrolling: touch;
-  background-color: #858080;
-  color: #0f0f0f;
+  background-color: #fff6f6;
+  color: #000000;
   font-size: .875em;
   overflow-x: auto;
   padding: 1.25rem 1.5rem;
@@ -63,7 +63,7 @@ pre code {
 }
 
 .Content a code {
-  color: #000a1b;
+  color: #3166c2;
 }
 
 .Content a:hover code {
@@ -76,7 +76,7 @@ pre code {
 .Content h4 code,
 .Content h5 code,
 .Content h6 code {
-  color: #1d1c1c;
+  color: #000000;
 }
 
 /* Disable ligature for code */
@@ -136,7 +136,7 @@ pre .copy-button {
   background: transparent;
   border: none;
   font-family: "Font Awesome 6 Free";
-  color: #222;
+  color: #000000;
   cursor: pointer;
   text-align: center;
 }

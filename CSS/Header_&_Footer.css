@@ -12,7 +12,25 @@
  * .breadcrumb a.is-disabled - Disabled breadcrumb links
  * ---------------------------------------------------------------------------- */
 
+/* Class/ID: `.Header` — Purpose: Navbar burger */
+.Header {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  color: currentColor;
+  font-family: inherit;
+  font-size: 1em;
+  margin: 0;
+  padding: 0
+}
+
 /* Class/ID: `.breadcrumb` — Purpose: Breadcrumb container */
+#Page .Sidebar form.docs-search>input.breadcrumb {
+  font-size: 100rem
+}
+
 .breadcrumb {
   font-size: 1rem;
   white-space: nowrap;
@@ -29,7 +47,7 @@
   color: #2e63b8;
   display: initial;
   justify-content: center;
-  padding: 0 .75em
+  padding: 0.75em
 }
 
 /* Class/ID: `.breadcrumb a:hover` — Purpose: Breadcrumb hover */
