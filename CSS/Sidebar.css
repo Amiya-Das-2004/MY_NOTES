@@ -1,487 +1,477 @@
-/* ==========================================================
-   SIDEBAR
-   ========================================================== */
+/* ============================================================
+   SIDEBAR.CSS
+   Covers: .Sidebar panel, .Logo, .Repo_Name, .docs-menu items,
+   .tocitem (top-level + sub-level), ul.file-menu (heading
+   permalinks inside the active page), folder tree (.nav-sub,
+   .nav-folder-btn, .nav-folder-arrow), mobile overlay, and
+   responsive desktop / mobile breakpoints.
+   Tokens are defined in body.css (:root).
 
-/* Class/ID: `.Sidebar` — Purpose: Main sidebar container */
+   SIDEBAR TOKEN ALIASES
+   These are used only inside the sidebar; they pick up the
+   correct value in light and dark mode from :root.
+   ============================================================ */
+
+:root {
+  --sidebar-bg:       #e8e6e0;      /* light warm grey panel         */
+  --sidebar-text:     #1a1a18;
+  --sidebar-hover-bg: #d4d0c8;      /* slightly darker on hover      */
+  --sidebar-active-bg:#ffffff;      /* active item stands out white  */
+  --sidebar-active-fg: var(--color-primary, #2e63b8);
+  --sidebar-border:    #b8b4ac;
+}
+
+:root[data-theme="dark"] {
+  --sidebar-bg:       #252522;
+  --sidebar-text:     #e8e6e0;
+  --sidebar-hover-bg: #2e2e2a;
+  --sidebar-active-bg:#1e1e1c;
+  --sidebar-active-fg: var(--color-primary, #6ca0e8);
+  --sidebar-border:    #3b3b38;
+}
+
+
+/* ============================================================
+   1. SIDEBAR PANEL  (.Sidebar)
+   Fixed, full-height column on the left side of the viewport.
+   Slides in on mobile; always visible on desktop (≥ 1056 px).
+   ============================================================ */
+
+/* .Sidebar: main container — fixed position, scrolls independently */
 .Sidebar {
-    display: flex;
-    flex-direction: column;
+  display:        flex;
+  flex-direction: column;
 
-    width: var(--sidebar-width);
-    min-width: var(--sidebar-width);
-    height: 100vh;
+  width:      var(--sidebar-width, 280px);
+  min-width:  var(--sidebar-width, 280px);
+  height:     100vh;
 
-    position: fixed;
-    top: 0;
-    left: calc(-1 * var(--sidebar-width));
+  position:   fixed;
+  top:        0;
+  left:       calc(-1 * var(--sidebar-width, 280px));   /* hidden off-screen on mobile */
 
-    z-index: 50;
+  z-index:    50;
 
-    background: var(--sidebar-bg);
-    border-right: 1px solid var(--color-border);
+  background-color: var(--sidebar-bg);
+  border-right:     1px solid var(--sidebar-border);
 
-    overflow-y: auto;
-    overflow-x: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-    font-size: 1rem;
+  font-size: 0.95rem;
+  font-family: var(--font-sans, sans-serif);
+  color: var(--sidebar-text);
 
-    transition:
-        left var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1));
+  transition: left var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1);
 }
 
-/* Class/ID: `.Sidebar.visible` — Purpose: Active mobile sidebar state */
+/* .Sidebar.visible: JS toggles this class on mobile → slides into view */
 .Sidebar.visible {
-    left: 0;
-    box-shadow: .4rem 0 .8rem rgba(0, 0, 0, 0.7);
+  left:       0;
+  box-shadow: 0.4rem 0 0.8rem rgba(0, 0, 0, 0.35);
 }
 
 
-/* ==========================================================
-   LOGO
-   ========================================================== */
+/* ============================================================
+   2. LOGO  (.Logo and its child <img>)
+   Centred image at the top of the sidebar linking to the home page.
+   ============================================================ */
 
-/* Class/ID: `.Sidebar .Logo` — Purpose: Logo container */
+/* .Logo: link wrapping the logo image */
 .Sidebar .Logo {
-    margin-top: 1rem;
-    padding: 0 1rem;
+  display:    block;
+  margin-top: 1rem;
+  padding:    0 1rem;
+  text-align: center;
 }
 
-/* Class/ID: `.Sidebar .Logo > img` — Purpose: Logo image sizing */
+/* .Logo img: constrain height; auto width */
 .Sidebar .Logo > img {
-    max-height: 6rem;
-    margin: auto;
-}
-
-/* Base image container */
-.image,
-#Page .Sidebar .Logo > img {
-    display: block;
-    position: relative;
-}
-
-/* Image element */
-.image img,
-#Page .Sidebar .Logo > img img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-/* Rounded images */
-.image img.is-rounded,
-#Page .Sidebar .Logo > img img.is-rounded {
-    border-radius: 9999px;
-}
-
-/* Full width */
-.image.is-fullwidth,
-#Page .Sidebar .Logo > img.is-fullwidth {
-    width: 100%;
-}
-
-/* Fixed aspect-ratio images */
-.image[class*="is-"] img,
-.image[class*="is-"] .has-ratio,
-#Page .Sidebar .Logo > img[class*="is-"] img,
-#Page .Sidebar .Logo > img[class*="is-"] .has-ratio {
-    width: 100%;
-    height: 100%;
+  display:    block;
+  max-height: 6rem;
+  width:      auto;
+  height:     auto;
+  margin:     0 auto;
 }
 
 
-/* ==========================================================
-   REPOSITORY NAME
-   ========================================================== */
+/* ============================================================
+   3. REPOSITORY / SITE NAME  (.Repo_Name)
+   Large centred title below the logo, linking to the home page.
+   ============================================================ */
 
-/* Class/ID: `.Sidebar .Repo_Name` — Purpose: Repository name text */
+/* .Repo_Name: bold centred title */
 .Sidebar .Repo_Name {
-    flex-shrink: 0;
+  flex-shrink: 0;
 
-    padding: .5rem 0;
+  padding:     0.5rem 0;
+  margin:      0 1rem;
 
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
+  font-size:   1.35rem;
+  font-weight: 700;
+  text-align:  center;
 
-    white-space: nowrap;
-    overflow: hidden;
+  white-space: nowrap;
+  overflow:    hidden;
 }
 
-/* Class/ID: `.Sidebar .Repo_Name .Repo_Name_Autofit` — Purpose: Repo name max-width */
+/* .Repo_Name_Autofit: inner span that caps the text width */
 .Sidebar .Repo_Name .Repo_Name_Autofit {
-    max-width: 16.2rem;
+  max-width: 16rem;
+  display:   inline-block;
+  overflow:  hidden;
 }
 
-/* Class/ID: `.Sidebar .Repo_Name a` — Purpose: Repo name link coloring */
+/* .Repo_Name a: link inherits sidebar text colour */
 .Sidebar .Repo_Name a,
 .Sidebar .Repo_Name a:hover {
-    color: var(--color-text);
+  color:           var(--sidebar-text);
+  text-decoration: none;
 }
 
 
-/* ==========================================================
-   VERSION SELECTOR
-   ========================================================== */
+/* ============================================================
+   4. NAVIGATION MENU  (.docs-menu)
+   Scrollable list of pages and section folders.
+   The <ul id="sidebar-menu"> is populated by JS.
+   ============================================================ */
 
-.Sidebar .docs-version-selector {
-    display: none;
-    padding: .5rem;
-
-    border-top: 1px solid var(--color-border);
-}
-
-.Sidebar .docs-version-selector.visible {
-    display: flex;
-}
-
-
-/* ==========================================================
-   MENU CONTAINER
-   ========================================================== */
-
-/* Class/ID: `.docs-menu` — Purpose: Navigation menu list */
+/* .docs-menu: full-height scrollable nav list */
 .docs-menu {
-    list-style: none;
+  list-style: none;
+  margin:     0;
+  padding:    0 0 2rem;
 
-    margin: 0;
-    padding: 0 0 1.5rem;
+  flex-grow:  1;          /* fills remaining sidebar height */
 
-    flex-grow: 1;
+  user-select: none;
 
-    user-select: none;
-
-    border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--sidebar-border);
 }
 
 
-/* ==========================================================
-   MENU ITEMS
-   ========================================================== */
+/* ============================================================
+   5. MENU ITEMS  (.tocitem)
+   Individual links in the sidebar navigation.
+   ============================================================ */
 
-/* Class/ID: `.docs-menu .tocitem` — Purpose: Menu item styling */
+/* .tocitem: base link / button in the menu */
 .docs-menu .tocitem {
-    display: block;
+  display:          block;
+  padding:          0.45rem 0.75rem;
 
-    padding: .5rem;
+  color:            var(--sidebar-text);
+  text-decoration:  none;
+  background:       transparent;
 
-    color: var(--color-text);
-    background: var(--color-bg-alt);
+  transition: background var(--t-fast, 150ms), color var(--t-fast, 150ms);
 }
 
-/* Class/ID: `.docs-menu a.tocitem:hover` — Purpose: Menu hover state */
+/* Hover / focus state for anchor and label tocitems */
 .docs-menu a.tocitem:hover,
-.docs-menu label.tocitem:hover {
-    color: var(--color-text);
-    background: var(--color-bg-hover);
+.docs-menu label.tocitem:hover,
+.docs-menu a.tocitem:focus-visible,
+.docs-menu label.tocitem:focus-visible {
+  background:   var(--sidebar-hover-bg);
+  color:        var(--sidebar-text);
+  outline:      none;
 }
 
-/* Top-level items with bullet prefix (like • Introduction) - only for anchor links, not folder buttons */
-/* Class/ID: `.docs-menu > li > a.tocitem::before` — Purpose: Top-level bullet */
+/* Top-level items (direct children of .docs-menu) get a bullet prefix */
 .docs-menu > li > a.tocitem::before {
-    content: "• ";
-    margin-right: .2em;
+  content:      "• ";
+  margin-right: 0.2em;
+  color:        var(--sidebar-active-fg);
 }
 
-/* Files inside folder dropdowns get the bullet (•) - but NOT inside file-menu permalinks */
-/* Class/ID: `.docs-menu .nav-sub .tocitem::before` — Purpose: Submenu bullet */
+/* Items inside a sub-menu folder also get a bullet */
 .docs-menu .nav-sub > li > a.tocitem::before {
-    content: "• ";
-    margin-right: .2em;
+  content:      "• ";
+  margin-right: 0.2em;
 }
 
-/* Folder toggle buttons do not get the bullet */
-/* Class/ID: `.docs-menu .nav-folder-btn.tocitem::before` — Purpose: Folder button no bullet */
+/* Folder TOGGLE buttons do NOT get the bullet */
 .docs-menu .nav-folder-btn.tocitem::before {
-    content: none;
+  content: none;
 }
 
-/* Remove bold from submenu items */
-/* Class/ID: `.docs-menu .nav-sub .tocitem` — Purpose: Submenu normal weight */
+/* Items inside sub-menus are slightly lighter weight */
 .docs-menu .nav-sub .tocitem {
-    font-weight: normal;
+  font-weight: 400;
+  font-size:   0.9rem;
 }
 
 
-/* ==========================================================
-   ACTIVE MENU ITEM
-   ========================================================== */
+/* ============================================================
+   6. ACTIVE MENU ITEM  (.is-active on <li>)
+   Highlights the page that is currently open.
+   ============================================================ */
 
-/* Class/ID: `.docs-menu li.is-active` — Purpose: Active menu item */
+/* li.is-active: the list item for the current page */
 .docs-menu li.is-active {
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
-
-    background: var(--color-surface);
+  border-top:    1px solid var(--sidebar-border);
+  border-bottom: 1px solid var(--sidebar-border);
+  background:    var(--sidebar-active-bg);
 }
 
-/* Class/ID: `.docs-menu li.is-active .tocitem` — Purpose: Active item styling */
-.docs-menu li.is-active .tocitem,
-.docs-menu li.is-active .tocitem:hover {
-    color: var(--color-text);
-    background: var(--color-surface);
+/* .tocitem inside an active item */
+.docs-menu li.is-active > .tocitem,
+.docs-menu li.is-active > .tocitem:hover {
+  color:      var(--sidebar-text);
+  background: var(--sidebar-active-bg);
 }
 
-/* Class/ID: `.docs-menu > li.is-active:first-child` — Purpose: Remove first active top border */
+/* Remove top border when the active item is the very first */
 .docs-menu > li.is-active:first-child {
-    border-top: none;
+  border-top: none;
 }
 
-/* Class/ID: `a.tocitem.is-active` — Purpose: Active link bold primary color */
-a.tocitem.is-active,
-a.is-active {
-    color: var(--color-primary);
-    font-weight: 600;
+/* a.tocitem.is-active: the link itself is marked active (bold + colour) */
+a.tocitem.is-active {
+  color:       var(--sidebar-active-fg);
+  font-weight: 600;
 }
 
 
-/* ==========================================================
-   INTERNAL PAGE TOC (file-menu for heading permalinks)
-   ========================================================== */
+/* ============================================================
+   7. IN-PAGE HEADING LINKS  (ul.file-menu)
+   Shown inside the active page's <li> — a nested list of
+   the page's own headings, acting as an in-page table of contents.
+   This is the Gridap-style "permalink" sub-list.
+   ============================================================ */
 
-/* Class/ID: `ul.internal, ul.file-menu` — Purpose: Internal TOC container */
+/* ul.file-menu: the heading-permalink list inside the active entry */
 ul.internal,
 ul.file-menu {
-    margin: 0 .5rem .5rem;
+  list-style: none;
+  margin:     0 0.5rem 0.5rem;
+  padding:    0;
 
-    border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--sidebar-border);
 }
 
-/* Class/ID: `ul.internal li, ul.file-menu li` — Purpose: Internal TOC item spacing */
+/* Each heading item in the file-menu */
 ul.internal li,
 ul.file-menu li {
-    margin-top: .5rem;
-
-    font-size: .85rem;
-
-    border-left: none;
-    margin-left: 0;
+  margin-top: 0.3rem;
+  font-size:  0.82rem;
 }
 
-/* Class/ID: `ul.internal .tocitem, ul.file-menu .tocitem` — Purpose: Full-width TOC links */
+/* The link inside each heading item — full width */
 ul.internal .tocitem,
 ul.file-menu .tocitem {
-    width: 100%;
-    padding: 0;
+  display:     block;
+  width:       100%;
+  padding:     0.25rem 0.5rem;
 }
 
-/* Class/ID: `ul.internal .tocitem::before, ul.file-menu .tocitem::before` — Purpose: TOC permalink bullets */
+/* Heading-level bullet uses a hollow circle to distinguish from page bullets */
 ul.internal .tocitem::before,
 ul.file-menu li > a.tocitem::before {
-    content: "∘";
-    margin-right: .4em;
+  content:      "∘ ";
+  margin-right: 0.3em;
+  color:        var(--sidebar-text-muted, var(--color-text-muted, #6b6b6b));
 }
 
-/* Permalink items inside active file menu - no bold highlight, transparent background by default */
-/* Class/ID: `li.is-active ul.file-menu .tocitem` — Purpose: Permalink default state */
+/* Permalink items default to normal weight, transparent bg */
 li.is-active ul.file-menu .tocitem {
-    font-weight: normal;
-    background: transparent;
+  font-weight: 400;
+  background:  transparent;
+  color:       var(--sidebar-text);
 }
 
-/* Permalink items hover inside active file menu - use sidebar hover color */
-/* Class/ID: `li.is-active ul.file-menu .tocitem:hover` — Purpose: Permalink hover state */
-li.is-active ul.file-menu .tocitem:hover {
-    color: var(--color-text);
-    background: var(--color-bg-hover);
+/* Permalink hover state inside the active entry */
+li.is-active ul.file-menu a.tocitem:hover {
+  background: var(--sidebar-hover-bg);
+  color:      var(--sidebar-text);
 }
 
-/* Active permalink item (currently selected heading) - white background with primary color */
-/* Class/ID: `li.is-active ul.file-menu .tocitem.is-active` — Purpose: Active permalink state */
-li.is-active ul.file-menu .tocitem.is-active {
-    background: var(--color-surface);
-    color: var(--color-primary);
+/* Currently-visible heading permalink (JS sets .is-active on the <a>) */
+li.is-active ul.file-menu a.tocitem.is-active {
+  background:  var(--sidebar-active-bg);
+  color:       var(--sidebar-active-fg);
+  font-weight: 600;
 }
 
 
-/* ==========================================================
-   FOLDER TREE
-   ========================================================== */
+/* ============================================================
+   8. FOLDER / SECTION TREE  (.nav-sub, .folder-menu)
+   Animated collapsible sub-menus for grouped pages.
+   ============================================================ */
 
-/* Class/ID: `.nav-sub, .folder-menu` — Purpose: Folder submenu animation */
+/* .nav-sub / .folder-menu: collapsed state (max-height: 0, overflow hidden)
+   JS adds .is-open to expand */
 .nav-sub,
 .folder-menu {
-    overflow: hidden;
-
-    max-height: 0;
-
-    transition:
-        max-height var(--t-slow, 350ms cubic-bezier(.4, 0, .2, 1))
-        ease-out;
+  overflow:   hidden;
+  max-height: 0;
+  transition: max-height var(--t-slow, 350ms) cubic-bezier(.4, 0, .2, 1) ease-out;
 }
 
-/* Class/ID: `.nav-sub.is-open, .folder-menu.is-open` — Purpose: Open folder state */
+/* .is-open: expanded — large enough max-height to accommodate any menu */
 .nav-sub.is-open,
 .folder-menu.is-open {
-    max-height: 500px;
+  max-height: 600px;
 }
 
-/* Class/ID: `.nav-sub.folder-menu` — Purpose: Nested folder margin */
+/* Nested folder gets a left indent */
 .nav-sub.folder-menu {
-    margin-left: 1rem;
+  margin-left: 1rem;
 }
 
-/* ==========================================================
-   FOLDER BUTTON
-   ========================================================== */
 
-/* Class/ID: `.nav-folder-btn` — Purpose: Folder toggle button */
+/* ============================================================
+   9. FOLDER TOGGLE BUTTON  (.nav-folder-btn)
+   Clickable row that expands / collapses a section.
+   ============================================================ */
+
+/* .nav-folder-btn: full-width flex row, reset <button> defaults */
 .nav-folder-btn {
-    display: flex;
-    align-items: center;
+  display:     flex;
+  align-items: center;
 
-    width: 100%;
+  width:       100%;
+  padding:     0.45rem 0.75rem;
 
-    padding: .5rem 1rem;
+  border:      none;
+  background:  transparent;
+  color:       var(--sidebar-text);
 
-    border: none;
-    background: transparent;
+  text-align:  left;
+  font:        inherit;
+  font-size:   0.95rem;
 
-    text-align: left;
-    font: inherit;
-
-    cursor: pointer;
+  cursor:      pointer;
 }
 
-/* Class/ID: `.nav-folder-btn:hover` — Purpose: Folder button hover */
+/* Folder button hover */
 .nav-folder-btn:hover {
-    background: var(--color-bg-hover);
+  background: var(--sidebar-hover-bg);
 }
 
-/* Class/ID: `.nav-folder-label` — Purpose: Folder label flex */
+/* .nav-folder-label: the text label grows to push the arrow right */
 .nav-folder-label {
-    flex: 1;
+  flex: 1;
 }
 
 
-/* ==========================================================
-   FOLDER ARROW
-   ========================================================== */
+/* ============================================================
+   10. FOLDER ARROW  (.nav-folder-arrow)
+   Chevron icon that rotates when the folder opens.
+   ============================================================ */
 
-/* Class/ID: `.nav-folder-arrow` — Purpose: Folder arrow icon */
+/* .nav-folder-arrow: the caret inside the folder toggle button */
 .nav-folder-arrow {
-    display: inline-block;
+  display:    inline-block;
+  margin-left: 0.5rem;
 
-    margin-left: .75rem;
+  font-size:   0.8rem;
+  line-height: 1;
 
-    font-size: 1rem;
-    line-height: 1;
-
-    transition:
-        transform var(--t-slow, 350ms cubic-bezier(.4, 0, .2, 1))
-        ease-out;
+  transition: transform var(--t-slow, 350ms) cubic-bezier(.4, 0, .2, 1) ease-out;
 }
 
-/* Class/ID: `.folder-toggle[aria-expanded="true"] .nav-folder-arrow` — Purpose: Rotated folder arrow */
+/* Rotate arrow 90° when the folder is open (JS sets aria-expanded="true") */
 .folder-toggle[aria-expanded="true"] .nav-folder-arrow,
-.folder.is-open .nav-folder-arrow,
-.nav-folder[aria-expanded="true"] .nav-folder-arrow {
-    transform: rotate(90deg);
+.folder.is-open                      .nav-folder-arrow,
+.nav-folder[aria-expanded="true"]    .nav-folder-arrow {
+  transform: rotate(90deg);
 }
 
 
-/* ==========================================================
-   MOBILE TOGGLE
-   ========================================================== */
+/* ============================================================
+   11. MOBILE OVERLAY  (.sidebar-overlay)
+   Semi-transparent backdrop shown behind the sidebar on mobile.
+   JS toggles .active on it when the sidebar is open.
+   ============================================================ */
 
-/* Class/ID: `.sidebar-toggle, .Sidebar_Button_Class` — Purpose: Mobile toggle button */
-.sidebar-toggle,
-.Sidebar_Button_Class {
-    padding: var(--sp-2);
-
-    border: none;
-    background: transparent;
-
-    font-size: 1.5rem;
-
-    cursor: pointer;
-}
-
-.sidebar-toggle[aria-expanded="true"] {
-    background: transparent;
-}
-
-/* Class/ID: `body.sidebar-open` — Purpose: Body scroll lock */
-body.sidebar-open {
-    overflow: hidden;
-}
-
-
-/* ==========================================================
-   OVERLAY
-   ========================================================== */
-
-/* Class/ID: `.sidebar-overlay` — Purpose: Mobile overlay */
+/* .sidebar-overlay: covers the main content area on mobile */
 .sidebar-overlay {
-    opacity: 0;
-    visibility: hidden;
+  position:   fixed;
+  inset:      0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index:    40;             /* below .Sidebar (z-index: 50) */
 
-    transition:
-        opacity var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1)),
-        visibility var(--t-normal, 250ms cubic-bezier(.4, 0, .2, 1));
+  opacity:    0;
+  visibility: hidden;
+
+  transition:
+    opacity    var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1),
+    visibility var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1);
 }
 
-/* Class/ID: `.sidebar-overlay.active` — Purpose: Active overlay */
+/* .sidebar-overlay.active: overlay is visible when sidebar is open */
 .sidebar-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity:    1;
+  visibility: visible;
+}
+
+/* body.sidebar-open: JS locks scroll so the page doesn't move */
+body.sidebar-open {
+  overflow: hidden;
 }
 
 
-/* ==========================================================
-   DESKTOP
-   ========================================================== */
+/* ============================================================
+   12. DESKTOP  (≥ 1056 px)
+   On wide screens the sidebar is always visible; no toggle needed.
+   The scrollbar is styled to be subtle.
+   ============================================================ */
 
 @media (min-width: 1056px) {
 
-    .Sidebar {
-        left: 0;
-        box-shadow: none;
-    }
+  /* Always visible — pin to left */
+  .Sidebar {
+    left:       0;
+    box-shadow: none;
+  }
 
-    .Sidebar.visible {
-        box-shadow: none;
-    }
+  .Sidebar.visible {
+    box-shadow: none;
+  }
 
-    .docs-menu {
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-    }
+  /* Scrollable menu with a thin styled scrollbar */
+  .docs-menu {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
-    .docs-menu::-webkit-scrollbar {
-        width: .3rem;
-    }
+  .docs-menu::-webkit-scrollbar {
+    width: 0.3rem;
+  }
 
-    .docs-menu::-webkit-scrollbar-thumb {
-        background: var(--color-border);
-        border-radius: 5px 0 0 5px;
-    }
+  .docs-menu::-webkit-scrollbar-thumb {
+    background:    var(--sidebar-border);
+    border-radius: 0 5px 5px 0;
+  }
 
-    .docs-menu::-webkit-scrollbar-thumb:hover {
-        background: #aaaaaa;
-    }
+  .docs-menu::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa;
+  }
 }
 
 
-/* ==========================================================
-   MOBILE
-   ========================================================== */
+/* ============================================================
+   13. MOBILE  (≤ 1055 px)
+   Sidebar uses momentum scrolling; thin scrollbar.
+   ============================================================ */
 
 @media (max-width: 1055px) {
 
-    .Sidebar {
-        -webkit-overflow-scrolling: touch;
-    }
+  .Sidebar {
+    -webkit-overflow-scrolling: touch;
+  }
 
-    .Sidebar::-webkit-scrollbar {
-        width: .3rem;
-    }
+  .Sidebar::-webkit-scrollbar {
+    width: 0.3rem;
+  }
 
-    .Sidebar::-webkit-scrollbar-thumb {
-        background: var(--color-border);
-        border-radius: 5px 0 0 5px;
-    }
+  .Sidebar::-webkit-scrollbar-thumb {
+    background:    var(--sidebar-border);
+    border-radius: 0 5px 5px 0;
+  }
 
-    .Sidebar::-webkit-scrollbar-thumb:hover {
-        background: #b4b4b4;
-    }
+  .Sidebar::-webkit-scrollbar-thumb:hover {
+    background: #b4b4b4;
+  }
 }

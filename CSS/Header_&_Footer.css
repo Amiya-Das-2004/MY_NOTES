@@ -1,320 +1,292 @@
-/* ============================================================================
- * Header and Footer Styles - Extracted from Style.css
- * This file contains styles specific to the header and footer components.
- * ============================================================================ */
+/* ============================================================
+   HEADER_FOOTER.CSS
+   Covers: header.Header (sticky bar), .Title breadcrumb nav,
+   .is-hidden-mobile / .is-hidden-tablet visibility helpers,
+   .Header_Right_Side_Icons, .Header_Link / .Sidebar_Button_Class,
+   and the .Footer component.
+   Tokens are defined in body.css (:root).
+   ============================================================ */
 
-/* ----------------------------------------------------------------------------
- * Breadcrumb Navigation Styles
- * .breadcrumb - Container for breadcrumb navigation in the header
- * .breadcrumb a - Individual breadcrumb links
- * .breadcrumb li - Breadcrumb list items
- * .breadcrumb li.is-active - Current page indicator in breadcrumb trail
- * .breadcrumb a.is-disabled - Disabled breadcrumb links
- * ---------------------------------------------------------------------------- */
 
-/* Class/ID: `.Header` — Purpose: Navbar burger */
-.Header {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background: none;
-  border: none;
-  color: currentColor;
-  font-family: inherit;
-  font-size: 1em;
-  margin: 0;
-  padding: 0
-}
+/* ============================================================
+   1. STICKY HEADER  (header.Header inside #Page .Main)
+   Full-width bar pinned to top on mobile; static on desktop.
+   All children are vertically centred via flexbox.
+   ============================================================ */
 
-/* Class/ID: `.breadcrumb` — Purpose: Breadcrumb container */
-#Page .Sidebar form.docs-search>input.breadcrumb {
-  font-size: 100rem
-}
-
-.breadcrumb {
-  font-size: 1rem;
-  white-space: nowrap;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none
-}
-
-/* Class/ID: `.breadcrumb a` — Purpose: Breadcrumb link */
-.breadcrumb a {
-  align-items: center;
-  color: #2e63b8;
-  display: initial;
-  justify-content: center;
-  padding: 0.75em
-}
-
-/* Class/ID: `.breadcrumb a:hover` — Purpose: Breadcrumb hover */
-.breadcrumb a:hover {
-  color: #363636
-}
-
-/* Class/ID: `.breadcrumb li` — Purpose: Breadcrumb list item */
-.breadcrumb li {
-  align-items: center;
-  display: flex
-}
-
-/* Class/ID: `.breadcrumb li:first-child a` — Purpose: First breadcrumb padding */
-.breadcrumb li:first-child a {
-  padding-left: 0
-}
-
-/* Class/ID: `.breadcrumb li.is-active a` — Purpose: Current page indicator */
-.breadcrumb li.is-active a {
-  color: #222;
-  cursor: default;
-  pointer-events: none
-}
-
-/* Class/ID: `.breadcrumb li+li::before` — Purpose: Breadcrumb separator */
-.breadcrumb li+li::before {
-  color: #b5b5b5;
-  content: "\\0002f"
-}
-
-/* Class/ID: `.breadcrumb ul, .breadcrumb ol` — Purpose: Breadcrumb flex list */
-.breadcrumb ul,
-.breadcrumb ol {
-  align-items: flex-start;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start
-}
-
-.breadcrumb .icon:first-child {
-  margin-right: .5em
-}
-
-.breadcrumb .icon:last-child {
-  margin-left: .5em
-}
-
-/* Class/ID: `.breadcrumb.is-centered` — Purpose: Centered breadcrumb */
-.breadcrumb.is-centered ol,
-.breadcrumb.is-centered ul {
-  justify-content: center
-}
-
-/* Class/ID: `.breadcrumb.is-right` — Purpose: Right breadcrumb */
-.breadcrumb.is-right ol,
-.breadcrumb.is-right ul {
-  justify-content: flex-end
-}
-
-/* Class/ID: `.breadcrumb.is-small/medium/large` — Purpose: Breadcrumb font sizes */
-.breadcrumb.is-small {
-  font-size: .75rem
-}
-
-.breadcrumb.is-medium {
-  font-size: 1.25rem
-}
-
-.breadcrumb.is-large {
-  font-size: 1.5rem
-}
-
-/* Class/ID: `.breadcrumb.has-arrow/bullet/dot etc.` — Purpose: Breadcrumb custom separators */
-.breadcrumb.has-arrow-separator li+li::before {
-  content: "\\02192"
-}
-
-.breadcrumb.has-bullet-separator li+li::before {
-  content: "\\02022"
-}
-
-.breadcrumb.has-dot-separator li+li::before {
-  content: "\\000b7"
-}
-
-.breadcrumb.has-succeeds-separator li+li::before {
-  content: "\\0227B"
-}
-
-/* Class/ID: `.breadcrumb a.is-disabled` — Purpose: Disabled breadcrumb link */
-.breadcrumb a.is-disabled {
-  cursor: default;
-  pointer-events: none
-}
-
-.breadcrumb a.is-disabled,
-.breadcrumb a.is-disabled:hover {
-  color: #222
-}
-
-/* ----------------------------------------------------------------------------
- * Responsive Visibility Utility Classes
- * .is-hidden-mobile - Hides element on screens smaller than 769px (mobile)
- * .is-hidden-tablet - Hides element on screens between 769px and 1055px (tablet)
- * ---------------------------------------------------------------------------- */
-
-@media screen and (max-width: 768px) {
-/* Class/ID: `.is-hidden-mobile` — Purpose: Hide below 769px */
-  .is-hidden-mobile {
-    display: none !important
-  }
-}
-
-@media screen and (min-width: 769px),
-print {
-/* Class/ID: `.is-hidden-tablet` — Purpose: Hide tablet breakpoint */
-  .is-hidden-tablet {
-    display: none !important
-  }
-}
-
-.breadcrumb:not(:last-child) {
-  margin-bottom: 1.5rem
-}
-
-/* ----------------------------------------------------------------------------
- * is-active Utility Class
- * .is-active - Used for the active page indicator in breadcrumb navigation
- *             (see .breadcrumb li.is-active within this file)
- * Note: Generic .is-active styles for pagination, buttons, etc. are kept in Style.css
- * ---------------------------------------------------------------------------- */
-
-/* ----------------------------------------------------------------------------
- * Header Component Styles
- * header.Header - Main header bar containing breadcrumb and icons
- * .Header_Right_Side_Icons - Container for GitHub and theme toggle icons
- * .Header_Link - Links/buttons in the header (sidebar toggle, GitHub, theme toggle)
- * ---------------------------------------------------------------------------- */
-
-/* Class/ID: `header.Header` — Purpose: Sticky header bar */
+/* header.Header: flex row, vertically centred, white background,
+   light bottom border to separate from content below */
 #Page .Main header.Header {
-  background-color: #fff;
-  border-bottom: 1px solid #dbdbdb;
-  z-index: 2;
-  min-height: 4rem;
-  margin-bottom: 1rem;
-  display: flex
+  display:          flex;
+  align-items:      center;          /* vertically centre every child   */
+  justify-content:  space-between;   /* title grows; icons stay on right */
+  gap:              0.75rem;
+
+  min-height:       4rem;
+  padding:          0 1.5rem;
+
+  background-color: var(--color-bg, #fff);
+  border-bottom:    2px solid var(--color-border, #d4d0c8);
+
+  z-index:          30;
 }
 
-/* Class/ID: `header.Header .breadcrumb` — Purpose: Header breadcrumb flex */
-#Page .Main header.Header .breadcrumb {
-  flex-grow: 1;
-  overflow: hidden
-}
-
-/* Class/ID: `header.Header .Sidebar_Button_Class` — Purpose: Header sidebar toggle */
-#Page .Main header.Header .Sidebar_Button_Class {
-  display: block;
-  font-size: 1.5rem;
-  padding-bottom: 0.1rem;
-  margin-right: 1rem
-}
-
-/* Class/ID: `.Header_Right_Side_Icons` — Purpose: Header icon container */
-#Page .Main header.Header .Header_Right_Side_Icons {
-  display: flex;
-  white-space: nowrap;
-  gap: 1rem;
-  align-items: center
-}
-
-/* Class/ID: `.Header_Right_Side_Icons .docs-icon` — Purpose: Header icon display */
-#Page .Main header.Header .Header_Right_Side_Icons .docs-icon,
-/* Class/ID: `.Header_Right_Side_Icons .docs-label` — Purpose: Header label padding */
-#Page .Main header.Header .Header_Right_Side_Icons .docs-label {
-  display: inline-block
-}
-
-#Page .Main header.Header .Header_Right_Side_Icons .docs-label {
-  padding: 0;
-  margin-left: 0.3em
-}
-
-@media screen and (max-width: 1055px) {
-  #Page .Main header.Header .Header_Right_Side_Icons .Header_Link {
-    margin-left: 0.4rem;
-    margin-right: 0.4rem
-  }
-}
-
-#Page .Main header.Header>* {
-  margin: auto 0
-}
-
+/* Sticky behaviour on small screens (the sidebar overlaps on desktop) */
 @media screen and (max-width: 1055px) {
   #Page .Main header.Header {
     position: sticky;
-    top: 0;
-    padding: 0 1rem;
+    top:      0;
+
+    /* Smooth box-shadow and slide when headroom JS fires */
     transition-property: top, box-shadow;
-    -webkit-transition-property: top, box-shadow;
     transition-duration: 0.3s;
-    -webkit-transition-duration: 0.3s
   }
 
-/* Class/ID: `header.Header.headroom--not-top` — Purpose: Header shadow when scrolled */
+  /* headroom--not-top: user has scrolled away from page top →
+     add a drop shadow so the header reads above content */
   #Page .Main header.Header.headroom--not-top {
-    box-shadow: .2rem 0rem .4rem #bbb;
+    box-shadow:         0 2px 6px rgba(0, 0, 0, 0.12);
     transition-duration: 0.7s;
-    -webkit-transition-duration: 0.7s
   }
 
-/* Class/ID: `header.Header.headroom--unpinned` — Purpose: Hidden header when scrolling down */
+  /* headroom--unpinned + not-top + not-bottom: user is scrolling
+     DOWN → slide the header off-screen to save vertical room */
   #Page .Main header.Header.headroom--unpinned.headroom--not-top.headroom--not-bottom {
-    top: -4.5rem;
+    top:                -4.5rem;
     transition-duration: 0.7s;
-    -webkit-transition-duration: 0.7s
   }
 }
 
-/* ----------------------------------------------------------------------------
- * Footer Component Styles
- * .Footer - Main footer container with navigation and attribution
- * .Footer_Previous - Previous page navigation link (left side)
- * .Footer_Next - Next page navigation link (right side)
- * .Footer_Break - Flexbox break element between prev/next
- * .Footer_Message - Centered footer attribution message
- * ---------------------------------------------------------------------------- */
 
-/* Class/ID: `.Footer` — Purpose: Footer container */
-#Page .Main .Footer {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 0;
-  margin-right: 0;
-  border-top: 1px solid #dbdbdb;
-  padding-top: 1rem;
-  padding-bottom: 1rem
+/* ============================================================
+   2. SIDEBAR TOGGLE BUTTON  (.Sidebar_Button_Class in header)
+   Hamburger icon shown only on mobile (is-hidden-desktop class
+   is applied directly in the HTML via Font Awesome).
+   ============================================================ */
+
+/* .Sidebar_Button_Class: resets <button> defaults; icon is
+   set via fa-solid fa-bars classes on the element in HTML */
+#Page .Main header.Header .Sidebar_Button_Class {
+  display:     flex;
+  align-items: center;
+
+  padding:     0;
+  margin-right: 0.5rem;
+
+  border:      none;
+  background:  transparent;
+  color:       var(--color-text, #1a1a18);
+  font-size:   1.4rem;
+  cursor:      pointer;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
+#Page .Main header.Header .Sidebar_Button_Class:hover {
+  color: var(--color-primary, #2e63b8);
+}
+
+/* Hide the hamburger on desktop (sidebar is always visible) */
+@media screen and (min-width: 1056px) {
+  .is-hidden-desktop { display: none !important; }
+}
+
+
+/* ============================================================
+   3. TITLE / BREADCRUMB NAV  (.Title inside header.Header)
+   Contains two <ul>s: one shown on mobile, one on desktop.
+   The .is-hidden-mobile / .is-hidden-tablet utilities (defined
+   in body.css) handle which list is visible.
+   The nav grows to fill available space between the hamburger
+   and the right-side icons.
+   ============================================================ */
+
+/* .Title: grows to fill the middle of the header */
+#Page .Main header.Header .Title {
+  flex:         1;           /* take all space between toggle and icons */
+  overflow:     hidden;      /* prevent very long titles from overflowing */
+  min-width:    0;           /* allow flex shrink below content width */
+
+  display:      flex;
+  align-items:  center;      /* vertically centre the list */
+}
+
+/* Breadcrumb <ul> inside .Title: horizontal list */
+#Page .Main header.Header .Title ul {
+  display:     flex;
+  align-items: center;
+  flex-wrap:   wrap;
+  gap:         0.15rem;
+  list-style:  none;
+  margin:      0;
+  padding:     0;
+}
+
+/* Each <li> in the breadcrumb */
+#Page .Main header.Header .Title li {
+  display:     flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Separator " / " between breadcrumb items */
+#Page .Main header.Header .Title li + li::before {
+  content: "\0002f";         /* forward slash  */
+  color:   var(--color-text-muted, #6b6b6b);
+  padding: 0 0.3rem;
+}
+
+/* Breadcrumb link */
+#Page .Main header.Header .Title a {
+  color:           var(--color-primary, #2e63b8);
+  text-decoration: none;
+  font-size:       1.2rem;
+  font-family:     var(--font-sans, sans-serif);
+}
+
+#Page .Main header.Header .Title a:hover {
+  color:           var(--color-primary-dark, #1a4a8a);
+  text-decoration: underline;
+}
+
+/* Active breadcrumb item (current page — pointer events off) */
+#Page .Main header.Header .Title li.is-active a {
+  color:          var(--color-text, #1a1a18);
+  font-weight:    600;
+  cursor:         default;
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   4. RIGHT-SIDE ICON GROUP  (.Header_Right_Side_Icons)
+   Contains GitHub link and theme-toggle button.
+   Both items are vertically centred; gap provides breathing room.
+   ============================================================ */
+
+/* .Header_Right_Side_Icons: flex row, items centred, no shrink */
+#Page .Main header.Header .Header_Right_Side_Icons {
+  display:      flex;
+  align-items:  center;
+  gap:          0.75rem;
+  flex-shrink:  0;            /* never compress the icons  */
+  white-space:  nowrap;
+}
+
+
+/* ============================================================
+   5. HEADER LINKS & BUTTONS  (.Header_Link)
+   Used on: GitHub <a>, theme-toggle <button>, hamburger <button>.
+   Shared interaction states.
+   ============================================================ */
+
+/* .Header_Link: reset button / link to icon-only appearance */
+.Header_Link {
+  display:     inline-flex;
+  align-items: center;
+
+  padding:     0.3rem;
+  border:      none;
+  background:  transparent;
+  color:       var(--color-text, #1a1a18);
+  font-size:   1.1rem;
+  cursor:      pointer;
+  line-height: 1;
+  border-radius: 4px;
+
+  transition:  color var(--t-fast, 150ms), background var(--t-fast, 150ms);
+}
+
+.Header_Link:hover,
+.Header_Link:focus-visible {
+  color:           var(--color-primary, #2e63b8);
+  background:      rgba(46, 99, 184, 0.08);
+  text-decoration: none;
+  outline:         none;
+}
+
+/* SVG icons inside links keep their intrinsic size */
+.Header_Link svg {
+  display: block;
+}
+
+/* Optional label text next to icon (.docs-label used in original) */
+.Header_Link .docs-label {
+  display:     inline-block;
+  padding:     0;
+  margin-left: 0.3em;
+  font-size:   0.9rem;
+}
+
+
+/* ============================================================
+   6. FOOTER  (.Footer inside #Page .Main)
+   Previous / Next navigation + attribution message.
+   ============================================================ */
+
+/* .Footer: flex row that wraps so previous and next can stack on mobile */
+#Page .Main .Footer {
+  display:        flex;
+  flex-wrap:      wrap;
+  align-items:    center;
+
+  margin:         0;
+  padding-top:    1rem;
+  padding-bottom: 1.5rem;
+
+  border-top: 1px solid var(--color-border, #d4d0c8);
+}
+
+/* Horizontal padding matches the article on small screens */
 @media screen and (max-width: 1055px) {
   #Page .Main .Footer {
-    padding-left: 1rem;
-    padding-right: 1rem
+    padding-left:  1rem;
+    padding-right: 1rem;
   }
 }
 
-/* Class/ID: `.Footer .Footer_Next/Previous` — Purpose: Footer prev/next flex */
-#Page .Main .Footer .Footer_Next,
+/* .Footer_Previous: left-side page link — grows to push Next right */
 #Page .Main .Footer .Footer_Previous {
-  flex-grow: 1
+  flex-grow:   1;
+  text-align:  left;
 }
 
+/* .Footer_Next: right-side page link */
 #Page .Main .Footer .Footer_Next {
-  text-align: right
+  flex-grow:   1;
+  text-align:  right;
 }
 
-/* Class/ID: `.Footer .Footer_Break` — Purpose: Footer flex break */
+/* Footer nav links */
+#Page .Main .Footer .Footer_Previous a,
+#Page .Main .Footer .Footer_Next a,
+#Page .Main .Footer a {
+  color:           var(--color-primary, #2e63b8);
+  text-decoration: none;
+  font-size:       0.95rem;
+}
+
+#Page .Main .Footer a:hover {
+  color:           var(--color-primary-dark, #1a4a8a);
+  text-decoration: underline;
+}
+
+/* .Footer_Break: zero-height flex-basis element that forces a line
+   break between the nav row and the attribution message row */
 #Page .Main .Footer .Footer_Break {
   flex-basis: 100%;
-  height: 0
+  height:     0;
 }
 
-/* Class/ID: `.Footer .Footer_Message` — Purpose: Footer attribution */
+/* .Footer_Message: centred attribution text below the nav links */
 #Page .Main .Footer .Footer_Message {
-  font-size: 0.8em;
-  margin: 0.5em auto 0 auto;
-  text-align: center
+  width:      100%;
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size:  0.8em;
+  color:      var(--color-text-muted, #6b6b6b);
+}
+
+#Page .Main .Footer .Footer_Message a {
+  color: var(--color-primary, #2e63b8);
 }

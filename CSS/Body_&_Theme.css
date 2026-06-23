@@ -1,225 +1,782 @@
+/* ============================================================
+   BODY.CSS
+   Covers: :root tokens, html/body base, #Page layout,
+   .Content typography (headings, paragraphs, lists, tables,
+   blockquote, permalinks, .Math), and spacing display utilities.
+   ============================================================ */
+
+
+/* ============================================================
+   1. DESIGN TOKENS  (:root)
+   Light-theme defaults; dark overrides follow.
+   ============================================================ */
+
 :root {
 
-  /* Margins */
-  --m-3: .75rem;
-  --m-4: 1rem;
-  --m-5: 1.5rem;
-  --m-6: 3rem;
+  /* --- Palette --- */
+  --color-bg:           #ffffff;
+  --color-surface:      #f5f4f0;       /* subtle off-white for code/math panels  */
+  --color-border:       #d4d0c8;
+  --color-border-light: #e8e5dc;
+  --color-text:         #1a1a18;
+  --color-text-muted:   #6b6b6b;
+  --color-primary:      #2e63b8;       /* link / accent blue (matches Gridap)    */
+  --color-primary-dark: #1a4a8a;
+  --color-heading:      #111110;
 
-  /* Permalink */
-  --Permalink-size: 0.75rem;
-  --Permalink-spacing: 0.5rem;
+  /* --- Math panel --- */
+  --math-color-bg:      #ffffff;
+  --math-color-text:    #111110;
 
-  /* Fonts */
-  --font-body: 'Lora', Georgia, serif;
-  --font-sans: 'Lato', sans-serif;
-  --font-mono: 'JuliaMono', monospace;
+  /* --- Inline code --- */
+  --color-code-bg:      #f0ede6;
+  --color-code-text:    #a3320d;
 
-  /* Sidebar Width */
-  --sidebar-width: 280px;
+  /* --- Typography --- */
+  --font-body:   'Lora', Georgia, serif;
+  --font-sans:   'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:   'JuliaMono', 'SFMono-Regular', 'Menlo', 'Consolas',
+                 'Liberation Mono', 'DejaVu Sans Mono', monospace;
 
-  /* Motion */
-  --t-fast: 150ms;
+  /* --- Layout --- */
+  --sidebar-width:  280px;
+  --content-max:    52rem;
+
+  /* --- Spacing scale --- */
+  --sp-1:   0.25rem;
+  --sp-2:   0.5rem;
+  --sp-3:   0.75rem;
+  --sp-4:   1rem;
+  --sp-5:   1.5rem;
+  --sp-6:   3rem;
+
+  /* --- Permalink --- */
+  --permalink-size:    0.75rem;
+  --permalink-spacing: 0.5rem;
+
+  /* --- Motion --- */
+  --t-fast:   150ms;
   --t-normal: 250ms;
-  --t-slow: 350ms;
+  --t-slow:   350ms;
 }
 
 
-/* ==========================================================================
-ROOT : Light Theme
-========================================================================== */
-:root,
-:root[data-theme="light"] {
+/* ============================================================
+   2. DARK THEME  (toggled via JS: <html data-theme="dark">)
+   ============================================================ */
 
-  /* Sidebar */
-  --sidebar-bg: #dddddd;
-  --color-border: #3b3b3b;
-
-  /* Page Color */
-  --bg-color: #ffffff;
-
-  /* Math */
-  --math-color-bg: #e6e2df;
-  --math-color-text: #050505;
-
-  /* Code Color */
-  --color-code-bg: #f2f0ea;
-  --color-code-text: #a3320d;
-
-  /* HEADINGS */
-  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor,
-  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:hover,
-  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:visited {
-    color: #000000
-  }
-}
-
-
-/* ==========================================================================
-ROOT : Dark Theme
-========================================================================== */
 :root[data-theme="dark"] {
 
-  /* Page Color */
-  --bg-color: #6c6b6e;
+  --color-bg:           #1e1e1c;
+  --color-surface:      #2a2a27;
+  --color-border:       #3b3b38;
+  --color-border-light: #333330;
+  --color-text:         #e8e6e0;
+  --color-text-muted:   #9a9890;
+  --color-primary:      #6ca0e8;
+  --color-primary-dark: #90b8f0;
+  --color-heading:      #f0ede6;
 
-  /* Math */
-  --math-color-bg: #222221;
-  --math-color-text: #f3f2f0;
+  --math-color-bg:      #252522;
+  --math-color-text:    #f3f2f0;
 
-  /* Code */
-  --color-code-bg: #292926;
-  --color-code-text: #e8e6e0;
-
-  /* HEADINGS */
-  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor,
-  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:hover,
-  :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:visited {
-    color: #5e5c5c
-  }
+  --color-code-bg:      #2c2c29;
+  --color-code-text:    #e8e6e0;
 }
 
 
-@media screen and (max-width: 768px) {
-  .media-content {
-    overflow-x: auto
-  }
+/* ============================================================
+   3. RESET  (minimal — keeps box-sizing and margins at zero)
+   ============================================================ */
+
+/* All elements: border-box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Class/ID: `html font` — Purpose: Base html font */
+/* Strip browser default margins / padding */
+html, body,
+p, ol, ul, li,
+dl, dt, dd,
+blockquote, figure,
+fieldset, legend,
+textarea, pre, iframe, hr,
+h1, h2, h3, h4, h5, h6 {
+  margin:  0;
+  padding: 0;
+}
+
+/* Headings: reset weight/size — content styles set them below */
+h1, h2, h3, h4, h5, h6 {
+  font-size:   100%;
+  font-weight: normal;
+}
+
+/* Remove default list bullets (sidebar and nav lists) */
+ul { list-style: none; }
+
+/* Responsive images */
+img, video {
+  height:    auto;
+  max-width: 100%;
+}
+
+/* Remove iframe border */
+iframe { border: 0; }
+
+/* Table collapse */
+table {
+  border-collapse: collapse;
+  border-spacing:  0;
+}
+
+td, th { padding: 0; }
+
+td:not([align]),
+th:not([align]) { text-align: inherit; }
+
+
+/* ============================================================
+   4. HTML / BODY  — base font, colour, scroll behaviour
+   ============================================================ */
+
+/* html: page background, font rendering, scroll */
 html {
-  background-color: var(--bg-color);
-  font-size: 16px;
+  background-color:        var(--color-bg);
+  font-size:               16px;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  min-width: 300px;
-  overflow-x: auto;
-  overflow-y: scroll;
-  text-rendering: optimizeLegibility;
-  text-size-adjust: 100%
+  -webkit-font-smoothing:  antialiased;
+  min-width:               300px;
+  overflow-x:              auto;
+  overflow-y:              scroll;
+  text-rendering:          optimizeLegibility;
+  text-size-adjust:        100%;
 }
 
-/* Class/ID: `html box-sizing` — Purpose: Set box-sizing model */
-html {
-  box-sizing: border-box
-}
-
-/* Class/ID: Minireset base */
-html,
-body,
-p,
-ol,
-ul,
-li,
-dl,
-dt,
-dd,
-blockquote,
-figure,
-fieldset,
-legend,
-textarea,
-pre,
-iframe,
-hr,
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0
-}
-
-html {
-  -moz-osx-font-smoothing: auto;
-  -webkit-font-smoothing: auto
-}
-
+/* body: base font family, colour, line-height */
 body,
 button,
 input,
 optgroup,
 select,
 textarea {
-  font-family: "Lato Medium", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+  font-family: var(--font-sans);
 }
 
-/* Class/ID: `body` — Purpose: Body text color and line-height */
 body {
-  color: #000000;
-  font-size: 1em;
-  font-weight: 400;
-  line-height: 1.5
+  background-color: var(--color-bg);
+  color:            var(--color-text);
+  font-size:        1em;
+  font-weight:      400;
+  line-height:      1.6;
 }
 
-@media screen and (min-width: 769px),
-print {
-  .field-body {
-    display: flex;
-    flex-basis: 0;
-    flex-grow: 5;
-    flex-shrink: 1
-  }
 
-  .field-body .field {
-    margin-bottom: 0
-  }
+/* ============================================================
+   5. PAGE LAYOUT  (#Page, #Page .Main)
+   Two-column: fixed sidebar on the left, scrolling main on right.
+   ============================================================ */
 
-  .field-body>.field {
-    flex-shrink: 1
-  }
+/* #Page: outer wrapper — full viewport */
+#Page {
+  display: flex;
+  min-height: 100vh;
+}
 
-  .field-body>.field:not(.is-narrow) {
-    flex-grow: 1
-  }
-
-  .field-body>.field:not(:last-child) {
-    margin-right: .75rem
+/* #Page .Main: the scrollable content column */
+@media screen and (min-width: 1056px) {
+  #Page .Main {
+    margin-left: var(--sidebar-width);
+    max-width:   calc(var(--content-max) + 4rem);
+    padding:     0 2rem;
+    flex: 1;
   }
 }
 
-/* Class/ID: `#Page .Main>article` — Purpose: Main article overflow-wrap */
-#Page .Main>article {
-  overflow-wrap: break-word
+@media screen and (max-width: 1055px) {
+  #Page .Main {
+    width: 100%;
+  }
+
+  /* article gets comfortable side padding on small screens */
+  #Page .Main > article {
+    padding: 0 1rem;
+  }
+
+  /* header and footer span full width */
+  #Page .Main > header,
+  #Page .Main > nav {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
 }
 
-/* Class/ID: `#Page .Main>article h1, h2, h3, h4, h5, h6` — Purpose: Article heading scroll margin */
-#Page .Main>article h1,
-#Page .Main>article h2,
-#Page .Main>article h3,
-#Page .Main>article h4,
-#Page .Main>article h5,
-#Page .Main>article h6 {
-  scroll-margin-top: 4.5rem
+/* article: prevent very long words / URLs from breaking layout */
+#Page .Main > article {
+  overflow-wrap: break-word;
 }
 
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: 100%;
-  font-weight: normal
-} */
+/* All headings inside the article get a scroll-margin so anchor
+   links land below the sticky header */
+#Page .Main > article h1,
+#Page .Main > article h2,
+#Page .Main > article h3,
+#Page .Main > article h4,
+#Page .Main > article h5,
+#Page .Main > article h6 {
+  scroll-margin-top: 4.5rem;
+}
 
-/* Headings Permalink */
-:is(h1, h2, h3, h4, h5, h6) .Heading_Anchor_Permalink {
-  visibility: hidden;
+
+/* ============================================================
+   6. GLOBAL LINK  (<a>)
+   ============================================================ */
+
+/* Default link colour */
+a {
+  color:           var(--color-primary);
+  cursor:          pointer;
+  text-decoration: none;
+}
+
+a strong { color: currentColor; }
+
+/* Link hover */
+a:hover {
+  color:           var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   7. HORIZONTAL RULE  (<hr>)
+   ============================================================ */
+
+hr {
+  background-color: var(--color-border);
+  border:           none;
+  display:          block;
+  height:           1px;
+  margin:           1.5rem 0;
+}
+
+
+/* ============================================================
+   8. CONTENT TYPOGRAPHY  (.Content)
+   Styles everything inside the main article body: headings,
+   paragraphs, lists, tables, blockquotes, strong/em, etc.
+   ============================================================ */
+
+/* .Content: base font — use serif body face for reading comfort */
+.Content {
+  font-family: var(--font-body);
+  font-size:   1rem;
+  line-height: 1.7;
+  color:       var(--color-text);
+}
+
+/* --- 8a. Paragraphs, definition lists, block-level spacing --- */
+
+/* Spacing below block elements that are NOT last-child */
+.Content p:not(:last-child),
+.Content dl:not(:last-child),
+.Content ol:not(:last-child),
+.Content ul:not(:last-child),
+.Content blockquote:not(:last-child),
+.Content pre:not(:last-child),
+.Content table:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+/* --- 8b. HEADINGS inside .Content --- */
+
+/* Shared heading styles */
+.Content h1,
+.Content h2,
+.Content h3,
+.Content h4,
+.Content h5,
+.Content h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color:       var(--color-heading);
+  line-height: 1.2;
+}
+
+/* h1 — page title */
+.Content h1 {
+  font-size:     2em;
+  margin-bottom: 0.5em;
+  margin-top: 0.75em;
+}
+.Content h1:not(:first-child) { margin-top: 1em; }
+
+/* h2 — major section */
+.Content h2 {
+  font-size:     1.75em;
+  margin-bottom: 0.5714em;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.2em;
+}
+.Content h2:not(:first-child) { margin-top: 1.75em; }
+
+/* h3 — sub-section */
+.Content h3 {
+  font-size:     1.4em;
+  margin-bottom: 0.6em;
+}
+.Content h3:not(:first-child) { margin-top: 1.5em; }
+
+/* h4 */
+.Content h4 {
+  font-size:     1.15em;
+  margin-bottom: 0.8em;
+}
+.Content h4:not(:first-child) { margin-top: 1.25em; }
+
+/* h5 */
+.Content h5 {
+  font-size:     1.05em;
+  margin-bottom: 0.8em;
+}
+
+/* h6 */
+.Content h6 {
+  font-size:     1em;
+  margin-bottom: 1em;
+  color:         var(--color-text-muted);
+}
+
+/* --- 8c. HEADING PERMALINK ANCHOR --- */
+
+/* .Heading_Anchor: the invisible wrapper link on each heading */
+.Content h1 .Heading_Anchor,
+.Content h2 .Heading_Anchor,
+.Content h3 .Heading_Anchor,
+.Content h4 .Heading_Anchor,
+.Content h5 .Heading_Anchor,
+.Content h6 .Heading_Anchor,
+.Content h1 .Heading_Anchor:hover,
+.Content h2 .Heading_Anchor:hover,
+.Content h3 .Heading_Anchor:hover,
+.Content h4 .Heading_Anchor:hover,
+.Content h5 .Heading_Anchor:hover,
+.Content h6 .Heading_Anchor:hover,
+.Content h1 .Heading_Anchor:visited,
+.Content h2 .Heading_Anchor:visited,
+.Content h3 .Heading_Anchor:visited,
+.Content h4 .Heading_Anchor:visited,
+.Content h5 .Heading_Anchor:visited,
+.Content h6 .Heading_Anchor:visited {
+  color:           var(--color-heading);
+  text-decoration: none;
+}
+
+/* .Heading_Anchor_Permalink: the ¶ icon that appears on hover */
+.Content h1 .Heading_Anchor_Permalink,
+.Content h2 .Heading_Anchor_Permalink,
+.Content h3 .Heading_Anchor_Permalink,
+.Content h4 .Heading_Anchor_Permalink,
+.Content h5 .Heading_Anchor_Permalink,
+.Content h6 .Heading_Anchor_Permalink {
+  visibility:     hidden;
   vertical-align: middle;
-  margin-left: var(--Permalink-spacing);
-  font-size: var(--Permalink-size)
+  margin-left:    var(--permalink-spacing);
+  font-size:      var(--permalink-size);
+  color:          var(--color-text-muted);
+  text-decoration: none;
+}
+
+/* Permalink icon via Font Awesome (chain link) */
+.Content h1 .Heading_Anchor_Permalink::before,
+.Content h2 .Heading_Anchor_Permalink::before,
+.Content h3 .Heading_Anchor_Permalink::before,
+.Content h4 .Heading_Anchor_Permalink::before,
+.Content h5 .Heading_Anchor_Permalink::before,
+.Content h6 .Heading_Anchor_Permalink::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  content:     "\f0c1";
+}
+
+/* Show permalink icon when heading is hovered */
+.Content h1:hover .Heading_Anchor_Permalink,
+.Content h2:hover .Heading_Anchor_Permalink,
+.Content h3:hover .Heading_Anchor_Permalink,
+.Content h4:hover .Heading_Anchor_Permalink,
+.Content h5:hover .Heading_Anchor_Permalink,
+.Content h6:hover .Heading_Anchor_Permalink {
+  visibility: visible;
+}
+
+/* Also applies OUTSIDE .Content (bare article headings) */
+:is(h1, h2, h3, h4, h5, h6) .Heading_Anchor,
+:is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:hover,
+:is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:visited {
+  color:           var(--color-heading);
+  text-decoration: none;
+}
+
+:is(h1, h2, h3, h4, h5, h6) .Heading_Anchor_Permalink {
+  visibility:     hidden;
+  vertical-align: middle;
+  margin-left:    var(--permalink-spacing);
+  font-size:      var(--permalink-size);
+  color:          var(--color-text-muted);
+  text-decoration: none;
 }
 
 :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor_Permalink::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  content: "\f0c1"
+  content:     "\f0c1";
 }
 
 :is(h1, h2, h3, h4, h5, h6):hover .Heading_Anchor_Permalink {
-  visibility: visible
+  visibility: visible;
+}
+
+
+/* --- 8d. LISTS --- */
+
+/* Ordered list */
+.Content ol {
+  list-style-position: outside;
+  list-style-type:     decimal;
+  margin-left:         2em;
+  margin-top:          1em;
+}
+
+/* Unordered list */
+.Content ul {
+  list-style:  disc outside;
+  margin-left: 2em;
+  margin-top:  1em;
+}
+
+.Content ul ul        { list-style-type: circle; margin-top: 0.5em; }
+.Content ul ul ul     { list-style-type: square; }
+
+/* List item vertical spacing */
+.Content li + li { margin-top: 0.3em; }
+
+/* Definition list indent */
+.Content dd { margin-left: 2em; }
+
+
+/* --- 8e. BLOCKQUOTE --- */
+
+/* .Content blockquote: left-bordered pull-quote panel */
+.Content blockquote {
+  background-color: var(--color-surface);
+  border-left:      4px solid var(--color-border);
+  padding:          1em 1.25em;
+  border-radius:    0 4px 4px 0;
+  color:            var(--color-text-muted);
+  font-style:       italic;
+}
+
+
+/* --- 8f. INLINE CODE & KEYBOARD --- */
+
+/* Inline code chip */
+.Content code {
+  background-color: var(--color-code-bg);
+  color:            var(--color-code-text);
+  font-family:      var(--font-mono);
+  font-size:        0.875em;
+  padding:          0.1em 0.3em;
+  border-radius:    3px;
+}
+
+.Content a code   { color: var(--color-primary); }
+.Content a:hover code { color: var(--color-primary-dark); }
+
+.Content h1 code,
+.Content h2 code,
+.Content h3 code,
+.Content h4 code,
+.Content h5 code,
+.Content h6 code { color: var(--color-heading); }
+
+
+/* --- 8g. SUPERSCRIPT / SUBSCRIPT --- */
+
+.Content sup,
+.Content sub { font-size: 75%; }
+
+
+/* --- 8h. STRONG / EM --- */
+
+strong {
+  color:       var(--color-text);
+  font-weight: 700;
+}
+
+.Content em { font-style: italic; }
+
+
+/* --- 8i. TABLE --- */
+
+/* Full-width content table */
+.Content table { width: 100%; }
+
+.Content table td,
+.Content table th {
+  border:         1px solid var(--color-border);
+  border-width:   0 0 1px;
+  padding:        0.5em 0.75em;
+  vertical-align: top;
+}
+
+.Content table th {
+  color:       var(--color-heading);
+  font-weight: 600;
+  background:  var(--color-surface);
+}
+
+.Content table th:not([align]) { text-align: left; }
+
+.Content table thead td,
+.Content table thead th { border-width: 0 0 2px; }
+
+.Content table tfoot td,
+.Content table tfoot th { border-width: 2px 0 0; }
+
+.Content table tbody tr:last-child td,
+.Content table tbody tr:last-child th { border-bottom-width: 0; }
+
+.Content table.is-bordered td,
+.Content table.is-bordered th { border-width: 1px; }
+
+
+/* --- 8j. FIGURE --- */
+
+/* .Figure: centred image / SVG wrapper */
+.Content figure,
+.Figure {
+  margin:     1.5rem auto;
+  text-align: center;
+}
+
+.Content figure img,
+.Figure img {
+  display:   inline-block;
+  max-width: 100%;
+  height:    auto;
+}
+
+.Content figure figcaption,
+.Figure figcaption {
+  margin-top:  0.5rem;
+  font-family: var(--font-sans);
+  font-size:   0.85rem;
+  color:       var(--color-text-muted);
+  font-style:  italic;
+}
+
+
+/* ============================================================
+   9. MATH  (.Math)
+   KaTeX / MathJax display panel.
+   ============================================================ */
+
+/* .Math: coloured panel wrapping display-mode equations */
+#Page .Main > article .Math {
+  overflow-x:       auto;
+  overflow-y:       hidden;
+  background-color: var(--math-color-bg);
+  color:            var(--math-color-text);
+  border-radius:    4px;
+  padding:          0.75rem 1rem;
+  margin:           1rem 0;
+}
+
+/* KaTeX mathml position fix */
+.katex .katex-mathml {
+  top:   0;
+  right: 0;
+}
+
+/* Remove extra margin KaTeX and MathJax add by default */
+.katex-display,
+mjx-container,
+.MathJax_Display {
+  margin: 0.5em 0 !important;
+}
+
+
+/* ============================================================
+   10. COLUMNS LAYOUT  (#Columns)
+   Side-by-side image / SVG pairs (tutorial figures).
+   ============================================================ */
+
+/* #Columns: flex row for paired figures */
+#Columns {
+  margin:          1.5rem auto;
+  display:         flex;
+  justify-content: center;
+  gap:             2rem;
+}
+
+@media (max-width: 768px) {
+  #Columns { flex-direction: column; }
+}
+
+
+/* ============================================================
+   11. SPACING UTILITY CLASSES
+   Extracted from css/Style.css — margin & padding scale.
+   Only the values actually used in the HTML are kept;
+   the full Bulma grid of 100+ rules is removed.
+   ============================================================ */
+
+/* --- Margin utilities (m-, mt-, mr-, mb-, ml-, mx-, my-) --- */
+
+/* margin: 0 */
+.m-0  { margin:        0 !important; }
+.mt-0 { margin-top:    0 !important; }
+.mr-0 { margin-right:  0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.ml-0 { margin-left:   0 !important; }
+.mx-0 { margin-left:   0 !important; margin-right:  0 !important; }
+.my-0 { margin-top:    0 !important; margin-bottom: 0 !important; }
+
+/* margin: auto */
+.m-auto  { margin:       auto !important; }
+.mt-auto { margin-top:   auto !important; }
+.mr-auto { margin-right: auto !important; }
+.mb-auto { margin-bottom:auto !important; }
+.ml-auto { margin-left:  auto !important; }
+.mx-auto { margin-left:  auto !important; margin-right:  auto !important; }
+.my-auto { margin-top:   auto !important; margin-bottom: auto !important; }
+
+/* margin: 0.25rem */
+.m-1  { margin:        var(--sp-1) !important; }
+.mt-1 { margin-top:    var(--sp-1) !important; }
+.mr-1 { margin-right:  var(--sp-1) !important; }
+.mb-1 { margin-bottom: var(--sp-1) !important; }
+.ml-1 { margin-left:   var(--sp-1) !important; }
+
+/* margin: 0.5rem */
+.m-2  { margin:        var(--sp-2) !important; }
+.mt-2 { margin-top:    var(--sp-2) !important; }
+.mr-2 { margin-right:  var(--sp-2) !important; }
+.mb-2 { margin-bottom: var(--sp-2) !important; }
+.ml-2 { margin-left:   var(--sp-2) !important; }
+
+/* margin: 0.75rem */
+.m-3  { margin:        var(--sp-3) !important; }
+.mt-3 { margin-top:    var(--sp-3) !important; }
+.mr-3 { margin-right:  var(--sp-3) !important; }
+.mb-3 { margin-bottom: var(--sp-3) !important; }
+.ml-3 { margin-left:   var(--sp-3) !important; }
+
+/* margin: 1rem */
+.m-4  { margin:        var(--sp-4) !important; }
+.mt-4 { margin-top:    var(--sp-4) !important; }
+.mr-4 { margin-right:  var(--sp-4) !important; }
+.mb-4 { margin-bottom: var(--sp-4) !important; }
+.ml-4 { margin-left:   var(--sp-4) !important; }
+
+/* margin: 1.5rem */
+.m-5  { margin:        var(--sp-5) !important; }
+.mt-5 { margin-top:    var(--sp-5) !important; }
+.mr-5 { margin-right:  var(--sp-5) !important; }
+.mb-5 { margin-bottom: var(--sp-5) !important; }
+.ml-5 { margin-left:   var(--sp-5) !important; }
+
+/* margin: 3rem */
+.m-6  { margin:        var(--sp-6) !important; }
+.mt-6 { margin-top:    var(--sp-6) !important; }
+.mr-6 { margin-right:  var(--sp-6) !important; }
+.mb-6 { margin-bottom: var(--sp-6) !important; }
+.ml-6 { margin-left:   var(--sp-6) !important; }
+
+
+/* --- Padding utilities (p-, pt-, pr-, pb-, pl-, px-, py-) --- */
+
+/* padding: 0 */
+.p-0  { padding:        0 !important; }
+.pt-0 { padding-top:    0 !important; }
+.pr-0 { padding-right:  0 !important; }
+.pb-0 { padding-bottom: 0 !important; }
+.pl-0 { padding-left:   0 !important; }
+.px-0 { padding-left:   0 !important; padding-right:  0 !important; }
+.py-0 { padding-top:    0 !important; padding-bottom: 0 !important; }
+
+/* padding: 0.25rem */
+.p-1  { padding:        var(--sp-1) !important; }
+.pt-1 { padding-top:    var(--sp-1) !important; }
+.pr-1 { padding-right:  var(--sp-1) !important; }
+.pb-1 { padding-bottom: var(--sp-1) !important; }
+.pl-1 { padding-left:   var(--sp-1) !important; }
+
+/* padding: 0.5rem */
+.p-2  { padding:        var(--sp-2) !important; }
+.pt-2 { padding-top:    var(--sp-2) !important; }
+.pr-2 { padding-right:  var(--sp-2) !important; }
+.pb-2 { padding-bottom: var(--sp-2) !important; }
+.pl-2 { padding-left:   var(--sp-2) !important; }
+
+/* padding: 0.75rem */
+.p-3  { padding:        var(--sp-3) !important; }
+.pt-3 { padding-top:    var(--sp-3) !important; }
+.pr-3 { padding-right:  var(--sp-3) !important; }
+.pb-3 { padding-bottom: var(--sp-3) !important; }
+.pl-3 { padding-left:   var(--sp-3) !important; }
+
+/* padding: 1rem */
+.p-4  { padding:        var(--sp-4) !important; }
+.pt-4 { padding-top:    var(--sp-4) !important; }
+.pr-4 { padding-right:  var(--sp-4) !important; }
+.pb-4 { padding-bottom: var(--sp-4) !important; }
+.pl-4 { padding-left:   var(--sp-4) !important; }
+
+/* padding: 1.5rem */
+.p-5  { padding:        var(--sp-5) !important; }
+.pt-5 { padding-top:    var(--sp-5) !important; }
+.pr-5 { padding-right:  var(--sp-5) !important; }
+.pb-5 { padding-bottom: var(--sp-5) !important; }
+.pl-5 { padding-left:   var(--sp-5) !important; }
+
+/* padding: 3rem */
+.p-6  { padding:        var(--sp-6) !important; }
+.pt-6 { padding-top:    var(--sp-6) !important; }
+.pr-6 { padding-right:  var(--sp-6) !important; }
+.pb-6 { padding-bottom: var(--sp-6) !important; }
+.pl-6 { padding-left:   var(--sp-6) !important; }
+
+
+/* ============================================================
+   12. MISCELLANEOUS DISPLAY HELPERS
+   ============================================================ */
+
+/* .is-hidden: generic hide */
+.is-hidden { display: none !important; }
+
+/* .is-sr-only: visually hidden but accessible to screen readers */
+.is-sr-only {
+  border:      none !important;
+  clip:        rect(0, 0, 0, 0) !important;
+  height:      0.01em !important;
+  overflow:    hidden !important;
+  padding:     0 !important;
+  position:    absolute !important;
+  white-space: nowrap !important;
+  width:       0.01em !important;
+}
+
+/* Responsive hide helpers used in .Title (header nav) */
+@media screen and (max-width: 768px) {
+  /* .is-hidden-mobile: hidden only on small screens */
+  .is-hidden-mobile { display: none !important; }
+}
+
+@media screen and (min-width: 769px) {
+  /* .is-hidden-tablet: hidden on tablet and above */
+  .is-hidden-tablet { display: none !important; }
 }

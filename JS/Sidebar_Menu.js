@@ -45,27 +45,9 @@
             open: currentUrl.includes('/Topology_Optimization/'),
             pages: [
                 {
-                    title: 'Phase Field',
-                    url: 'MY_NOTES/NOTES/Topology_Optimization/Phase_Field.html',
-                    active: currentUrl.endsWith('Phase_Field.html')
-                },
-                {
                     title: 'Reaction Diffusion',
-                    url: 'MY_NOTES/NOTES/Topology_Optimization/Reaction_Diffusion.html',
-                    active: currentUrl.endsWith('Reaction_Diffusion.html')
-                }
-            ]
-        },
-        {
-            type: 'folder',
-            label: 'Continuum Mechanics',
-            id: 'Continnum_Mechanics',
-            open: currentUrl.includes('/Continuum_Mechanics/'),
-            pages: [
-                {
-                    title: 'Vectors',
-                    url: 'MY_NOTES/NOTES/Continuum_Mechanics/Vectors.html',
-                    active: currentUrl.endsWith('Vectors.html')
+                    url: 'MY_NOTES/NOTES/Topology_Optimization/RD.html',
+                    active: currentUrl.endsWith('RD.html')
                 }
             ]
         }
