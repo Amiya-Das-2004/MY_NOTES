@@ -224,9 +224,10 @@
                     \frac{\phi^{n+1} - \phi^n}{\Delta t}
                     =
                     \tau\nabla^2\phi^{n+1} - R(\phi^{n+1})
+                    \qquad
                     $$
                 </p>
-                <div
+                <div class="Scroll_Horizontal"
                     style=" background-color: var(--color-surface); padding-left: 5em; padding-top: 1em; padding-bottom: 1em;">
                     <p>
                         <strong>Step 1:</strong> Multiply both sides by test function $v$ and integrate over $\Omega$:
@@ -244,6 +245,7 @@
                         \int_\Omega \tau\nabla^2\phi^{n+1} \cdot v \,\, d\Omega
                         -
                         \int_\Omega R(\phi^{n+1}) \cdot v \,\, d\Omega
+                        \qquad
                         $$
                     </p>
                     <br>
@@ -257,6 +259,7 @@
                         \tau\underbrace{\int_\Omega \nabla^2\phi^{n+1} \, v \, d\Omega}
                         -
                         \int_\Omega R(\phi^{n+1})\,v \, d\Omega
+                        \qquad
                         $$
                     </p>
                     <br>
@@ -278,6 +281,7 @@
                             \text{Gauss Divergence Theorem:} \quad \int_{\Omega} \nabla \cdot \mathbf{F}\, d\Omega \;
                             =
                             \int_{\partial \Omega} \mathbf{F} \cdot \mathbf{n}\, dS
+                            \qquad
                             $$
                         </p>
                         <p class="Equations">
@@ -285,7 +289,7 @@
                             \begin{aligned}
                             \because \quad &\int_\Omega \nabla \cdot (v\,\nabla u)\,d\Omega \;
                             =\;
-                            \int_{\Omega} \nabla v\,\nabla v \,d\Omega \;
+                            \int_{\Omega} \nabla v\,\nabla u \,d\Omega \;
                             +\;
                             \int_\Omega v\,\nabla^2 u\,d\Omega
                             \\[10pt]
@@ -296,6 +300,7 @@
                             -\;
                             \int_\Omega \nabla u \cdot \nabla v\,d\Omega
                             \end{aligned}
+                            \qquad
                             $$
                         </p>
                         <p>Green's Identity</p>
@@ -307,6 +312,7 @@
                             \mathbf{n}\,dS \;
                             -\;
                             \int_\Omega \nabla u \cdot \nabla v\,d\Omega
+                            \qquad
                             $$
                         </p>
                     </div>
@@ -324,25 +330,44 @@
                         } \Bigg)
                         -
                         \int_\Omega R(\phi^{n+1})\,v \, d\Omega
+                        \qquad
                         $$
                     </p>
                     <br>
-                    <p><strong>Step 5:</strong></p>
-
+                    <p>
+                        <strong>Step 4:</strong> 
+                        Substitute and rearrange (move diffusion to left, $\phi^n$ term to right): 
+                        <br> 
+                        The fully discretized weak form becomes: find $\phi^{n+1} \in H^1(\Omega)$ such that for all $v \in H^1(\Omega)$:
+                    </p>
                     <p class="Equations">
                         $$
-                        \implies \int_\Omega \frac{\phi^{n+1}}{\Delta t} v \,\, d\Omega - \int_\Omega
-                        \frac{\phi^n}{\Delta
-                        t} v \, d\Omega = \int_\Omega \tau\nabla^2\phi^{n+1} \, v \, d\Omega - \int_\Omega R(\phi^{n+1})
-                        \,
-                        v \, d\Omega
+                        \implies \int_\Omega \frac{\phi^{n+1}}{\Delta t} \, v \, d\Omega 
+                        + 
+                        \tau\int_\Omega \nabla\phi^{n+1} \cdot \nabla v \, d\Omega 
+                        = 
+                        \int_\Omega \frac{\phi^n}{\Delta t} \, v \, d\Omega 
+                        + 
+                        \int_\Omega R(\phi^{n+1}) \, v \, d\Omega
                         $$
                     </p>
-
                     <br>
-
-                    <p><strong>Step 4:</strong> </p>
-
+                    <p>The weak form can be expressed as:</p>
+                    <p class="Equations">
+                        $$
+                        m(\phi, v) + a(\phi, v) = \ell(v)
+                        $$
+                    </p>
+                    <p>where;</p>
+                    <p class="Equations">
+                        $$
+                        \begin{aligned}
+		                \implies &m(\phi, v) = \int_\Omega \frac{\phi^{n+1}}{\Delta t} \, v \, d\Omega \quad \text{(mass term with time step)}\\[0.4pt]
+		                \implies &a(\phi, v) = \tau\int_\Omega \nabla\phi^{n+1} \cdot \nabla v \, d\Omega \quad \text{(diffusion term)}\\[0.4pt]
+		                \implies &\ell(v) = \int_\Omega \frac{\phi^n}{\Delta t} \, v \, d\Omega + \int_\Omega R(\phi) \, v \, d\Omega \quad \text{(source from previous step + reaction)}
+	                    \end{aligned}
+                        $$
+                    </p>
                 </div>
 
             </article>

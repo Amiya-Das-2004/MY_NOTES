@@ -75,7 +75,7 @@
   --color-border-light: #333330;
   --color-text: #e8e6e0;
   --color-text-muted: #9a9890;
-  --color-primary: #6ca0e8;
+  --color-primary: #d987ff;
   --color-primary-dark: #90b8f0;
   --color-heading: #f0ede6;
 
@@ -741,6 +741,42 @@ strong {
 mjx-container,
 .MathJax_Display {
   margin: 0.3em 0 !important;
+}
+
+.Scroll_Horizontal{
+  cursor: grab;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    background-color: var(--color-surface);
+
+    padding-left: 5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+#Page .Main>article .Scroll_Horizontal::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+#Page .Main>article .Scroll_Horizontal::-webkit-scrollbar-thumb:hover{
+  background: var(--color-text);
+}
+
+.Scroll_Horizontal:active{
+  cursor: grabbing;
+}
+
+/* Inside Scroll_Horizontal disable individual scrolling */
+.Scroll_Horizontal .Math,
+.Scroll_Horizontal .Equations {
+    overflow: visible;
+    cursor: inherit;
+    min-width: max-content;
 }
 
 

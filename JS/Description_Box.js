@@ -324,4 +324,70 @@
         document.addEventListener("keydown", Handle_Keydown); /* 4. keyboard */
     });
 
+
+
+    let Active_Scroll_Element = null;
+    let Is_Dragging = false;
+    let Start_X = 0;
+    let Start_Scroll_Left = 0;
+
+    /* ----------------------------------------------------------
+       Find a valid horizontal-scroll target
+    ---------------------------------------------------------- */
+    function Get_Scroll_Target(Target) {
+        const El = Target.closest(
+            '.Scroll_Horizontal, .Math, .Equations'
+        );
+        if (!El) return null;
+        /* Ignore Math/Equation inside Scroll_Horizontal */
+        if (
+            El.matches('.Math, .Equations') &&
+            El.closest('.Scroll_Horizontal')
+        ) {
+            return null;
+        }
+        return El;
+    }
+
+    /* ----------------------------------------------------------
+       Mouse down
+    ---------------------------------------------------------- */
+    document.addEventListener('mousedown', e => {
+        const El = Get_Scroll_Target(e.target);
+        if (!El) return;
+        Active_Scroll_Element = El;
+        Is_Dragging = true;
+        Start_X = e.pageX;
+        Start_Scroll_Left = El.scrollLeft;
+    });
+
+    /* ----------------------------------------------------------
+       Mouse move
+    ---------------------------------------------------------- */
+    document.addEventListener('mousemove', e => {
+        if (!Is_Dragging || !Active_Scroll_Element) return;
+        e.preventDefault();
+        Active_Scroll_Element.scrollLeft =
+            Start_Scroll_Left - (e.pageX - Start_X);
+    });
+
+    /* ----------------------------------------------------------
+       Mouse up
+    ---------------------------------------------------------- */
+    document.addEventListener('mouseup', () => {
+        Is_Dragging = false;
+        Active_Scroll_Element = null;
+    });
+
+    /* ----------------------------------------------------------
+       Wheel scrolling
+    ---------------------------------------------------------- */
+    document.addEventListener('wheel', e => {
+        const El = Get_Scroll_Target(e.target);
+        if (!El) return;
+        if (El.scrollWidth <= El.clientWidth) return;
+        e.preventDefault();
+        El.scrollLeft += e.deltaY;
+    }, { passive: false });
+
 })();   /* end IIFE — nothing leaks into global scope */
