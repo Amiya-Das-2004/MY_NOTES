@@ -14,50 +14,52 @@
 :root {
 
   /* --- Palette --- */
-  --color-bg:           #ffffff;
-  --color-surface:      #f5f4f0;       /* subtle off-white for code/math panels  */
-  --color-border:       #d4d0c8;
+  --color-bg: #ffffff;
+  --color-surface: #f5f4f0;
+  /* subtle off-white for code/math panels  */
+  --color-border: #d4d0c8;
   --color-border-light: #e8e5dc;
-  --color-text:         #1a1a18;
-  --color-text-muted:   #6b6b6b;
-  --color-primary:      #2e63b8;       /* link / accent blue (matches Gridap)    */
+  --color-text: #1a1a18;
+  --color-text-muted: #6b6b6b;
+  --color-primary: #2e63b8;
+  /* link / accent blue (matches Gridap)    */
   --color-primary-dark: #1a4a8a;
-  --color-heading:      #111110;
+  --color-heading: #111110;
 
   /* --- Math panel --- */
-  --math-color-bg:      #ffffff;
-  --math-color-text:    #111110;
+  --math-color-bg: #f3f3f3;
+  --math-color-text: #111110;
 
   /* --- Inline code --- */
-  --color-code-bg:      #f0ede6;
-  --color-code-text:    #a3320d;
+  --color-code-bg: #f0ede6;
+  --color-code-text: #a3320d;
 
   /* --- Typography --- */
-  --font-body:   'Lora', Georgia, serif;
-  --font-sans:   'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono:   'JuliaMono', 'SFMono-Regular', 'Menlo', 'Consolas',
-                 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+  --font-body: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: 'Lora', Georgia, serif;
+  --font-mono: 'JuliaMono', 'SFMono-Regular', 'Menlo', 'Consolas',
+    'Liberation Mono', 'DejaVu Sans Mono', monospace;
 
   /* --- Layout --- */
-  --sidebar-width:  280px;
-  --content-max:    52rem;
+  --sidebar-width: 280px;
+  --content-max: 52rem;
 
   /* --- Spacing scale --- */
-  --sp-1:   0.25rem;
-  --sp-2:   0.5rem;
-  --sp-3:   0.75rem;
-  --sp-4:   1rem;
-  --sp-5:   1.5rem;
-  --sp-6:   3rem;
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 3rem;
 
   /* --- Permalink --- */
-  --permalink-size:    0.75rem;
+  --permalink-size: 0.75rem;
   --permalink-spacing: 0.5rem;
 
   /* --- Motion --- */
-  --t-fast:   150ms;
+  --t-fast: 150ms;
   --t-normal: 250ms;
-  --t-slow:   350ms;
+  --t-slow: 350ms;
 }
 
 
@@ -67,21 +69,21 @@
 
 :root[data-theme="dark"] {
 
-  --color-bg:           #1e1e1c;
-  --color-surface:      #2a2a27;
-  --color-border:       #3b3b38;
+  --color-bg: #1e1e1c;
+  --color-surface: #2a2a27;
+  --color-border: #3b3b38;
   --color-border-light: #333330;
-  --color-text:         #e8e6e0;
-  --color-text-muted:   #9a9890;
-  --color-primary:      #6ca0e8;
+  --color-text: #e8e6e0;
+  --color-text-muted: #9a9890;
+  --color-primary: #6ca0e8;
   --color-primary-dark: #90b8f0;
-  --color-heading:      #f0ede6;
+  --color-heading: #f0ede6;
 
-  --math-color-bg:      #252522;
-  --math-color-text:    #f3f2f0;
+  --math-color-bg: #464646;
+  --math-color-text: #f3f2f0;
 
-  --color-code-bg:      #2c2c29;
-  --color-code-text:    #e8e6e0;
+  --color-code-bg: #2c2c29;
+  --color-code-text: #e8e6e0;
 }
 
 
@@ -97,45 +99,76 @@
 }
 
 /* Strip browser default margins / padding */
-html, body,
-p, ol, ul, li,
-dl, dt, dd,
-blockquote, figure,
-fieldset, legend,
-textarea, pre, iframe, hr,
-h1, h2, h3, h4, h5, h6 {
-  margin:  0;
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
   padding: 0;
 }
 
 /* Headings: reset weight/size — content styles set them below */
-h1, h2, h3, h4, h5, h6 {
-  font-size:   100%;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
   font-weight: normal;
 }
 
 /* Remove default list bullets (sidebar and nav lists) */
-ul { list-style: none; }
+ul {
+  list-style: none;
+}
 
 /* Responsive images */
-img, video {
-  height:    auto;
+img,
+video {
+  height: auto;
   max-width: 100%;
 }
 
 /* Remove iframe border */
-iframe { border: 0; }
+iframe {
+  border: 0;
+}
 
 /* Table collapse */
 table {
   border-collapse: collapse;
-  border-spacing:  0;
+  border-spacing: 0;
 }
 
-td, th { padding: 0; }
+td,
+th {
+  padding: 0;
+}
 
 td:not([align]),
-th:not([align]) { text-align: inherit; }
+th:not([align]) {
+  text-align: inherit;
+}
 
 
 /* ============================================================
@@ -144,15 +177,15 @@ th:not([align]) { text-align: inherit; }
 
 /* html: page background, font rendering, scroll */
 html {
-  background-color:        var(--color-bg);
-  font-size:               16px;
+  background-color: var(--color-bg);
+  font-size: 16px;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing:  antialiased;
-  min-width:               300px;
-  overflow-x:              auto;
-  overflow-y:              scroll;
-  text-rendering:          optimizeLegibility;
-  text-size-adjust:        100%;
+  -webkit-font-smoothing: antialiased;
+  min-width: 300px;
+  overflow-x: auto;
+  overflow-y: scroll;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
 }
 
 /* body: base font family, colour, line-height */
@@ -167,10 +200,10 @@ textarea {
 
 body {
   background-color: var(--color-bg);
-  color:            var(--color-text);
-  font-size:        1em;
-  font-weight:      400;
-  line-height:      1.6;
+  color: var(--color-text);
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 
@@ -189,8 +222,8 @@ body {
 @media screen and (min-width: 1056px) {
   #Page .Main {
     margin-left: var(--sidebar-width);
-    max-width:   calc(var(--content-max) + 4rem);
-    padding:     0 2rem;
+    max-width: calc(var(--content-max) + 4rem);
+    padding: 0 2rem;
     flex: 1;
   }
 }
@@ -201,13 +234,13 @@ body {
   }
 
   /* article gets comfortable side padding on small screens */
-  #Page .Main > article {
+  #Page .Main>article {
     padding: 0 1rem;
   }
 
   /* header and footer span full width */
-  #Page .Main > header,
-  #Page .Main > nav {
+  #Page .Main>header,
+  #Page .Main>nav {
     max-width: 100%;
     width: 100%;
     margin: 0;
@@ -215,18 +248,18 @@ body {
 }
 
 /* article: prevent very long words / URLs from breaking layout */
-#Page .Main > article {
+#Page .Main>article {
   overflow-wrap: break-word;
 }
 
 /* All headings inside the article get a scroll-margin so anchor
    links land below the sticky header */
-#Page .Main > article h1,
-#Page .Main > article h2,
-#Page .Main > article h3,
-#Page .Main > article h4,
-#Page .Main > article h5,
-#Page .Main > article h6 {
+#Page .Main>article h1,
+#Page .Main>article h2,
+#Page .Main>article h3,
+#Page .Main>article h4,
+#Page .Main>article h5,
+#Page .Main>article h6 {
   scroll-margin-top: 4.5rem;
 }
 
@@ -237,16 +270,18 @@ body {
 
 /* Default link colour */
 a {
-  color:           var(--color-primary);
-  cursor:          pointer;
+  color: var(--color-primary);
+  cursor: pointer;
   text-decoration: none;
 }
 
-a strong { color: currentColor; }
+a strong {
+  color: currentColor;
+}
 
 /* Link hover */
 a:hover {
-  color:           var(--color-primary-dark);
+  color: var(--color-primary-dark);
   text-decoration: underline;
 }
 
@@ -257,10 +292,10 @@ a:hover {
 
 hr {
   background-color: var(--color-border);
-  border:           none;
-  display:          block;
-  height:           1px;
-  margin:           1.5rem 0;
+  border: none;
+  display: block;
+  height: 1px;
+  margin: 1.5rem 0;
 }
 
 
@@ -273,9 +308,9 @@ hr {
 /* .Content: base font — use serif body face for reading comfort */
 .Content {
   font-family: var(--font-body);
-  font-size:   1rem;
+  font-size: 1rem;
   line-height: 1.7;
-  color:       var(--color-text);
+  color: var(--color-text);
 }
 
 /* --- 8a. Paragraphs, definition lists, block-level spacing --- */
@@ -288,7 +323,7 @@ hr {
 .Content blockquote:not(:last-child),
 .Content pre:not(:last-child),
 .Content table:not(:last-child) {
-  margin-bottom: 1em;
+  margin-bottom: 0;
 }
 
 /* --- 8b. HEADINGS inside .Content --- */
@@ -302,52 +337,64 @@ hr {
 .Content h6 {
   font-family: var(--font-sans);
   font-weight: 600;
-  color:       var(--color-heading);
+  color: var(--color-heading);
   line-height: 1.2;
 }
 
 /* h1 — page title */
 .Content h1 {
-  font-size:     2em;
-  margin-bottom: 0.5em;
-  margin-top: 0.75em;
+  font-size: 2em;
+  margin-bottom: 0.2em;
+  margin-top: 0.25em;
 }
-.Content h1:not(:first-child) { margin-top: 1em; }
+
+.Content h1:not(:first-child) {
+  margin-top: 1em;
+}
 
 /* h2 — major section */
 .Content h2 {
-  font-size:     1.75em;
-  margin-bottom: 0.5714em;
+  font-size: 1.75em;
+  margin-bottom: 0.3em;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.2em;
 }
-.Content h2:not(:first-child) { margin-top: 1.75em; }
+
+.Content h2:not(:first-child) {
+  margin-top: 1.5em;
+}
 
 /* h3 — sub-section */
 .Content h3 {
-  font-size:     1.4em;
+  font-size: 1.4em;
   margin-bottom: 0.6em;
 }
-.Content h3:not(:first-child) { margin-top: 1.5em; }
+
+.Content h3:not(:first-child) {
+  margin-top: 1em;
+}
 
 /* h4 */
 .Content h4 {
-  font-size:     1.15em;
+  font-size: 1.15em;
   margin-bottom: 0.8em;
 }
-.Content h4:not(:first-child) { margin-top: 1.25em; }
+
+.Content h4:not(:first-child) {
+  margin-top: 1.25em;
+}
 
 /* h5 */
 .Content h5 {
-  font-size:     1.05em;
+  font-size: 1.05em;
   margin-bottom: 0.8em;
 }
 
 /* h6 */
 .Content h6 {
-  font-size:     1em;
+  font-size: 1em;
   margin-bottom: 1em;
-  color:         var(--color-text-muted);
+  color: var(--color-text-muted);
 }
 
 /* --- 8c. HEADING PERMALINK ANCHOR --- */
@@ -371,7 +418,7 @@ hr {
 .Content h4 .Heading_Anchor:visited,
 .Content h5 .Heading_Anchor:visited,
 .Content h6 .Heading_Anchor:visited {
-  color:           var(--color-heading);
+  color: var(--color-heading);
   text-decoration: none;
 }
 
@@ -382,11 +429,11 @@ hr {
 .Content h4 .Heading_Anchor_Permalink,
 .Content h5 .Heading_Anchor_Permalink,
 .Content h6 .Heading_Anchor_Permalink {
-  visibility:     hidden;
+  visibility: hidden;
   vertical-align: middle;
-  margin-left:    var(--permalink-spacing);
-  font-size:      var(--permalink-size);
-  color:          var(--color-text-muted);
+  margin-left: var(--permalink-spacing);
+  font-size: var(--permalink-size);
+  color: var(--color-text-muted);
   text-decoration: none;
 }
 
@@ -399,7 +446,7 @@ hr {
 .Content h6 .Heading_Anchor_Permalink::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  content:     "\f0c1";
+  content: "\f0c1";
 }
 
 /* Show permalink icon when heading is hovered */
@@ -416,23 +463,23 @@ hr {
 :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor,
 :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:hover,
 :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor:visited {
-  color:           var(--color-heading);
+  color: var(--color-heading);
   text-decoration: none;
 }
 
 :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor_Permalink {
-  visibility:     hidden;
+  visibility: hidden;
   vertical-align: middle;
-  margin-left:    var(--permalink-spacing);
-  font-size:      var(--permalink-size);
-  color:          var(--color-text-muted);
+  margin-left: var(--permalink-spacing);
+  font-size: var(--permalink-size);
+  color: var(--color-text-muted);
   text-decoration: none;
 }
 
 :is(h1, h2, h3, h4, h5, h6) .Heading_Anchor_Permalink::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  content:     "\f0c1";
+  content: "\f0c1";
 }
 
 :is(h1, h2, h3, h4, h5, h6):hover .Heading_Anchor_Permalink {
@@ -445,26 +492,38 @@ hr {
 /* Ordered list */
 .Content ol {
   list-style-position: outside;
-  list-style-type:     decimal;
-  margin-left:         2em;
-  margin-top:          1em;
+  list-style-type: decimal;
+  margin-left: 1.3em;
+  margin-top: 0em;
 }
 
 /* Unordered list */
 .Content ul {
-  list-style:  disc outside;
+  list-style: disc outside;
   margin-left: 2em;
-  margin-top:  1em;
+  margin-top: 0em;
 }
 
-.Content ul ul        { list-style-type: circle; margin-top: 0.5em; }
-.Content ul ul ul     { list-style-type: square; }
+.Content ul ul {
+  list-style-type: circle;
+  margin-top: 0em;
+}
+
+.Content ul ul ul {
+  list-style-type: square;
+}
 
 /* List item vertical spacing */
-.Content li + li { margin-top: 0.3em; }
+.Content li {
+  margin-top: 0.2em;
+  margin-left: 1.3em;
+  margin-bottom: 0.2em;
+}
 
 /* Definition list indent */
-.Content dd { margin-left: 2em; }
+.Content dd {
+  margin-left: 1.2em;
+}
 
 
 /* --- 8e. BLOCKQUOTE --- */
@@ -472,11 +531,11 @@ hr {
 /* .Content blockquote: left-bordered pull-quote panel */
 .Content blockquote {
   background-color: var(--color-surface);
-  border-left:      4px solid var(--color-border);
-  padding:          1em 1.25em;
-  border-radius:    0 4px 4px 0;
-  color:            var(--color-text-muted);
-  font-style:       italic;
+  border-left: 4px solid var(--color-border);
+  padding: 1em 1.25em;
+  border-radius: 0 4px 4px 0;
+  color: var(--color-text-muted);
+  font-style: italic;
 }
 
 
@@ -485,72 +544,96 @@ hr {
 /* Inline code chip */
 .Content code {
   background-color: var(--color-code-bg);
-  color:            var(--color-code-text);
-  font-family:      var(--font-mono);
-  font-size:        0.875em;
-  padding:          0.1em 0.3em;
-  border-radius:    3px;
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
 }
 
-.Content a code   { color: var(--color-primary); }
-.Content a:hover code { color: var(--color-primary-dark); }
+.Content a code {
+  color: var(--color-primary);
+}
+
+.Content a:hover code {
+  color: var(--color-primary-dark);
+}
 
 .Content h1 code,
 .Content h2 code,
 .Content h3 code,
 .Content h4 code,
 .Content h5 code,
-.Content h6 code { color: var(--color-heading); }
+.Content h6 code {
+  color: var(--color-heading);
+}
 
 
 /* --- 8g. SUPERSCRIPT / SUBSCRIPT --- */
 
 .Content sup,
-.Content sub { font-size: 75%; }
+.Content sub {
+  font-size: 75%;
+}
 
 
 /* --- 8h. STRONG / EM --- */
 
 strong {
-  color:       var(--color-text);
+  color: var(--color-text);
   font-weight: 700;
 }
 
-.Content em { font-style: italic; }
+.Content em {
+  font-style: italic;
+}
 
 
 /* --- 8i. TABLE --- */
 
 /* Full-width content table */
-.Content table { width: 100%; }
+.Content table {
+  width: 100%;
+  margin-top: 1rem;
+}
 
 .Content table td,
 .Content table th {
-  border:         1px solid var(--color-border);
-  border-width:   0 0 1px;
-  padding:        0.5em 0.75em;
+  border: 1px solid var(--color-border);
+  border-width: 0 0 1px;
+  padding: 0.1em 0.75em;
   vertical-align: top;
 }
 
 .Content table th {
-  color:       var(--color-heading);
+  color: var(--color-heading);
   font-weight: 600;
-  background:  var(--color-surface);
+  background: var(--color-surface);
 }
 
-.Content table th:not([align]) { text-align: left; }
+.Content table th:not([align]) {
+  text-align: left;
+}
 
 .Content table thead td,
-.Content table thead th { border-width: 0 0 2px; }
+.Content table thead th {
+  border-width: 0 0 2px;
+}
 
 .Content table tfoot td,
-.Content table tfoot th { border-width: 2px 0 0; }
+.Content table tfoot th {
+  border-width: 2px 0 0;
+}
 
 .Content table tbody tr:last-child td,
-.Content table tbody tr:last-child th { border-bottom-width: 0; }
+.Content table tbody tr:last-child th {
+  border-bottom-width: 0;
+}
 
 .Content table.is-bordered td,
-.Content table.is-bordered th { border-width: 1px; }
+.Content table.is-bordered th {
+  border-width: 1px;
+}
 
 
 /* --- 8j. FIGURE --- */
@@ -558,24 +641,24 @@ strong {
 /* .Figure: centred image / SVG wrapper */
 .Content figure,
 .Figure {
-  margin:     1.5rem auto;
+  margin: 1.5rem auto;
   text-align: center;
 }
 
 .Content figure img,
 .Figure img {
-  display:   inline-block;
+  display: inline-block;
   max-width: 100%;
-  height:    auto;
+  height: auto;
 }
 
 .Content figure figcaption,
 .Figure figcaption {
-  margin-top:  0.5rem;
+  margin-top: 0.5rem;
   font-family: var(--font-sans);
-  font-size:   0.85rem;
-  color:       var(--color-text-muted);
-  font-style:  italic;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-style: italic;
 }
 
 
@@ -585,19 +668,71 @@ strong {
    ============================================================ */
 
 /* .Math: coloured panel wrapping display-mode equations */
-#Page .Main > article .Math {
-  overflow-x:       auto;
-  overflow-y:       hidden;
+#Page .Main>article .Math {
   background-color: var(--math-color-bg);
-  color:            var(--math-color-text);
-  border-radius:    4px;
-  padding:          0.75rem 1rem;
-  margin:           1rem 0;
+  color: var(--math-color-text);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  padding-right: 1rem;
+  margin: 1rem 0;
+}
+
+#Page .Main>article .Equations {
+  background-color: var(--color-surface);
+  color: var(--math-color-text);
+  padding: 0.5rem 0.1rem;
+  padding-right: 2rem;
+  margin: 0 0;
+}
+
+.Math,
+.Equations {
+  cursor: grab;
+  position: relative;
+  border-right: 3px solid transparent;
+    border-left: 3px solid transparent;
+}
+
+.Math:active,
+.Equations:active {
+  cursor: grabbing;
+}
+
+#Page .Main>article .Math,
+#Page .Main>article .Equations {
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+/* Chrome, Edge, Safari */
+#Page .Main>article .Math::-webkit-scrollbar,
+#Page .Main>article .Equations::-webkit-scrollbar {
+  height: 1pt;
+}
+
+#Page .Main>article .Math::-webkit-scrollbar-track,
+#Page .Main>article .Equations::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#Page .Main>article .Math::-webkit-scrollbar-thumb,
+#Page .Main>article .Equations::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+#Page .Main>article .Math::-webkit-scrollbar-thumb:hover,
+#Page .Main>article .Equations::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text);
 }
 
 /* KaTeX mathml position fix */
 .katex .katex-mathml {
-  top:   0;
+  top: 0;
   right: 0;
 }
 
@@ -605,7 +740,7 @@ strong {
 .katex-display,
 mjx-container,
 .MathJax_Display {
-  margin: 0.5em 0 !important;
+  margin: 0.3em 0 !important;
 }
 
 
@@ -616,14 +751,16 @@ mjx-container,
 
 /* #Columns: flex row for paired figures */
 #Columns {
-  margin:          1.5rem auto;
-  display:         flex;
+  margin: 1.5rem auto;
+  display: flex;
   justify-content: center;
-  gap:             2rem;
+  gap: 1rem;
 }
 
 @media (max-width: 768px) {
-  #Columns { flex-direction: column; }
+  #Columns {
+    flex-direction: column;
+  }
 }
 
 
@@ -637,118 +774,352 @@ mjx-container,
 /* --- Margin utilities (m-, mt-, mr-, mb-, ml-, mx-, my-) --- */
 
 /* margin: 0 */
-.m-0  { margin:        0 !important; }
-.mt-0 { margin-top:    0 !important; }
-.mr-0 { margin-right:  0 !important; }
-.mb-0 { margin-bottom: 0 !important; }
-.ml-0 { margin-left:   0 !important; }
-.mx-0 { margin-left:   0 !important; margin-right:  0 !important; }
-.my-0 { margin-top:    0 !important; margin-bottom: 0 !important; }
+.m-0 {
+  margin: 0 !important;
+}
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mr-0 {
+  margin-right: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.ml-0 {
+  margin-left: 0 !important;
+}
+
+.mx-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.my-0 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
 
 /* margin: auto */
-.m-auto  { margin:       auto !important; }
-.mt-auto { margin-top:   auto !important; }
-.mr-auto { margin-right: auto !important; }
-.mb-auto { margin-bottom:auto !important; }
-.ml-auto { margin-left:  auto !important; }
-.mx-auto { margin-left:  auto !important; margin-right:  auto !important; }
-.my-auto { margin-top:   auto !important; margin-bottom: auto !important; }
+.m-auto {
+  margin: auto !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
 
 /* margin: 0.25rem */
-.m-1  { margin:        var(--sp-1) !important; }
-.mt-1 { margin-top:    var(--sp-1) !important; }
-.mr-1 { margin-right:  var(--sp-1) !important; }
-.mb-1 { margin-bottom: var(--sp-1) !important; }
-.ml-1 { margin-left:   var(--sp-1) !important; }
+.m-1 {
+  margin: var(--sp-1) !important;
+}
+
+.mt-1 {
+  margin-top: var(--sp-1) !important;
+}
+
+.mr-1 {
+  margin-right: var(--sp-1) !important;
+}
+
+.mb-1 {
+  margin-bottom: var(--sp-1) !important;
+}
+
+.ml-1 {
+  margin-left: var(--sp-1) !important;
+}
 
 /* margin: 0.5rem */
-.m-2  { margin:        var(--sp-2) !important; }
-.mt-2 { margin-top:    var(--sp-2) !important; }
-.mr-2 { margin-right:  var(--sp-2) !important; }
-.mb-2 { margin-bottom: var(--sp-2) !important; }
-.ml-2 { margin-left:   var(--sp-2) !important; }
+.m-2 {
+  margin: var(--sp-2) !important;
+}
+
+.mt-2 {
+  margin-top: var(--sp-2) !important;
+}
+
+.mr-2 {
+  margin-right: var(--sp-2) !important;
+}
+
+.mb-2 {
+  margin-bottom: var(--sp-2) !important;
+}
+
+.ml-2 {
+  margin-left: var(--sp-2) !important;
+}
 
 /* margin: 0.75rem */
-.m-3  { margin:        var(--sp-3) !important; }
-.mt-3 { margin-top:    var(--sp-3) !important; }
-.mr-3 { margin-right:  var(--sp-3) !important; }
-.mb-3 { margin-bottom: var(--sp-3) !important; }
-.ml-3 { margin-left:   var(--sp-3) !important; }
+.m-3 {
+  margin: var(--sp-3) !important;
+}
+
+.mt-3 {
+  margin-top: var(--sp-3) !important;
+}
+
+.mr-3 {
+  margin-right: var(--sp-3) !important;
+}
+
+.mb-3 {
+  margin-bottom: var(--sp-3) !important;
+}
+
+.ml-3 {
+  margin-left: var(--sp-3) !important;
+}
 
 /* margin: 1rem */
-.m-4  { margin:        var(--sp-4) !important; }
-.mt-4 { margin-top:    var(--sp-4) !important; }
-.mr-4 { margin-right:  var(--sp-4) !important; }
-.mb-4 { margin-bottom: var(--sp-4) !important; }
-.ml-4 { margin-left:   var(--sp-4) !important; }
+.m-4 {
+  margin: var(--sp-4) !important;
+}
+
+.mt-4 {
+  margin-top: var(--sp-4) !important;
+}
+
+.mr-4 {
+  margin-right: var(--sp-4) !important;
+}
+
+.mb-4 {
+  margin-bottom: var(--sp-4) !important;
+}
+
+.ml-4 {
+  margin-left: var(--sp-4) !important;
+}
 
 /* margin: 1.5rem */
-.m-5  { margin:        var(--sp-5) !important; }
-.mt-5 { margin-top:    var(--sp-5) !important; }
-.mr-5 { margin-right:  var(--sp-5) !important; }
-.mb-5 { margin-bottom: var(--sp-5) !important; }
-.ml-5 { margin-left:   var(--sp-5) !important; }
+.m-5 {
+  margin: var(--sp-5) !important;
+}
+
+.mt-5 {
+  margin-top: var(--sp-5) !important;
+}
+
+.mr-5 {
+  margin-right: var(--sp-5) !important;
+}
+
+.mb-5 {
+  margin-bottom: var(--sp-5) !important;
+}
+
+.ml-5 {
+  margin-left: var(--sp-5) !important;
+}
 
 /* margin: 3rem */
-.m-6  { margin:        var(--sp-6) !important; }
-.mt-6 { margin-top:    var(--sp-6) !important; }
-.mr-6 { margin-right:  var(--sp-6) !important; }
-.mb-6 { margin-bottom: var(--sp-6) !important; }
-.ml-6 { margin-left:   var(--sp-6) !important; }
+.m-6 {
+  margin: var(--sp-6) !important;
+}
+
+.mt-6 {
+  margin-top: var(--sp-6) !important;
+}
+
+.mr-6 {
+  margin-right: var(--sp-6) !important;
+}
+
+.mb-6 {
+  margin-bottom: var(--sp-6) !important;
+}
+
+.ml-6 {
+  margin-left: var(--sp-6) !important;
+}
 
 
 /* --- Padding utilities (p-, pt-, pr-, pb-, pl-, px-, py-) --- */
 
 /* padding: 0 */
-.p-0  { padding:        0 !important; }
-.pt-0 { padding-top:    0 !important; }
-.pr-0 { padding-right:  0 !important; }
-.pb-0 { padding-bottom: 0 !important; }
-.pl-0 { padding-left:   0 !important; }
-.px-0 { padding-left:   0 !important; padding-right:  0 !important; }
-.py-0 { padding-top:    0 !important; padding-bottom: 0 !important; }
+.p-0 {
+  padding: 0 !important;
+}
+
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 
 /* padding: 0.25rem */
-.p-1  { padding:        var(--sp-1) !important; }
-.pt-1 { padding-top:    var(--sp-1) !important; }
-.pr-1 { padding-right:  var(--sp-1) !important; }
-.pb-1 { padding-bottom: var(--sp-1) !important; }
-.pl-1 { padding-left:   var(--sp-1) !important; }
+.p-1 {
+  padding: var(--sp-1) !important;
+}
+
+.pt-1 {
+  padding-top: var(--sp-1) !important;
+}
+
+.pr-1 {
+  padding-right: var(--sp-1) !important;
+}
+
+.pb-1 {
+  padding-bottom: var(--sp-1) !important;
+}
+
+.pl-1 {
+  padding-left: var(--sp-1) !important;
+}
 
 /* padding: 0.5rem */
-.p-2  { padding:        var(--sp-2) !important; }
-.pt-2 { padding-top:    var(--sp-2) !important; }
-.pr-2 { padding-right:  var(--sp-2) !important; }
-.pb-2 { padding-bottom: var(--sp-2) !important; }
-.pl-2 { padding-left:   var(--sp-2) !important; }
+.p-2 {
+  padding: var(--sp-2) !important;
+}
+
+.pt-2 {
+  padding-top: var(--sp-2) !important;
+}
+
+.pr-2 {
+  padding-right: var(--sp-2) !important;
+}
+
+.pb-2 {
+  padding-bottom: var(--sp-2) !important;
+}
+
+.pl-2 {
+  padding-left: var(--sp-2) !important;
+}
 
 /* padding: 0.75rem */
-.p-3  { padding:        var(--sp-3) !important; }
-.pt-3 { padding-top:    var(--sp-3) !important; }
-.pr-3 { padding-right:  var(--sp-3) !important; }
-.pb-3 { padding-bottom: var(--sp-3) !important; }
-.pl-3 { padding-left:   var(--sp-3) !important; }
+.p-3 {
+  padding: var(--sp-3) !important;
+}
+
+.pt-3 {
+  padding-top: var(--sp-3) !important;
+}
+
+.pr-3 {
+  padding-right: var(--sp-3) !important;
+}
+
+.pb-3 {
+  padding-bottom: var(--sp-3) !important;
+}
+
+.pl-3 {
+  padding-left: var(--sp-3) !important;
+}
 
 /* padding: 1rem */
-.p-4  { padding:        var(--sp-4) !important; }
-.pt-4 { padding-top:    var(--sp-4) !important; }
-.pr-4 { padding-right:  var(--sp-4) !important; }
-.pb-4 { padding-bottom: var(--sp-4) !important; }
-.pl-4 { padding-left:   var(--sp-4) !important; }
+.p-4 {
+  padding: var(--sp-4) !important;
+}
+
+.pt-4 {
+  padding-top: var(--sp-4) !important;
+}
+
+.pr-4 {
+  padding-right: var(--sp-4) !important;
+}
+
+.pb-4 {
+  padding-bottom: var(--sp-4) !important;
+}
+
+.pl-4 {
+  padding-left: var(--sp-4) !important;
+}
 
 /* padding: 1.5rem */
-.p-5  { padding:        var(--sp-5) !important; }
-.pt-5 { padding-top:    var(--sp-5) !important; }
-.pr-5 { padding-right:  var(--sp-5) !important; }
-.pb-5 { padding-bottom: var(--sp-5) !important; }
-.pl-5 { padding-left:   var(--sp-5) !important; }
+.p-5 {
+  padding: var(--sp-5) !important;
+}
+
+.pt-5 {
+  padding-top: var(--sp-5) !important;
+}
+
+.pr-5 {
+  padding-right: var(--sp-5) !important;
+}
+
+.pb-5 {
+  padding-bottom: var(--sp-5) !important;
+}
+
+.pl-5 {
+  padding-left: var(--sp-5) !important;
+}
 
 /* padding: 3rem */
-.p-6  { padding:        var(--sp-6) !important; }
-.pt-6 { padding-top:    var(--sp-6) !important; }
-.pr-6 { padding-right:  var(--sp-6) !important; }
-.pb-6 { padding-bottom: var(--sp-6) !important; }
-.pl-6 { padding-left:   var(--sp-6) !important; }
+.p-6 {
+  padding: var(--sp-6) !important;
+}
+
+.pt-6 {
+  padding-top: var(--sp-6) !important;
+}
+
+.pr-6 {
+  padding-right: var(--sp-6) !important;
+}
+
+.pb-6 {
+  padding-bottom: var(--sp-6) !important;
+}
+
+.pl-6 {
+  padding-left: var(--sp-6) !important;
+}
 
 
 /* ============================================================
@@ -756,27 +1127,35 @@ mjx-container,
    ============================================================ */
 
 /* .is-hidden: generic hide */
-.is-hidden { display: none !important; }
+.is-hidden {
+  display: none !important;
+}
 
 /* .is-sr-only: visually hidden but accessible to screen readers */
 .is-sr-only {
-  border:      none !important;
-  clip:        rect(0, 0, 0, 0) !important;
-  height:      0.01em !important;
-  overflow:    hidden !important;
-  padding:     0 !important;
-  position:    absolute !important;
+  border: none !important;
+  clip: rect(0, 0, 0, 0) !important;
+  height: 0.01em !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
   white-space: nowrap !important;
-  width:       0.01em !important;
+  width: 0.01em !important;
 }
 
 /* Responsive hide helpers used in .Title (header nav) */
 @media screen and (max-width: 768px) {
+
   /* .is-hidden-mobile: hidden only on small screens */
-  .is-hidden-mobile { display: none !important; }
+  .is-hidden-mobile {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 769px) {
+
   /* .is-hidden-tablet: hidden on tablet and above */
-  .is-hidden-tablet { display: none !important; }
+  .is-hidden-tablet {
+    display: none !important;
+  }
 }

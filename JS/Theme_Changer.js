@@ -46,3 +46,47 @@ function updateThemeIcon() {
         });
     }
 })();
+
+document.querySelectorAll('.Math, .Equations').forEach(el => {
+
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    /* Mouse drag */
+    el.addEventListener('mousedown', e => {
+        isDragging = true;
+        startX = e.pageX;
+        startScrollLeft = el.scrollLeft;
+
+        el.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+        el.style.cursor = 'grab';
+    });
+
+    el.addEventListener('mouseleave', () => {
+        isDragging = false;
+        el.style.cursor = 'grab';
+    });
+
+    el.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+
+        e.preventDefault();
+
+        const dx = e.pageX - startX;
+        el.scrollLeft = startScrollLeft - dx;
+    });
+
+    /* Mouse wheel -> horizontal scroll */
+    el.addEventListener('wheel', e => {
+        if (el.scrollWidth <= el.clientWidth) return;
+
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+    }, { passive: false });
+
+});

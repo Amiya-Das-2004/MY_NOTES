@@ -1,0 +1,429 @@
+/* ============================================================
+   DESCRIPTION_BOX.CSS
+   A popup dialog triggered by inline "linked text" in the article.
+   Inherits all design tokens from Body_&_Theme.css (:root).
+
+   Contents:
+   1.  Overlay backdrop          (.Description_Box_Overlay)
+   2.  Dialog panel              (.Description_Box)
+   3.  Header bar                (.Description_Box_Header)
+   4.  Close button              (.Description_Box_Close)
+   5.  Scrollable body           (.Description_Box_Body)
+   6.  Typography inside the box (mirrors .Content styles)
+   7.  Entry animation           (@keyframes)
+   8.  Responsive / mobile
+   ============================================================ */
+
+
+/* ============================================================
+   1. OVERLAY BACKDROP  (.Description_Box_Overlay)
+   A full-viewport semi-transparent layer that sits behind the
+   dialog and above the page content.  Clicking it closes the box.
+   ============================================================ */
+
+.Description_Box_Overlay {
+  /* Cover the entire viewport */
+  position: fixed;
+  inset: 0;                        /* top/right/bottom/left = 0 */
+  z-index: 200;                    /* above sidebar (z-index 50) and header (z-index 30) */
+
+  /* Dark tint — same value works in both light and dark mode because
+     the dialog itself changes colour, not this overlay */
+  background: rgba(0, 0, 0, 0.45);
+
+  /* Hidden by default; JS adds .Is_Visible to show it */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity    var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1),
+    visibility var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1);
+}
+
+/* .Is_Visible: toggled by JS — fades the overlay in */
+.Description_Box_Overlay.Is_Visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ============================================================
+   2. DIALOG PANEL  (.Description_Box)
+   The actual popup card.  Centred on screen, max-width capped,
+   colour is darker than page bg in light mode / lighter in dark.
+   ============================================================ */
+
+.Description_Box {
+  /* Positioned inside the overlay layer */
+  position: fixed;
+  z-index: 210;                    /* above the overlay */
+
+  /* Centre horizontally and sit ~15 % from the top */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+
+  /* Size — flexible, max-width respects the reading column */
+  width: min(92vw, 640px);        /* shrinks on small screens */
+  max-height: 80vh;               /* never taller than 80 % of viewport */
+
+  /* ── COLOUR ──────────────────────────────────────────────
+     Light mode:  slightly darker than --color-bg (#ffffff)
+                  → use --color-surface (#f5f4f0) then darken
+                  with a border for definition.
+     Dark  mode:  lighter than --color-bg (#1e1e1c)
+                  → use --color-surface (#2a2a27) which is
+                  already lighter, plus a lighter border.
+     Both are handled purely via CSS variables that already
+     switch on [data-theme="dark"] in Body_&_Theme.css.        */
+  background-color: var(--Description_Box_Bg);
+  border: 1px solid var(--Description_Box_Border);
+  border-radius: 8px;
+
+  /* Depth */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+
+  /* Internal layout: column flex so header is fixed, body scrolls */
+  display: flex;
+  flex-direction: column;
+
+  /* Hidden by default; .Is_Visible added by JS */
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity    var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1),
+    visibility var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1),
+    transform  var(--t-normal, 250ms) cubic-bezier(.4, 0, .2, 1);
+}
+
+/* .Is_Visible: dialog slides to final position and fades in */
+.Description_Box.Is_Visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ── Token definitions for the two colour modes ──────────── */
+/* These live here (not in :root) so they stay scoped to this component.
+   They read the page tokens and shift them to the correct shade. */
+
+/* Light mode — panel is noticeably darker than the white page bg */
+:root {
+  --Description_Box_Bg:     #e8e6df;   /* ~2 stops darker than --color-surface */
+  --Description_Box_Border: #b8b4ac;   /* matches --sidebar-border */
+}
+
+/* Dark mode — panel is noticeably lighter than the near-black page bg */
+:root[data-theme="dark"] {
+  --Description_Box_Bg:     #383834;   /* ~2 stops lighter than --color-surface (#2a2a27) */
+  --Description_Box_Border: #55554f;   /* lighter than --color-border (#3b3b38) */
+}
+
+
+/* ============================================================
+   3. HEADER BAR  (.Description_Box_Header)
+   Contains the title of the description and the close button.
+   Stays fixed at the top while the body scrolls.
+   ============================================================ */
+
+.Description_Box_Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  padding: 0.85rem 1.25rem 0.75rem;
+  flex-shrink: 0;                  /* never compress the header */
+
+  /* Subtle separator between header and scrollable body */
+  border-bottom: 1px solid var(--Description_Box_Border);
+}
+
+/* Title text inside the header — matches .Content h3 styling */
+.Description_Box_Title {
+  font-family: var(--font-sans, 'Lora', Georgia, serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin: 0;
+  flex: 1;
+  min-width: 0;                    /* allow truncation on very small screens */
+}
+
+
+/* ============================================================
+   4. CLOSE BUTTON  (.Description_Box_Close)
+   The × button in the top-right corner.
+   ============================================================ */
+
+.Description_Box_Close {
+  /* Reset <button> defaults */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  flex-shrink: 0;
+
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+
+  /* Icon colour matches muted text */
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+  line-height: 1;
+
+  transition: color var(--t-fast, 150ms), background var(--t-fast, 150ms);
+}
+
+.Description_Box_Close:hover,
+.Description_Box_Close:focus-visible {
+  color: var(--color-text);
+  background: rgba(0, 0, 0, 0.08);
+  outline: none;
+}
+
+:root[data-theme="dark"] .Description_Box_Close:hover,
+:root[data-theme="dark"] .Description_Box_Close:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ============================================================
+   5. SCROLLABLE BODY  (.Description_Box_Body)
+   The content area.  It scrolls independently while the header
+   stays pinned.  Inherits .Content-style typography below.
+   ============================================================ */
+
+.Description_Box_Body {
+  overflow-y: auto;                /* vertical scroll when content overflows */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  padding: 1rem 1.25rem 1.25rem;
+  flex: 1;                         /* fills remaining height inside the flex column */
+
+  /* Thin styled scrollbar (mirrors .docs-menu scrollbar) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--Description_Box_Border) transparent;
+}
+
+.Description_Box_Body::-webkit-scrollbar {
+  width: 0.35rem;
+}
+
+.Description_Box_Body::-webkit-scrollbar-thumb {
+  background: var(--Description_Box_Border);
+  border-radius: 4px;
+}
+
+
+/* ============================================================
+   6. TYPOGRAPHY INSIDE THE BOX
+   Mirrors .Content rules from Body_&_Theme.css so formulas,
+   paragraphs, lists, and tables look identical to the main article.
+   We scope everything under .Description_Box_Body so there is
+   no risk of leaking styles to the rest of the page.
+   ============================================================ */
+
+/* Base text */
+.Description_Box_Body {
+  font-family: var(--font-body, 'Lato', sans-serif);
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+/* Paragraphs */
+.Description_Box_Body p {
+  margin-bottom: 0.75rem;
+}
+
+.Description_Box_Body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.Description_Box_Body h1,
+.Description_Box_Body h2,
+.Description_Box_Body h3,
+.Description_Box_Body h4 {
+  font-family: var(--font-sans, 'Lora', Georgia, serif);
+  font-weight: 600;
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin-bottom: 0.4em;
+  margin-top: 1em;
+}
+
+.Description_Box_Body h1:first-child,
+.Description_Box_Body h2:first-child,
+.Description_Box_Body h3:first-child,
+.Description_Box_Body h4:first-child {
+  margin-top: 0;
+}
+
+.Description_Box_Body h2 {
+  font-size: 1.15em;
+  border-bottom: 1px solid var(--Description_Box_Border);
+  padding-bottom: 0.2em;
+}
+
+.Description_Box_Body h3 { font-size: 1.05em; }
+.Description_Box_Body h4 { font-size: 0.95em; }
+
+/* Lists */
+.Description_Box_Body ul {
+  list-style: disc outside;
+  margin-left: 1.6em;
+  margin-bottom: 0.5em;
+}
+
+.Description_Box_Body ol {
+  list-style: decimal outside;
+  margin-left: 1.6em;
+  margin-bottom: 0.5em;
+}
+
+.Description_Box_Body li {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+
+/* Inline code */
+.Description_Box_Body code {
+  background-color: var(--color-code-bg);
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+/* Blockquote */
+.Description_Box_Body blockquote {
+  background-color: var(--color-surface);
+  border-left: 4px solid var(--color-border);
+  padding: 0.75em 1em;
+  border-radius: 0 4px 4px 0;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin: 0.75rem 0;
+}
+
+/* Table — same as .Content table */
+.Description_Box_Body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+  font-size: 0.93em;
+}
+
+.Description_Box_Body table td,
+.Description_Box_Body table th {
+  border: 1px solid var(--color-border);
+  border-width: 0 0 1px;
+  padding: 0.25em 0.65em;
+  vertical-align: top;
+}
+
+.Description_Box_Body table th {
+  color: var(--color-heading);
+  font-weight: 600;
+  background: var(--color-surface);
+  text-align: left;
+}
+
+.Description_Box_Body table thead th {
+  border-bottom-width: 2px;
+}
+
+/* Math / KaTeX panels inside the box — same style as .Math in article */
+.Description_Box_Body .Math {
+  overflow-x: auto;
+  overflow-y: hidden;
+  background-color: var(--math-color-bg);
+  color: var(--math-color-text);
+  border-radius: 4px;
+  padding: 0.65rem 0.9rem;
+  margin: 0.75rem 0;
+}
+
+/* Equation rows (no background, just spacing) */
+.Description_Box_Body .Equations {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.4rem 0.1rem;
+  margin: 0;
+}
+
+/* Strong */
+.Description_Box_Body strong {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* Em */
+.Description_Box_Body em {
+  font-style: italic;
+}
+
+/* Links */
+.Description_Box_Body a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.Description_Box_Body a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   7. ENTRY ANIMATION  (@keyframes)
+   The dialog scales up from 96 % to 100 % as it fades in.
+   The transform is already handled by the .Is_Visible transition
+   on .Description_Box, so no separate @keyframes are needed.
+   This comment block is kept as a placeholder if you want to
+   add a more elaborate entrance later (e.g. slide-from-bottom).
+   ============================================================ */
+
+
+/* ============================================================
+   8. RESPONSIVE / MOBILE  (≤ 600 px)
+   On very small screens the dialog takes almost the full width
+   and slightly less height so it doesn't feel cramped.
+   ============================================================ */
+
+@media screen and (max-width: 600px) {
+
+  .Description_Box {
+    width: 96vw;
+    max-height: 88vh;
+
+    /* On mobile, anchor to near the top so the keyboard doesn't
+       push it off-screen if the user taps an input inside */
+    top: 6vh;
+    left: 2vw;
+    transform: translateY(-8px) scale(0.96); /* initial hidden state */
+  }
+
+  /* Adjust the visible transform for mobile too */
+  .Description_Box.Is_Visible {
+    transform: translateY(0) scale(1);
+  }
+
+  /* Slightly tighter padding on small screens */
+  .Description_Box_Header {
+    padding: 0.75rem 1rem 0.65rem;
+  }
+
+  .Description_Box_Body {
+    padding: 0.85rem 1rem 1rem;
+  }
+}
