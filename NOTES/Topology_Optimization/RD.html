@@ -228,7 +228,7 @@
                     $$
                 </p>
                 <div class="Scroll_Horizontal"
-                    style=" background-color: var(--color-surface); padding-left: 5em; padding-top: 1em; padding-bottom: 1em;">
+                    style=" background-color: var(--color-surface); padding-left: 1em; padding-top: 1em; padding-bottom: 1em;">
                     <p>
                         <strong>Step 1:</strong> Multiply both sides by test function $v$ and integrate over $\Omega$:
                         <br>
@@ -335,19 +335,20 @@
                     </p>
                     <br>
                     <p>
-                        <strong>Step 4:</strong> 
-                        Substitute and rearrange (move diffusion to left, $\phi^n$ term to right): 
-                        <br> 
-                        The fully discretized weak form becomes: find $\phi^{n+1} \in H^1(\Omega)$ such that for all $v \in H^1(\Omega)$:
+                        <strong>Step 4:</strong>
+                        Substitute and rearrange (move diffusion to left, $\phi^n$ term to right):
+                        <br>
+                        The fully discretized weak form becomes: find $\phi^{n+1} \in H^1(\Omega)$ such that for all $v
+                        \in H^1(\Omega)$:
                     </p>
                     <p class="Equations">
                         $$
-                        \implies \int_\Omega \frac{\phi^{n+1}}{\Delta t} \, v \, d\Omega 
-                        + 
-                        \tau\int_\Omega \nabla\phi^{n+1} \cdot \nabla v \, d\Omega 
-                        = 
-                        \int_\Omega \frac{\phi^n}{\Delta t} \, v \, d\Omega 
-                        + 
+                        \implies \int_\Omega \frac{\phi^{n+1}}{\Delta t} \, v \, d\Omega
+                        +
+                        \tau\int_\Omega \nabla\phi^{n+1} \cdot \nabla v \, d\Omega
+                        =
+                        \int_\Omega \frac{\phi^n}{\Delta t} \, v \, d\Omega
+                        +
                         \int_\Omega R(\phi^{n+1}) \, v \, d\Omega
                         $$
                     </p>
@@ -362,13 +363,349 @@
                     <p class="Equations">
                         $$
                         \begin{aligned}
-		                \implies &m(\phi, v) = \int_\Omega \frac{\phi^{n+1}}{\Delta t} \, v \, d\Omega \quad \text{(mass term with time step)}\\[0.4pt]
-		                \implies &a(\phi, v) = \tau\int_\Omega \nabla\phi^{n+1} \cdot \nabla v \, d\Omega \quad \text{(diffusion term)}\\[0.4pt]
-		                \implies &\ell(v) = \int_\Omega \frac{\phi^n}{\Delta t} \, v \, d\Omega + \int_\Omega R(\phi) \, v \, d\Omega \quad \text{(source from previous step + reaction)}
-	                    \end{aligned}
+                        \implies &m(\phi, v) = \int_\Omega \frac{\phi^{n+1}}{\Delta t} \, v \, d\Omega \quad \text{(mass
+                        term with time step)}\\[0.4pt]
+                        \implies &a(\phi, v) = \tau\int_\Omega \nabla\phi^{n+1} \cdot \nabla v \, d\Omega \quad
+                        \text{(diffusion term)}\\[0.4pt]
+                        \implies &\ell(v) = \int_\Omega \frac{\phi^n}{\Delta t} \, v \, d\Omega + \int_\Omega R(\phi) \,
+                        v \, d\Omega \quad \text{(source from previous step + reaction)}
+                        \end{aligned}
                         $$
                     </p>
                 </div>
+
+                <!-- Heading -->
+                <h2 id="H04">
+                    <a class="Heading_Anchor" href="#H04">
+                        Element Matrix Formulation
+                    </a>
+                    <a class="Heading_Anchor_Permalink" href="#H04" title="Permalink"></a>
+                </h2>
+                <div style=" background-color: var(--color-surface); padding-left: 1em; padding-top: 1em; padding-bottom: 1em;">
+                    <p>Considering the domain to be a rectangular cartesian grid Q4 element.</p>
+                    <p class="Equations">
+                        $$
+                        \textbf{Weak Form:} \qquad
+                        \int_\Omega \frac{\phi^{n+1}}{\Delta t} \, v \, d\Omega + \tau\int_\Omega \nabla\phi^{n+1} \cdot
+                        \nabla v \, d\Omega = \int_\Omega \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr) \, v \,
+                        d\Omega
+                        $$
+                    </p>
+
+                    <div class="Columns">
+                        <div class="SVG_Holder">
+                            <p><u><strong>Naural Coordinate system</strong></u></p>
+                            <svg width="100%" viewBox="-100 -100 200 200"
+                                style="max-width: 600px; display: block; margin-inline: auto;"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <g id="arrow">
+                                        <line x1="0" y1="0" x2="0" y2="0" />
+                                        <path d="M5 0 L-5 -5 L-3 0 L-5 5 Z" />
+                                    </g>
+                                </defs>
+                                <g id="axes" transform="translate(0,0)">
+                                    <!-- Y-axis -->
+                                    <line x1="0" y1="0" x2="0" y2="-80" stroke="var(--math-color-text)"
+                                        stroke-width="1" />
+                                    <use href="#arrow" transform="translate(0,-80) rotate(-90) scale(0.8)"
+                                        fill="var(--math-color-text)" />
+                                    <!-- X-axis -->
+                                    <line x1="0" y1="0" x2="80" y2="0" stroke="var(--math-color-text)"
+                                        stroke-width="1" />
+                                    <use href="#arrow" transform="translate(80,0) scale(0.8)"
+                                        fill="var(--math-color-text)" />
+                                    <!-- Rectangle -->
+                                    <rect x="-50" y="-50" width="100" height="100" fill="none"
+                                        stroke="var(--math-color-text)" />
+                                    <text x="10" y="-80" text-anchor="middle" font-size="8"
+                                        fill="var(--math-color-text)">&eta;</text>
+                                    <text x="80" y="15" text-anchor="middle" font-size="8"
+                                        fill="var(--math-color-text)">&xi;</text>
+                                    <!-- Shape Functions -->
+                                    <text x="-55" y="60" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">(-1,-1)</text>
+                                    <text x="-55" y="70" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">N&#8321;=&frac14;(1-&xi;)(1-&eta;)</text>
+                                    <text x="55" y="60" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">(1,-1)</text>
+                                    <text x="55" y="70" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">N&#8322;=&frac14;(1+&xi;)(1-&eta;)</text>
+                                    <text x="55" y="-55" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">(1,1)</text>
+                                    <text x="55" y="-65" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">N&#8323;=&frac14;(1+&xi;)(1+&eta;)</text>
+                                    <text x="-55" y="-55" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">(-1,1)</text>
+                                    <text x="-55" y="-65" text-anchor="middle" font-size="6"
+                                        fill="var(--math-color-text)">N&#8324;=&frac14;(1+&xi;)(1-&eta;)</text>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="Text_Holder "
+                            style="padding-left: 1em; padding-right: 1em; padding-top: 0em; padding-bottom: 0em;">
+                            <p><strong><u>Isoparametric Mapping</u></strong></p>
+                            <p>$\text{Natural Coordinate} \,\, (\xi,\eta) \longrightarrow \,\,\text{Global Coordinate}
+                                \,\,(x,y)$ </p>
+                            <p class="Equations">
+                                $$
+                                \begin{cases}
+                                \quad
+                                \begin{aligned}
+                                x(\xi,\eta) &= \sum_i \,N_i(\xi,\eta)\,x_i \\
+                                y(\xi,\eta) &= \sum_i \,N_i(\xi,\eta)\,y_i
+                                \end{aligned}
+                                \end{cases}
+                                $$
+                            </p>
+                            <p>
+                                <a class="Description_Link" data-description-id="Jacobian" href="#">
+                                    Jacobian
+                                </a>
+                                Matrix
+                                <a class="Description_Link" data-description-id="Jacobian_01" href="#">
+                                    [J]
+                                </a>
+                            </p>
+                            <div id="Jacobian" class="Description_Box_Content" hidden>
+                                <p>
+                                    When transforming derivatives from natural coordinates to physical coordinates, the
+                                    Jacobian matrix is used:
+                                </p>
+                                <p class="Equations">
+                                    $$
+                                    \begin{cases}
+                                    \quad
+                                    \begin{aligned}
+                                    dx &= \frac{\partial x}{\partial \xi}\,\,d\xi + \frac{\partial x}{\partial
+                                    \eta}\,\,d\eta \\[5pt]
+                                    dy &= \frac{\partial y}{\partial \xi}\,\,d\xi + \frac{\partial y}{\partial
+                                    \eta}\,\,d\eta
+                                    \end{aligned}
+                                    \end{cases}
+                                    \quad
+                                    \implies
+                                    \quad
+                                    \begin{bmatrix}
+                                    dx \\[15pt] dy
+                                    \end{bmatrix}
+                                    =
+                                    \begin{bmatrix}
+                                    \frac{\partial x}{\partial \xi} &\frac{\partial x}{\partial \eta} \\[5pt]
+                                    \frac{\partial y}{\partial \xi} &\frac{\partial y}{\partial \eta}
+                                    \end{bmatrix}
+                                    \begin{bmatrix}
+                                    d\xi \\[15pt] d\eta
+                                    \end{bmatrix}
+                                    \quad
+                                    \implies
+                                    \quad
+                                    \begin{bmatrix}
+                                    dx \\ dy
+                                    \end{bmatrix}
+                                    =
+                                    \begin{bmatrix}
+                                    J
+                                    \end{bmatrix}
+                                    \begin{bmatrix}
+                                    d\xi \\ d\eta
+                                    \end{bmatrix}
+                                    $$
+                                </p>
+                                <p class="Equations">
+                                    $$
+                                    \begin{cases}
+                                    \quad
+                                    \begin{aligned}
+                                    d\xi &= \frac{\partial \xi}{\partial x}\,\,dx + \frac{\partial \xi}{\partial
+                                    y}\,\,dy \\[5pt]
+                                    d\eta &= \frac{\partial \eta}{\partial x}\,\,dx + \frac{\partial \eta}{\partial
+                                    y}\,\,dy
+                                    \end{aligned}
+                                    \end{cases}
+                                    \quad
+                                    \implies
+                                    \quad
+                                    \begin{bmatrix}
+                                    d\xi \\[15pt] d\eta
+                                    \end{bmatrix}
+                                    =
+                                    \begin{bmatrix}
+                                    \frac{\partial \xi}{\partial x} &\frac{\partial \xi}{\partial y} \\[5pt]
+                                    \frac{\partial \eta}{\partial x} &\frac{\partial \eta}{\partial y}
+                                    \end{bmatrix}
+                                    \begin{bmatrix}
+                                    dx \\[15pt] dy
+                                    \end{bmatrix}
+                                    \quad
+                                    \implies
+                                    \quad
+                                    \begin{bmatrix}
+                                    d\xi \\ d\eta
+                                    \end{bmatrix}
+                                    =
+                                    \begin{bmatrix}
+                                    J
+                                    \end{bmatrix}^{-1}
+                                    \begin{bmatrix}
+                                    dx \\ dy
+                                    \end{bmatrix}
+                                    $$
+                                </p>
+                            </div>
+                            <div id="Jacobian_01" class="Description_Box_Content" hidden>
+                                <p class="Equations">
+                                    $$
+                                    \begin{bmatrix}
+                                    J
+                                    \end{bmatrix}
+                                    =
+                                    \begin{bmatrix}
+                                    \frac{\partial x}{\partial \xi} &\frac{\partial x}{\partial \eta} \\[5pt]
+                                    \frac{\partial y}{\partial \xi} &\frac{\partial y}{\partial \eta}
+                                    \end{bmatrix}
+                                    =
+                                    \begin{bmatrix}
+                                    \frac{\partial N_i}{\partial \xi}\,\,x_i &\frac{\partial N_i}{\partial \eta}\,\,x_i
+                                    \\[7pt]
+                                    \frac{\partial N_i}{\partial \xi}\,\,y_i &\frac{\partial N_i}{\partial \eta}\,\,y_i
+                                    \end{bmatrix}
+                                    =
+                                    \left(
+                                    \begin{bmatrix}
+                                    \frac{\partial N_i}{\partial \xi}\\[3pt]
+                                    \frac{\partial N_i}{\partial \eta}
+                                    \end{bmatrix}
+                                    \begin{bmatrix}
+                                    x_i &y_i
+                                    \end{bmatrix}
+                                    \right)^{T}
+                                    =
+                                    \left(
+                                    \begin{bmatrix}
+                                    \frac{\partial N_1}{\partial \xi} &\frac{\partial N_2}{\partial \xi} &\frac{\partial
+                                    N_3}{\partial \xi} &\frac{\partial N_4}{\partial \xi} \\[7pt]
+                                    \frac{\partial N_1}{\partial \eta} &\frac{\partial N_2}{\partial \eta}
+                                    &\frac{\partial
+                                    N_3}{\partial \eta} &\frac{\partial N_4}{\partial \eta}
+                                    \end{bmatrix}
+                                    \begin{bmatrix}
+                                    x_1 &y_1\\
+                                    x_2 &y_2\\
+                                    x_3 &y_3\\
+                                    x_4 &y_4
+                                    \end{bmatrix}
+                                    \right)^{T}
+                                    \qquad
+                                    $$
+                                </p>
+                            </div>
+                            <div class="Eq">
+                                $$
+                                \text{Gradient} \qquad
+                                \nabla_{\xi\,\eta}
+                                =
+                                \begin{bmatrix}
+                                \frac{\partial\,(\,)}{\partial \xi \rule{0pt}{0.5em}}\\[8pt]
+                                \frac{\partial\,(\,)}{\partial \eta \rule{0pt}{0.5em}}
+                                \end{bmatrix}
+                                \quad
+                                \nabla_{x\,y}
+                                =
+                                \begin{bmatrix}
+                                \frac{\partial\,(\,)}{\partial x \rule{0pt}{0.5em}}\\[8pt]
+                                \frac{\partial\,(\,)}{\partial y \rule{0pt}{0.5em}}
+                                \end{bmatrix}
+                                \qquad
+                                $$
+                            </div>
+                        </div>
+                    </div>
+                    <strong>Conversion For Gradient Of Shape Function</strong>
+                    <p class="Equations">
+                        $$
+                        \begin{aligned}
+                        \nabla_{x\,y} \,&N_i(\xi(x,y),\eta(x,y))
+                        =
+                        \begin{bmatrix}
+                        \frac{\partial\,N_i}{\partial x \rule{0pt}{0.8em}}\\[5pt]
+                        \frac{\partial\,N_i}{\partial y \rule{0pt}{0.8em}}
+                        \end{bmatrix}\
+                        =
+                        \begin{bmatrix}
+                        \frac{\partial\,N_i}{\partial \xi \rule{0pt}{0.8em}}\,
+                        \frac{\partial\xi}{\partial x \rule{0pt}{0.8em}}
+                        +
+                        \frac{\partial\,N_i}{\partial \eta \rule{0pt}{0.8em}}\,
+                        \frac{\partial\eta}{\partial x \rule{0pt}{0.8em}} \\[5pt]
+                        \frac{\partial\,N_i}{\partial \xi \rule{0pt}{0.8em}}\,
+                        \frac{\partial\xi}{\partial y \rule{0pt}{0.8em}}
+                        +
+                        \frac{\partial\,N_i}{\partial \eta \rule{0pt}{0.8em}}
+                        \frac{\partial\eta}{\partial y \rule{0pt}{0.8em}}
+                        \end{bmatrix}
+                        =
+                        \begin{bmatrix}
+                        \frac{\partial\xi}{\partial x \rule{0pt}{0.8em}}
+                        &\frac{\partial\eta}{\partial x \rule{0pt}{0.8em}} \\[5pt]
+                        \frac{\partial\xi}{\partial y \rule{0pt}{0.8em}}
+                        &\frac{\partial\eta}{\partial y \rule{0pt}{0.8em}}
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                        \frac{\partial\,N_i}{\partial x \rule{0pt}{0.8em}}\\[5pt]
+                        \frac{\partial\,N_i}{\partial y \rule{0pt}{0.8em}}
+                        \end{bmatrix}
+                        =
+                        \begin{bmatrix}
+                        J
+                        \end{bmatrix}^{-T}
+                        \,\,\nabla_{\xi\,\eta} \,N_i \qquad
+
+                        \\[15pt]
+
+                        \nabla_{\xi\,\eta} \,&N_i(x(\xi,\eta),y(\xi,\eta))
+                        =
+                        \begin{bmatrix}
+                        \frac{\partial\,N_i}{\partial \xi \rule{0pt}{0.8em}}\\[5pt]
+                        \frac{\partial\,N_i}{\partial \eta \rule{0pt}{0.8em}}
+                        \end{bmatrix}\
+                        =
+                        \begin{bmatrix}
+                        \frac{\partial\,N_i}{\partial x \rule{0pt}{0.8em}}\,
+                        \frac{\partial x}{\partial \xi \rule{0pt}{0.8em}}
+                        +
+                        \frac{\partial\,N_i}{\partial y \rule{0pt}{0.8em}}\,
+                        \frac{\partial y}{\partial \xi \rule{0pt}{0.8em}} \\[5pt]
+                        \frac{\partial\,N_i}{\partial x \rule{0pt}{0.8em}}\,
+                        \frac{\partial x}{\partial \eta \rule{0pt}{0.8em}}
+                        +
+                        \frac{\partial\,N_i}{\partial y \rule{0pt}{0.8em}}
+                        \frac{\partial y}{\partial \eta \rule{0pt}{0.8em}}
+                        \end{bmatrix}
+                        =
+                        \begin{bmatrix}
+                        \frac{\partial x}{\partial \xi \rule{0pt}{0.8em}}
+                        &\frac{\partial y}{\partial \xi \rule{0pt}{0.8em}} \\[5pt]
+                        \frac{\partial x}{\partial \eta \rule{0pt}{0.8em}}
+                        &\frac{\partial y}{\partial \eta \rule{0pt}{0.8em}}
+                        \end{bmatrix}
+                        \begin{bmatrix}
+                        \frac{\partial\,N_i}{\partial x \rule{0pt}{0.8em}}\\[5pt]
+                        \frac{\partial\,N_i}{\partial y \rule{0pt}{0.8em}}
+                        \end{bmatrix}
+                        =
+                        \begin{bmatrix}
+                        J
+                        \end{bmatrix}^{T}
+                        \,\,\nabla_{x\,y} \,N_i \,\qquad
+                        \end{aligned}
+                        $$
+                    </p>
+                </div>
+
+
+
+
 
             </article>
 

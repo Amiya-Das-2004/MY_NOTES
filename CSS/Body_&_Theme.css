@@ -677,7 +677,8 @@ strong {
   margin: 1rem 0;
 }
 
-#Page .Main>article .Equations {
+#Page .Main>article .Equations,
+#Page .Main>article .Eq {
   background-color: var(--color-surface);
   color: var(--math-color-text);
   padding: 0.5rem 0.1rem;
@@ -690,11 +691,44 @@ strong {
   cursor: grab;
   position: relative;
   border-right: 3px solid transparent;
-    border-left: 3px solid transparent;
+  border-left: 3px solid transparent;
+  display: flex;
+  justify-content: center;
 }
 
+.katex-display,
+mjx-container,
+.MathJax_Display {
+    margin: 0 !important;
+}
+
+.Scroll_Horizontal,
+.Math,
+.Equations,
+.Eq {
+  cursor: grab;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  background-color: var(--color-surface);
+
+  padding-left: 5em;
+  padding-right: 5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.Scroll_Horizontal:active,
 .Math:active,
-.Equations:active {
+.Equations:active,
+.Eq:active {
   cursor: grabbing;
 }
 
@@ -702,10 +736,6 @@ strong {
 #Page .Main>article .Equations {
   overflow-x: auto;
   overflow-y: hidden;
-
-  /* Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-border) transparent;
 }
 
 /* Chrome, Edge, Safari */
@@ -719,85 +749,75 @@ strong {
   background: transparent;
 }
 
+#Page .Main>article .Scroll_Horizontal::-webkit-scrollbar-thumb,
 #Page .Main>article .Math::-webkit-scrollbar-thumb,
 #Page .Main>article .Equations::-webkit-scrollbar-thumb {
   background: var(--color-border);
   border-radius: 999px;
 }
 
+#Page .Main>article .Scroll_Horizontal::-webkit-scrollbar-thumb:hover,
 #Page .Main>article .Math::-webkit-scrollbar-thumb:hover,
 #Page .Main>article .Equations::-webkit-scrollbar-thumb:hover {
   background: var(--color-text);
 }
 
-/* KaTeX mathml position fix */
-.katex .katex-mathml {
-  top: 0;
-  right: 0;
-}
-
-/* Remove extra margin KaTeX and MathJax add by default */
-.katex-display,
-mjx-container,
-.MathJax_Display {
-  margin: 0.3em 0 !important;
-}
-
-.Scroll_Horizontal{
-  cursor: grab;
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    background-color: var(--color-surface);
-
-    padding-left: 5em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent;
-}
-
-#Page .Main>article .Scroll_Horizontal::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 999px;
-}
-
-#Page .Main>article .Scroll_Horizontal::-webkit-scrollbar-thumb:hover{
-  background: var(--color-text);
-}
-
-.Scroll_Horizontal:active{
-  cursor: grabbing;
-}
-
 /* Inside Scroll_Horizontal disable individual scrolling */
 .Scroll_Horizontal .Math,
 .Scroll_Horizontal .Equations {
-    overflow: visible;
-    cursor: inherit;
-    min-width: max-content;
+  overflow: visible;
+  cursor: inherit;
+  min-width: max-content;
 }
 
 
 /* ============================================================
-   10. COLUMNS LAYOUT  (#Columns)
+   10. COLUMNS LAYOUT  (.Columns)
    Side-by-side image / SVG pairs (tutorial figures).
    ============================================================ */
 
 /* #Columns: flex row for paired figures */
-#Columns {
+.Columns {
   margin: 1.5rem auto;
   display: flex;
-  justify-content: center;
+  align-items: flex-start;
   gap: 1rem;
 }
 
-@media (max-width: 768px) {
-  #Columns {
+@media (max-width: 800px) {
+  .Columns {
     flex-direction: column;
   }
+
+  /* Keep row layout inside scroll container */
+  .Scroll_Horizontal .Columns {
+    flex-direction: row;
+    min-width: max-content;
+  }
+
+  /* Prevent paragraph wrapping inside scroll container */
+  .Scroll_Horizontal p {
+    white-space: nowrap;
+  }
 }
+
+.SVG_Holder {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  flex: 0 1 auto;
+  min-width: 300px;
+  text-align: center;
+  width: 100%;
+}
+
+.Text_Holder {
+  flex: 0 1 auto;
+  min-width: 500px;
+  text-align: left;
+  width: 100%;
+}
+
 
 
 /* ============================================================

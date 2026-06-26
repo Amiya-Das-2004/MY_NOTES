@@ -49,7 +49,7 @@ function updateThemeIcon() {
 
 
 
-document.querySelectorAll('.Math, .Equations').forEach(el => {
+document.querySelectorAll('.Math, .Equations .Eq').forEach(el => {
 
     if (el.closest('.Scroll_Horizontal')) return;
 

@@ -336,12 +336,12 @@
     ---------------------------------------------------------- */
     function Get_Scroll_Target(Target) {
         const El = Target.closest(
-            '.Scroll_Horizontal, .Math, .Equations'
+            '.Scroll_Horizontal, .Math, .Equations, .Eq'
         );
         if (!El) return null;
         /* Ignore Math/Equation inside Scroll_Horizontal */
         if (
-            El.matches('.Math, .Equations') &&
+            El.matches('.Math, .Equations, .Eq') &&
             El.closest('.Scroll_Horizontal')
         ) {
             return null;
