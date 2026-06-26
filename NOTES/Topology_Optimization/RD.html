@@ -20,10 +20,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet"
         type="text/css" />
 
-    <!-- KaTeX CSS -->
+    <!-- KaTeX -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css">
-
-    <!-- KaTeX JS -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js"></script>
 
     <!-- Auto-render extension -->
@@ -381,7 +379,8 @@
                     </a>
                     <a class="Heading_Anchor_Permalink" href="#H04" title="Permalink"></a>
                 </h2>
-                <div style=" background-color: var(--color-surface); padding-left: 1em; padding-top: 1em; padding-bottom: 1em;">
+                <div
+                    style=" background-color: var(--color-surface); padding-left: 1em; padding-top: 1em; padding-bottom: 1em;">
                     <p>Considering the domain to be a rectangular cartesian grid Q4 element.</p>
                     <p class="Equations">
                         $$
@@ -701,11 +700,102 @@
                         \end{aligned}
                         $$
                     </p>
+                    <p class="Eq">
+                        $$
+                        \text{FEM approximation:} \quad
+                        \left.
+                        \begin{aligned}
+                        u_h &= \sum_{i=1}^{n_e}\, N_i^{(e)}\,u_i^{(e)} \\
+                        v_h &= \sum_{j=1}^{n_e}\, N_j^{(e)}\,v_j^{(e)}
+                        \end{aligned}
+                        \quad \right|
+                        \quad \text{As per the weak form : } \quad
+                        \begin{aligned}
+                        \phi_h &= \sum_{i=1}^{n_e}\, N_i^{(e)}\,\phi_i^{(e)} \\
+                        v_h &= \sum_{j=1}^{n_e}\, N_j^{(e)}\,v_j^{(e)}
+                        \end{aligned}
+                        $$
+                    </p>
+                    <div class="Scroll_Horizontal">
+                        <p class="Equations">
+                            $$
+                            \begin{aligned}
+                            \implies &\int_\Omega \frac{1}{\Delta t}\,N_i\phi_i\,N_j v_j \,\, d\Omega
+                            +
+                            \tau\int_\Omega \nabla_{x\,y}\, N_i \cdot \nabla_{x\,y}\, N_j \,\,\phi_i\,v_j \,\,d\Omega =
+                            \int_\Omega \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr) \, N_j v_j \,\,d\Omega
+                            \\
+                            \implies &\int_\Omega \frac{1}{\Delta t}\,N_i\phi_i\,N_j \cancel{v_j} \,\, d\Omega
+                            +
+                            \tau\int_\Omega \nabla_{x\,y}\, N_i \cdot \nabla_{x\,y}\, N_j \,\,\phi_i\,\cancel{v_j}
+                            \,\,d\Omega
+                            =
+                            \int_\Omega \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr) \, N_j \cancel{v_j}
+                            \,\,d\Omega
+                            \\
+                            \implies &\frac{1}{\Delta t} \left( \int_{dy}\int_{dx} \,\mathbf N^T\,\mathbf N \,\, dx\,dy
+                            \right)\phi
+                            +
+                            \tau \left(\int_{dy}\int_{dx} (\nabla_{x\,y}\,\mathbf N)^T \cdot (\nabla_{x\,y}\,\mathbf N)
+                            \,\,dx\,dy \right)\phi
+                            =
+                            \int_{dy}\int_{dx} \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr)\,\mathbf
+                            N\,\,dx\,dy
+                            \\
+                            \implies
+                            &\left\{
+                            \frac{1}{\Delta t} \left( \int_{-1}^{1}\int_{-1}^{1} \,\mathbf N^T\,\mathbf N \,\,
+                            d\xi\,d\eta \right)
+                            +
+                            \tau \left(\int_{-1}^{1}\int_{-1}^{1} \underbrace{(\mathbf
+                            J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N)^T \cdot (\mathbf
+                            J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N)}_{\text{II}} \,\,d\xi\,dy \right)
+                            \right\}\,\,\phi
+                            =
+                            \int_{-1}^{1}\int_{-1}^{1} \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr)\,\mathbf
+                            N\,\,d\xi\,dy
+                            \end{aligned}
+                            $$
+                        </p>
+                        $\qquad \because \quad$ Solving for term
+                        <a class="Description_Link" data-description-id="II" href="#">
+                            II
+                        </a>
+                        </p>
+                        <div id="II" class="Description_Box_Content" hidden>
+                            <p class="Equations">
+                                $$
+                                \begin{aligned}
+                                (\mathbf J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N)^T \cdot (\mathbf
+                                J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N)
+                                &=
+                                (\nabla_{\xi\,\eta}\,\mathbf N)^T \,\,\mathbf J^{-1}\mathbf J^{-T}\,
+                                (\nabla_{\xi\,\eta}\,\mathbf N)\\
+                                &=
+                                (\nabla_{\xi\,\eta}\,\mathbf N)^T \,\,(\mathbf J\,\mathbf J^{T})^{-1}
+                                \,(\nabla_{\xi\,\eta}\,\mathbf N)\\
+                                &=
+                                (\nabla_{\xi\,\eta}\,\mathbf N)^T \,(\nabla_{\xi\,\eta}\,\mathbf N)
+                                \end{aligned}
+                                $$
+                            </p>
+                        </div>
+                        <p class="Equations">
+                            $$
+                            \implies \left\{
+                            \frac{1}{\Delta t} \left( \int_{-1}^{1}\int_{-1}^{1} \,\mathbf N^T\,\mathbf N \,\,
+                            d\xi\,d\eta \right)
+                            +
+                            \tau \left(\int_{-1}^{1}\int_{-1}^{1} (\nabla_{\xi\,\eta}\,\mathbf N)^T \cdot
+                            (\nabla_{\xi\,\eta}\,\mathbf N) \,\,d\xi\,dy \right)
+                            \right\}\,\,\phi
+                            =
+                            \int_{-1}^{1}\int_{-1}^{1} \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr)\,\mathbf
+                            N\,\,d\xi\,dy
+                            $$
+                        </p>
+                    </div>
                 </div>
-
-
-
-
 
             </article>
 
