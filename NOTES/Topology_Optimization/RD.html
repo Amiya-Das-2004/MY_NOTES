@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora&family=Source+Sans+3&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet"
+        type="text/css" />
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet"
@@ -38,17 +40,19 @@
     </script>
 
     <!-- Code Highlight -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css">
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet"
-        type="text/css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/julia.min.js"></script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function () {
+            hljs.highlightAll();
+        });
+    </script>
 
 
     <!-- Built in Page Style -->
     <link rel="stylesheet" href="../../CSS/Body_&_Theme.css">
     <link rel="stylesheet" href="../../CSS/Sidebar.css">
-    <!-- <link rel="stylesheet" href="../../CSS/Code.css"> -->
+    <link rel="stylesheet" href="../../CSS/Code.css">
     <link rel="stylesheet" href="../../CSS/Header_&_Footer.css">
     <link rel="stylesheet" href="../../CSS/Description_Box.css">
 
@@ -199,6 +203,22 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="Code_Block">
+                    <pre data-lang="JULIA"><code class="language-julia">g = sqrt(Sym(1)/3)
+for j in 1:4
+    for i in 1:4
+        M[j,i] =
+            subs(Nᵢ[j,i], ξ=>-g, η=>-g) +
+            subs(Nᵢ[j,i], ξ=> g, η=>-g) +
+            subs(Nᵢ[j,i], ξ=> g, η=> g) +
+            subs(Nᵢ[j,i], ξ=>-g, η=> g) +22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+    end
+end
+M</code></pre>
+                </div>
+
+                <!-- output directly below, small gap handled by CSS -->
+                <pre class="Code_Output">3 subs(Nᵢ[j,i], ξ=>-g, η=> g) +22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222</pre>
 
                 <!-- Heading -->
                 <h2 id="H03">
@@ -375,7 +395,7 @@
                 <!-- Heading -->
                 <h2 id="H04">
                     <a class="Heading_Anchor" href="#H04">
-                        Element Matrix Formulation
+                        Finite Element Formulation
                     </a>
                     <a class="Heading_Anchor_Permalink" href="#H04" title="Permalink"></a>
                 </h2>
@@ -444,7 +464,8 @@
                         <div class="Text_Holder "
                             style="padding-left: 1em; padding-right: 1em; padding-top: 0em; padding-bottom: 0em;">
                             <p><strong><u>Isoparametric Mapping</u></strong></p>
-                            <p>$\text{Natural Coordinate} \,\, (\xi,\eta) \longrightarrow \,\,\text{Global Coordinate}
+                            <p>$\small \text{Natural Coordinate} \,\, (\xi,\eta) \longrightarrow \,\,\text{Global
+                                Coordinate}
                                 \,\,(x,y)$ </p>
                             <p class="Equations">
                                 $$
@@ -803,7 +824,8 @@
 
             <!-- FOOTER -->
             <nav class="Footer">
-                <a class="Footer_Next" href="">Not Availabel »</a>
+                <a class="Footer_Previous" href="">&blacktriangleleft; Not Availabel</a>
+                <a class="Footer_Next" href="">Not Availabel &blacktriangleright;</a>
                 <div class="Footer_Break"></div>
                 <p class="Footer_Message">
                     Made By <a href="https://github.com/Amiya-Das-2004">Amiya Das </a> on (04/06/2026)

@@ -1,318 +1,378 @@
-/* =========================================================================
-   Code Styles - Code blocks, inline code, and copy button functionality
-   ========================================================================= */
+/* ============================================================
+   CODE.CSS
+   Covers:
+     .Code_Block     — wrapper div (positions the label + pre)
+     .Code_Lang_Label — language pill pinned top-right
+     pre             — the scrollable code box (VS Code style)
+     .Code_Output    — output cell below a code block
+     inline code     — .Content code chip
+     hljs tokens     — highlight.js colour overrides
+   All colour / spacing values come from :root tokens in
+   Body_&_Theme.css.
+   ============================================================ */
 
-/* 1. Base code and pre element styling */
-/* Class/ID: `code, pre` — Purpose: Base font stack for code (JuliaMono) */
+
+/* ============================================================
+   1. FONT STACK  (code & pre)
+   ============================================================ */
+
 code,
-/* Class/ID: `pre` — Purpose: Preformatted text block styling */
 pre {
-  font-family: "JuliaMono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-family: var(--font-mono);
+  font-variant-ligatures: no-contextual;
   -moz-osx-font-smoothing: auto;
-  -webkit-font-smoothing: auto;
+  -webkit-font-smoothing:  auto;
 }
 
-/* Inline code styling */
-/* Class/ID: `code` — Purpose: Inline code styling */
-code {
-  background-color: var(--color-code-bg);
-  color: #dfdcdc;
-  font-size: .875em;
-  font-weight: normal;
-  padding: .1em;
-}
 
-/* Preformatted text block styling */
-/* Class/ID: `pre (position)` — Purpose: Code block positioning for copy button */
-pre {
-  -webkit-overflow-scrolling: touch;
-  background-color: #fff6f6;
-  color: #000000;
-  font-size: .875em;
-  overflow-x: auto;
-  padding: 1.25rem 1.5rem;
-  white-space: pre;
-  word-wrap: normal;
-}
+/* ============================================================
+   2. INLINE CODE  (.Content code)
+   ============================================================ */
 
-/* Code inside pre - transparent background */
-/* Class/ID: `pre code` — Purpose: Code inside pre - transparent background */
-pre code {
-  background-color: transparent;
-  color: currentColor;
-  font-size: 1em;
-  padding: 0;
-}
-
-/* 2. Content pre styling */
-/* Class/ID: `.Content pre` — Purpose: Content area pre block styling with border */
-.Content pre {
-  -webkit-overflow-scrolling: touch;
-  overflow-x: auto;
-  padding: 0;
-  white-space: pre;
-  word-wrap: normal;
-  border: 2px solid #dbdbdb;
-  border-radius: 4px;
-}
-
-/* Content code styling variants */
-/* Class/ID: `.Content code` — Purpose: Content code styling variants */
 .Content code {
-  font-weight: inherit;
+  background-color: var(--color-code-bg);
+  color:            var(--color-code-text);
+  font-family:      var(--font-mono);
+  font-size:        0.875em;
+  font-weight:      normal;
+  padding:          0.12em 0.35em;
+  border-radius:    3px;
 }
 
-.Content a code {
-  color: #3166c2;
-}
-
-.Content a:hover code {
-  color: #363636;
-}
+.Content a       code { color: var(--color-primary);      }
+.Content a:hover code { color: var(--color-primary-dark); }
 
 .Content h1 code,
 .Content h2 code,
 .Content h3 code,
 .Content h4 code,
 .Content h5 code,
-.Content h6 code {
-  color: #000000;
+.Content h6 code      { color: var(--color-heading); }
+
+
+/* ============================================================
+   3. .Code_Block — outer wrapper
+   -------------------------------------------------------
+   This div wraps <.Code_Lang_Label> + <pre> together.
+   It is position:relative so the label can be pinned to
+   the wrapper's corner — completely outside the <pre>'s
+   overflow scroll, so it never moves when code scrolls.
+   ============================================================ */
+
+.Code_Block {
+  position: relative;   /* anchor for .Code_Lang_Label     */
+  display:  block;
+  margin:   1rem 0;  /* breathing room above/below      */
 }
 
-/* Disable ligature for code */
-/* Class/ID: `pre, code` — Purpose: Disable ligature for code */
-pre,
-code {
-  font-variant-ligatures: no-contextual;
-}
 
-/* Highlight.js background reset */
-.hljs {
-  background: initial !important;
-}
+/* ============================================================
+   4. .Code_Lang_Label — language name pill
+   -------------------------------------------------------
+   Pinned to the top-right corner of .Code_Block.
+   Always visible. On hover: copy icon appears.
+   On click: tick replaces text for 10 s then restores.
+   ============================================================ */
 
-/* Dark mode visibility toggle */
-/* Class/ID: `.docs-dark-only` — Purpose: Hide elements in light mode only */
-.docs-dark-only {
-  display: none !important;
-}
-
-/* 3. Code block positioning and overflow for copy button */
-pre {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Class/ID: `pre code.hljs` — Purpose: Highlight.js code block padding */
-pre code,
-/* Class/ID: `pre code.hljs (theme)` — Purpose: Highlight.js theme colors */
-pre code.hljs {
-  padding: 0 .75rem !important;
-  overflow: auto;
-  display: block;
-}
-
-pre code:first-of-type,
-pre code.hljs:first-of-type {
-  padding-top: 0.5rem !important;
-}
-
-pre code:last-of-type,
-pre code.hljs:last-of-type {
-  padding-bottom: 0.5rem !important;
-}
-
-/* 4. Copy button styling */
-/* Class/ID: `pre .copy-button` — Purpose: Copy button positioning and styling */
-pre .copy-button {
-  opacity: 0.2;
-  transition: opacity 0.2s;
+.Code_Lang_Label {
+  /* ---- pin to top-right of .Code_Block ---- */
   position: absolute;
-  right: 0em;
-  top: 0em;
-  padding: 0.5em;
-  width: 2.5em;
-  height: 2.5em;
-  background: transparent;
-  border: none;
+  top:      0;
+  right:    0;
+  z-index:  10;
+
+  /* ---- layout ---- */
+  display:     inline-flex;
+  align-items: center;
+  gap:         0.1rem;
+
+  /* ---- VS Code–style tab look ---- */
+  padding:          0.2em 0.65em;
+  border-radius:    0 6px 0 4px;   /* sharp top-right matches the pre corner */
+  background-color: var(--color-border);
+  color:            var(--color-text-muted);
+  border:           1px solid var(--color-border);
+
+  /* ---- type ---- */
+  font-family:    var(--font-mono);
+  font-size:      0.7rem;
+  font-weight:    700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height:    1;
+
+  cursor:      pointer;
+  user-select: none;
+
+  transition: background-color var(--t-fast),
+              color             var(--t-fast),
+              border-color      var(--t-fast);
+}
+
+.Code_Lang_Label:hover {
+  background-color: var(--color-primary);
+  border-color:     var(--color-primary);
+  color:            #fff;
+}
+
+/* --- label text --- */
+.Code_Lang_Label .Code_Label_Text {
+  display: inline;
+}
+.Code_Lang_Label.is-copied .Code_Label_Text {
+  display: none;
+}
+
+/* --- copy icon (FA fa-copy, shown on hover) --- */
+.Code_Lang_Label .Code_Copy_Icon {
   font-family: "Font Awesome 6 Free";
-  color: #000000;
-  cursor: pointer;
-  text-align: center;
+  font-weight: 900;
+  font-size:   0.72rem;
+  opacity:     0;
+  transition:  opacity var(--t-fast);
 }
-
-pre .copy-button:focus,
-pre .copy-button:hover {
-  opacity: 1;
-  background: rgba(34, 34, 34, 0.1);
-  color: #2e63b8;
-}
-
-pre .copy-button.success {
-  color: #259a12;
+.Code_Lang_Label:hover:not(.is-copied) .Code_Copy_Icon {
   opacity: 1;
 }
-
-pre .copy-button.error {
-  color: #cb3c33;
-  opacity: 1;
+.Code_Lang_Label.is-copied .Code_Copy_Icon {
+  display: none;
 }
 
-pre:hover .copy-button {
-  opacity: 1;
+/* --- tick icon (shown after copy) --- */
+.Code_Lang_Label .Code_Tick_Icon {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size:   0.78rem;
+  color:       #3dbd5e;
+  display:     none;
+}
+.Code_Lang_Label.is-copied .Code_Tick_Icon {
+  display: inline-block;
 }
 
-/* 5. Context-specific code styling */
-/* Documenter example output */
-/* Class/ID: `.documenter-example-output` — Purpose: Example output container styling */
-.documenter-example-output {
-  background-color: #fff;
+
+/* ============================================================
+   5. pre — the code box (VS Code style)
+   -------------------------------------------------------
+   • Clean dark-ish surface, no left border accent
+   • Rounded box with a subtle border
+   • Horizontal scroll + grab cursor
+   • Top padding leaves space for the label pill
+   • Thin styled scrollbar matching project style
+   ============================================================ */
+
+/* --- Code block tokens (light theme) --- */
+:root {
+  --code-block-bg:      #f8f8f6;
+  --code-block-border:  var(--color-border);
+  --code-block-text:    #1a1a18;
+  --code-block-radius:  6px;
 }
 
-/* Admonition code styling */
-/* Class/ID: `.admonition-body pre/code` — Purpose: Admonition code styling */
-.admonition-body pre {
-  background-color: #f5f5f5;
+:root[data-theme="dark"] {
+  --code-block-bg:     #1e1e1c;
+  --code-block-border: #3b3b38;
+  --code-block-text:   #d4d0c8;
 }
 
-.admonition-body code {
-  background-color: rgba(0, 0, 0, 0.05);
+/* Base pre reset */
+pre {
+  display:    block;
+  width:      100%;
+  box-sizing: border-box;
+  margin:     0;                   /* .Code_Block handles margin */
+
+  /* --- VS Code box --- */
+  background-color: var(--code-block-bg);
+  color:            var(--code-block-text);
+  border:           1px solid var(--code-block-border);
+  border-radius:    var(--code-block-radius);
+
+  /* --- Jupyter-like padding:
+       top 2.2rem = label height + breathing room
+       sides generous like a notebook cell            --- */
+  padding:        0.75rem 1.25rem 0.9rem;
+
+  /* --- type --- */
+  font-size:   0.875em;
+  line-height: 1.65;
+  white-space: pre;
+  word-wrap:   normal;
+
+  /* --- horizontal scroll + grab --- */
+  overflow-x:  auto;
+  overflow-y:  hidden;
+  cursor:      grab;
+  position:    relative;          /* needed if pre is used bare (no .Code_Block) */
+
+  /* --- thin Firefox scrollbar --- */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
 }
 
-details.docstring>summary code {
-  background-color: transparent;
+pre:active {
+  cursor: grabbing;
 }
 
-/* Notification code styling */
-/* Class/ID: `.notification pre/code` — Purpose: Notification code styling */
-.notification code,
-.notification pre {
-  background: #fff;
-}
-
-.notification pre code {
-  background: transparent;
-}
-
-/* Message body code styling */
-/* Class/ID: `.message-body pre/code` — Purpose: Message body code styling */
-.message-body code,
-.message-body pre {
-  background-color: #fff;
-}
-
-.message-body pre code {
-  background-color: rgba(0, 0, 0, 0);
-}
-
-/* 6. Highlight.js theme styles */
-/*!
-  Theme: Default
-  Description: Original highlight.js style
-  Author: (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
-  Maintainer: @highlightjs/core-team
-  Website: https://highlightjs.org/
-  License: see project LICENSE
-  Touched: 2021
-*/
-
-pre code.hljs {
+/* code inside pre */
+pre code {
   display: block;
+  width: max-content;
+  min-width: 100%;
+  background-color: transparent;
+  color:            inherit;
+  font-size:        1em;
+  padding:          0;
+}
+
+/* hljs resets */
+.hljs                  { background: transparent !important; }
+pre code.hljs          { padding: 0 !important; display: block; overflow: auto; }
+
+/* --- Webkit scrollbar --- */
+pre::-webkit-scrollbar              { height: 4px; }
+pre::-webkit-scrollbar-track        { background: transparent; }
+pre::-webkit-scrollbar-thumb        {
+  background:    var(--color-border);
+  border-radius: 999px;
+}
+pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
+
+/* .Content pre — slight extra border weight when inside article */
+.Content pre {
+  border-color: var(--code-block-border);
+}
+
+
+/* ============================================================
+   6. .Code_Output — output cell
+   -------------------------------------------------------
+   Attaches below a .Code_Block with a small gap.
+   Clean box, slightly different background, "OUTPUT" label
+   top-left via ::before.
+   ============================================================ */
+
+:root {
+  --output-bg:     #ffffff;
+  --output-border: var(--color-border-light);
+  --output-text:   var(--color-text);
+  --output-label:  var(--color-text-muted);
+}
+:root[data-theme="dark"] {
+  --output-bg:     #161614;
+  --output-border: #2c2c29;
+  --output-text:   var(--color-text);
+  --output-label:  var(--color-text-muted);
+}
+
+.Code_Output {
+  display:    block;
+  position:   relative;
+  width:      100%;
+  box-sizing: border-box;
+
+  margin-top:    0.35rem;    /* small gap below the code block */
+  margin-bottom: 1.25rem;
+
+  background-color: var(--output-bg);
+  color:            var(--output-text);
+  border:           1px solid var(--output-border);
+  border-radius:    var(--code-block-radius);
+
+  /* Jupyter-style: same side padding as pre, generous top for label */
+  padding:     0.75rem 1.25rem 0.9rem;
+  padding-top: 2rem;
+
+  font-family: var(--font-mono);
+  font-size:   0.875em;
+  line-height: 1.65;
+  white-space: pre;
+  word-wrap:   normal;
+
+  /* scrollable */
   overflow-x: auto;
-  padding: 1em;
+  overflow-y: hidden;
+  cursor:     grab;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
 }
 
-code.hljs {
-  padding: 3px 5px;
+.Code_Output:active { cursor: grabbing; }
+
+/* "OUTPUT" label pinned top-left */
+.Code_Output::before {
+  content:  "OUTPUT";
+  position: absolute;
+  top:      0.5rem;
+  left:     1rem;
+
+  font-family:    var(--font-mono);
+  font-size:      0.65rem;
+  font-weight:    700;
+  letter-spacing: 0.1em;
+  color:          var(--output-label);
+  opacity:        0.6;
+  user-select:    none;
 }
 
-/* Class/ID: `.hljs` — Purpose: Highlight.js background reset */
-.hljs {
-  background: #F3F3F3;
-  color: #444;
+/* code inside output */
+.Code_Output code {
+  background-color: transparent;
+  color:            inherit;
+  font-size:        1em;
+  padding:          0;
 }
 
-.hljs-comment {
-  color: #697070;
+/* Webkit scrollbar for output */
+.Code_Output::-webkit-scrollbar              { height: 4px; }
+.Code_Output::-webkit-scrollbar-track        { background: transparent; }
+.Code_Output::-webkit-scrollbar-thumb        {
+  background:    var(--color-border);
+  border-radius: 999px;
 }
+.Code_Output::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
 
-.hljs-tag,
-.hljs-punctuation {
-  color: #444a;
-}
 
-.hljs-tag .hljs-name,
-.hljs-tag .hljs-attr {
-  color: #444;
-}
+/* ============================================================
+   7. HIGHLIGHT.JS colour tokens
+   ============================================================ */
 
+.hljs                   { color: var(--code-block-text); }
+.hljs-comment           { color: #6a9955; font-style: italic; }   /* green — VS Code */
 .hljs-keyword,
-.hljs-attribute,
-.hljs-selector-tag,
-.hljs-meta .hljs-keyword,
-.hljs-doctag,
-.hljs-name {
-  font-weight: bold;
-}
-
-.hljs-type,
+.hljs-name              { color: #569cd6; font-weight: 600; }      /* blue  */
 .hljs-string,
-.hljs-number,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-quote,
-.hljs-template-tag,
-.hljs-deletion {
-  color: #880000;
-}
-
+.hljs-deletion          { color: #ce9178; }                        /* orange-brown */
+.hljs-number            { color: #b5cea8; }                        /* light green */
 .hljs-title,
-.hljs-section {
-  color: #880000;
-  font-weight: bold;
-}
-
-.hljs-regexp,
-.hljs-symbol,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-link,
-.hljs-selector-attr,
-.hljs-operator,
-.hljs-selector-pseudo {
-  color: #ab5656;
-}
-
-.hljs-literal {
-  color: #695;
-}
-
+.hljs-section           { color: #dcdcaa; font-weight: 600; }      /* yellow */
+.hljs-literal           { color: #569cd6; }
 .hljs-built_in,
-.hljs-bullet,
-.hljs-code,
-.hljs-addition {
-  color: #397300;
-}
+.hljs-addition          { color: #4ec9b0; }                        /* teal */
+.hljs-meta              { color: #9b9b9b; }
+.hljs-meta .hljs-string { color: #ce9178; }
+.hljs-emphasis          { font-style: italic; }
+.hljs-strong            { font-weight: bold; }
+.hljs-attr,
+.hljs-attribute         { color: #9cdcfe; }
+.hljs-type              { color: #4ec9b0; }
+.hljs-punctuation,
+.hljs-tag               { color: #808080; }
 
-.hljs-meta {
-  color: #1f7199;
-}
+/* Light theme overrides — VS Code Light+ palette */
+:root:not([data-theme="dark"]) .hljs              { color: #1a1a18; }
+:root:not([data-theme="dark"]) .hljs-comment      { color: #008000; }
+:root:not([data-theme="dark"]) .hljs-keyword      { color: #0000ff; font-weight: 600; }
+:root:not([data-theme="dark"]) .hljs-string       { color: #a31515; }
+:root:not([data-theme="dark"]) .hljs-number       { color: #098658; }
+:root:not([data-theme="dark"]) .hljs-title        { color: #795e26; font-weight: 600; }
+:root:not([data-theme="dark"]) .hljs-built_in     { color: #267f99; }
+:root:not([data-theme="dark"]) .hljs-attr         { color: #001080; }
+:root:not([data-theme="dark"]) .hljs-type         { color: #267f99; }
 
-.hljs-meta .hljs-string {
-  color: #38a;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-/* Julia REPL specific styling */
-/* Class/ID: `code.language-julia-repl` — Purpose: Julia REPL specific styling */
-code.language-julia-repl>span.hljs-meta {
-  color: #066f00;
+/* Julia REPL prompt */
+code.language-julia-repl > span.hljs-meta {
+  color:       #066f00;
   font-weight: bolder;
 }

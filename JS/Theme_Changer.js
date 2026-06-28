@@ -49,7 +49,7 @@ function updateThemeIcon() {
 
 
 
-document.querySelectorAll('.Math, .Equations .Eq').forEach(el => {
+document.querySelectorAll('.Math, .Equations, .Eq, pre, .Code_Output').forEach(el => {
 
     if (el.closest('.Scroll_Horizontal')) return;
 
@@ -65,18 +65,17 @@ document.querySelectorAll('.Math, .Equations .Eq').forEach(el => {
 
     document.addEventListener('mouseup', () => {
         isDragging = false;
+        el.style.userSelect = '';
     });
 
     el.addEventListener('mousemove', e => {
         if (!isDragging) return;
-
         e.preventDefault();
         el.scrollLeft = startScrollLeft - (e.pageX - startX);
     });
 
     el.addEventListener('wheel', e => {
         if (el.scrollWidth <= el.clientWidth) return;
-
         e.preventDefault();
         el.scrollLeft += e.deltaY;
     }, { passive: false });
