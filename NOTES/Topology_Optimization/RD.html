@@ -446,7 +446,7 @@
                             </svg>
                         </div>
                         <div class="Text_Holder "
-                            style="min-width: 300px; padding-left: 1em; padding-right: 1em; padding-top: 0em; padding-bottom: 0em;">
+                            style="min-width: 600px; padding-left: 1em; padding-right: 1em; padding-top: 0em; padding-bottom: 0em;">
                             <p><strong><u>Isoparametric Mapping</u></strong></p>
                             <p>$\small \text{Natural Coordinate} \,\, (\xi,\eta) \longrightarrow \,\,\text{Global
                                 Coordinate}
@@ -577,6 +577,16 @@
                                     =
                                     \left(
                                     \begin{bmatrix}
+                                    x_i \\[3pt] y_i
+                                    \end{bmatrix}
+                                    \begin{bmatrix}
+                                    \frac{\partial N_i}{\partial \xi} &
+                                    \frac{\partial N_i}{\partial \eta}
+                                    \end{bmatrix}
+                                    \right)
+                                    =
+                                    \left(
+                                    \begin{bmatrix}
                                     \frac{\partial N_i}{\partial \xi}\\[3pt]
                                     \frac{\partial N_i}{\partial \eta}
                                     \end{bmatrix}
@@ -625,6 +635,7 @@
                             </div>
                         </div>
                     </div>
+
                     <strong>Conversion For Gradient Of Shape Function</strong>
                     <p class="Equations">
                         $$
@@ -721,6 +732,7 @@
                         \end{aligned}
                         $$
                     </p>
+
                     <div class="Scroll_Horizontal">
                         <p class="Equations">
                             $$
@@ -748,24 +760,23 @@
                             N\,\,dx\,dy
                             \\
                             \implies
-                            &\left\{
-                            \frac{1}{\Delta t} \left( \int_{-1}^{1}\int_{-1}^{1} \,\mathbf N^T\,\mathbf N \,\,
+                            & \left\{
+                            \frac{1}{\Delta t} \left( \int_{-1}^{1}\int_{-1}^{1} \,\mathbf N^T\,\mathbf N \,\,|J|\,\,
                             d\xi\,d\eta \right)
                             +
-                            \tau \left(\int_{-1}^{1}\int_{-1}^{1} \underbrace{(\mathbf
-                            J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N)^T \cdot (\mathbf
-                            J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N)}_{\text{II}} \,\,d\xi\,dy \right)
+                            \tau \left(\int_{-1}^{1}\int_{-1}^{1} (\mathbf J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N)^T
+                            \cdot (\mathbf J^{-T}\,\,\nabla_{\xi\,\eta}\,\mathbf N) \,\,|J|\,\,d\xi\,d\eta \right)
                             \right\}\,\,\phi
                             =
                             \int_{-1}^{1}\int_{-1}^{1} \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr)\,\mathbf
-                            N\,\,d\xi\,dy
+                            N\,\,|J|\,\,d\xi\,d\eta
                             \end{aligned}
                             $$
                         </p>
-                        $\qquad \because \quad$ Solving for term
-                        <a class="Description_Link" data-description-id="II" href="#">
-                            II
-                        </a>
+                        <p>$\qquad \because \quad$ Solving for term
+                            <a class="Description_Link" data-description-id="II" href="#">
+                                II
+                            </a>
                         </p>
                         <div id="II" class="Description_Box_Content" hidden>
                             <p class="Equations">
@@ -780,7 +791,8 @@
                                 (\nabla_{\xi\,\eta}\,\mathbf N)^T \,\,(\mathbf J\,\mathbf J^{T})^{-1}
                                 \,(\nabla_{\xi\,\eta}\,\mathbf N)\\
                                 &=
-                                (\nabla_{\xi\,\eta}\,\mathbf N)^T \,(\nabla_{\xi\,\eta}\,\mathbf N)
+                                (\nabla_{\xi\,\eta}\,\mathbf N)^T \,(\nabla_{\xi\,\eta}\,\mathbf N)\,\,(\mathbf
+                                J\,\mathbf J^{T})^{-1}
                                 \end{aligned}
                                 $$
                             </p>
@@ -788,20 +800,296 @@
                         <p class="Equations">
                             $$
                             \implies \left\{
-                            \frac{1}{\Delta t} \left( \int_{-1}^{1}\int_{-1}^{1} \,\mathbf N^T\,\mathbf N \,\,
-                            d\xi\,d\eta \right)
+                            \frac{1}{\Delta t} \underbrace{\left(\int_{-1}^{1}\int_{-1}^{1} \,\mathbf N^T\,\mathbf N
+                            \,\,|J|\,\,
+                            d\xi\,d\eta \right)}_{M_e}
                             +
-                            \tau \left(\int_{-1}^{1}\int_{-1}^{1} (\nabla_{\xi\,\eta}\,\mathbf N)^T \cdot
-                            (\nabla_{\xi\,\eta}\,\mathbf N) \,\,d\xi\,dy \right)
+                            \tau \underbrace{\left(\int_{-1}^{1}\int_{-1}^{1} (\nabla_{\xi\,\eta}\,\mathbf N)^T \cdot
+                            (\nabla_{\xi\,\eta}\,\mathbf N) \,\,\,(\mathbf J\,\mathbf J^{T})^{-1}\,\,|J|\,\,d\xi\,d\eta
+                            \right)}_{K_e}
                             \right\}\,\,\phi
                             =
-                            \int_{-1}^{1}\int_{-1}^{1} \biggl(\frac{\phi^n}{\Delta t} + R(\phi^{n+1})\biggr)\,\mathbf
-                            N\,\,d\xi\,dy
+                            \underbrace{\int_{-1}^{1}\int_{-1}^{1} \biggl(\frac{\phi^n}{\Delta t} +
+                            R(\phi^{n+1})\biggr)\,\mathbf
+                            N\,\,|J|\,\,d\xi\,d\eta}_{F_e}
                             $$
                         </p>
                     </div>
-                </div>
-                
+                    <p class="Math">
+                        $$
+                        \because\quad \left(
+                        \frac{1}{\Delta t}\, \mathbf{M_e}
+                        +
+                        \tau\, \mathbf{K_e}
+                        \right)\,\,\phi
+                        =
+                        \mathbf{F_e}
+                        $$
+                    </p>
+
+                    <div class="SF_and_GP_integration">
+                        <strong>Shape Functions And Gauss Point Integration</strong>
+                        <p class="Eq">
+                            $$
+                            \mathbf N=
+                            \begin{bmatrix}
+                            N_1&N_2&N_3&N_4
+                            \end{bmatrix}
+                            $$
+                        </p>
+                        <p class="Equations">
+                            $$
+                            \begin{aligned}
+                            N_1&=\frac14(1-\xi)(1-\eta)
+                            \quad \left| \quad
+                            \frac{\partial N_1}{\partial\xi} = -\frac{1}{4}
+                            \quad \right| \quad
+                            \frac{\partial N_1}{\partial\eta} = -\frac{1}{4}\\
+                            N_2&=\frac14(1+\xi)(1-\eta)
+                            \quad \left| \quad
+                            \frac{\partial N_2}{\partial\xi} = +\frac{1}{4}
+                            \quad \right| \quad
+                            \frac{\partial N_2}{\partial\eta} = -\frac{1}{4}\\
+                            N_3&=\frac14(1+\xi)(1+\eta)
+                            \quad \left| \quad
+                            \frac{\partial N_3}{\partial\xi} = +\frac{1}{4}
+                            \quad \right| \quad
+                            \frac{\partial N_3}{\partial\eta} = +\frac{1}{4}\\
+                            N_4&=\frac14(1-\xi)(1+\eta)
+                            \quad \left| \quad
+                            \frac{\partial N_4}{\partial\xi} = -\frac{1}{4}
+                            \quad \right| \quad
+                            \frac{\partial N_4}{\partial\eta} = +\frac{1}{4}
+                            \end{aligned}
+                            $$
+                        </p>
+                        <p class="Equations">
+                            $$
+                            \nabla_{\xi\,\eta} \,N_i
+                            =
+                            \begin{bmatrix}
+                            \frac{\partial\,N_i}{\partial \xi \rule{0pt}{0.8em}}\\[5pt]
+                            \frac{\partial\,N_i}{\partial \eta \rule{0pt}{0.8em}}
+                            \end{bmatrix}
+                            =
+                            \begin{bmatrix}
+                            \frac{\partial N_1}{\partial\xi}
+                            &\frac{\partial N_2}{\partial\xi}
+                            &\frac{\partial N_3}{\partial\xi}
+                            &\frac{\partial N_4}{\partial\xi}
+                            \\[5pt]
+                            \frac{\partial N_1}{\partial\eta}
+                            &\frac{\partial N_2}{\partial\eta}
+                            &\frac{\partial N_3}{\partial\eta}
+                            &\frac{\partial N_4}{\partial\eta}
+                            \end{bmatrix}
+                            $$
+                        </p>
+                        <div class="Code_Block">
+                            <pre data-lang="JULIA"><code class="language-julia">using SymPy
+
+@syms ξ η
+
+N = Sym[
+    (1-ξ)*(1-η)/4
+    (1+ξ)*(1-η)/4
+    (1+ξ)*(1+η)/4
+    (1-ξ)*(1+η)/4
+]
+
+g = 1/sqrt(Sym(3))
+
+GP = [
+    (-g,-g),
+    ( g,-g),
+    ( g, g),
+    (-g, g)
+]
+
+dN_dξ = diff.(N, ξ)
+dN_dη = diff.(N, η)
+
+∇N = Matrix{Sym}[]
+
+for (ξg,ηg) in GP
+    dNξ = subs.(dN_dξ, ξ=>ξg, η=>ηg)
+    dNη = subs.(dN_dη, ξ=>ξg, η=>ηg)
+
+    ∇N = [dNξ'; dNη']
+end
+</code></pre>
+                        </div>
+                        <div class="Code_Output">
+                            <p>$\nabla N$ matrix shown bellow for Q4 element</p>
+                            <p>$\begin{bmatrix}- \frac{1}{4} + \frac{\sqrt{3}}{12} & \frac{1}{4} - \frac{\sqrt{3}}{12} &
+                                \frac{\sqrt{3}}{12} + \frac{1}{4} & - \frac{1}{4} - \frac{\sqrt{3}}{12}\\- \frac{1}{4} -
+                                \frac{\sqrt{3}}{12} & - \frac{1}{4} + \frac{\sqrt{3}}{12} & \frac{1}{4} -
+                                \frac{\sqrt{3}}{12} & \frac{\sqrt{3}}{12} + \frac{1}{4}\end{bmatrix}$</p>
+                        </div>
+                        <p class="Eq">
+                            $$
+                            \begin{aligned}
+                            \begin{bmatrix}
+                            J
+                            \end{bmatrix}
+                            =&
+                            \begin{bmatrix}
+                            \frac{\partial x}{\partial \xi} &\frac{\partial x}{\partial \eta} \\[5pt]
+                            \frac{\partial y}{\partial \xi} &\frac{\partial y}{\partial \eta}
+                            \end{bmatrix}\\[5pt]
+                            =&
+                            \begin{bmatrix}
+                            \frac{\partial N_i}{\partial \xi}\,\,x_i &\frac{\partial N_i}{\partial \eta}\,\,x_i
+                            \\[7pt]
+                            \frac{\partial N_i}{\partial \xi}\,\,y_i &\frac{\partial N_i}{\partial \eta}\,\,y_i
+                            \end{bmatrix}\\[5pt]
+                            =&
+                            \left(
+                            \begin{bmatrix}
+                            x_i \\[3pt] y_i
+                            \end{bmatrix}
+                            \begin{bmatrix}
+                            \frac{\partial N_i}{\partial \xi} &
+                            \frac{\partial N_i}{\partial \eta}
+                            \end{bmatrix}
+                            \right)
+                            =
+                            \left(
+                            \begin{bmatrix}
+                            \frac{\partial N_i}{\partial \xi}\\[3pt]
+                            \frac{\partial N_i}{\partial \eta}
+                            \end{bmatrix}
+                            \begin{bmatrix}
+                            x_i &y_i
+                            \end{bmatrix}
+                            \right)^{T}\\[5pt]
+                            =&
+                            \left(
+                            \begin{bmatrix}
+                            \frac{\partial N_1}{\partial \xi} &\frac{\partial N_2}{\partial \xi} &\frac{\partial
+                            N_3}{\partial \xi} &\frac{\partial N_4}{\partial \xi} \\[7pt]
+                            \frac{\partial N_1}{\partial \eta} &\frac{\partial N_2}{\partial \eta}
+                            &\frac{\partial
+                            N_3}{\partial \eta} &\frac{\partial N_4}{\partial \eta}
+                            \end{bmatrix}
+                            \begin{bmatrix}
+                            x_1 &y_1\\
+                            x_2 &y_2\\
+                            x_3 &y_3\\
+                            x_4 &y_4
+                            \end{bmatrix}
+                            \right)^{T}\\[5pt]
+                            =&
+                            \left\{
+                            (\nabla_{\xi\,\eta}\,\mathbf{N})
+                            \,\, \mathbf{X}
+                            \right\}^{T}
+                            \end{aligned}
+                            $$
+                        </p>
+                        <div class="Code_Block">
+                            <pre data-lang="JULIA"><code class="language-julia"># Considering a square element of 1 unit
+𝐗 = [0 0;
+     1 0;
+     1 1;
+     0 1
+]
+
+J = (∇N * 𝐗)'
+Determinant_Of_J = J.det()
+</code></pre>
+                        </div>
+                        <div class="Code_Output">
+                            Jacobian Matrix
+                            <p>$\begin{bmatrix}\frac{1}{2} & 0\\0 & \frac{1}{2}\end{bmatrix}$</p><br>
+                            Determinant of Jacobian
+                            <p>|J| = $\frac{1}{4}$</p>
+                        </div>
+                        <p class="Equations">
+                            $$
+                            \begin{aligned}
+                            \because \quad &\mathbf{J} = 0.5\times\mathbf{I} \quad \implies \quad \mathbf{J}^{-1} =
+                            2\times\mathbf{I} \\
+                            \implies &\quad \mathbf{J}\,\mathbf{J}^T = \frac{1}{4}\times\mathbf{I}\\[5pt]
+                            \implies &\quad (\mathbf{J}\,\mathbf{J}^T)^{-1} = 4\times\mathbf{I}
+                            \end{aligned}
+                            $$
+                        </p>
+                    </div>
+
+                    <br>
+                    <div class="M_e">
+                        <p class="Math">
+                            <strong>Solving For $\mathbf{M_e}$</strong>
+                            $$
+                            M_e
+                            =
+                            \int_{\Omega_e}\mathbf N^T\mathbf N\,\,d\Omega
+                            =
+                            \int_{-1}^{1}
+                            \int_{-1}^{1}
+                            \mathbf N^T\mathbf N \,\,\,(\mathbf J\,\mathbf J^{T})^{-1}\,\,
+                            |J|
+                            \,\,d\xi\,d\eta
+                            $$
+                        </p>
+                        <div class="Code_Block">
+                            <pre data-lang="JULIA"><code class="language-julia">M = zeros(4,4)
+    for j in 1:4
+    for i in 1:4
+        M[j,i] = sum(subs(Nᵢ[j,i], ξ=>ξg, η=>ηg) for (ξg,ηg) in GP)
+    end
+end
+
+rationalize.(M)
+</code></pre>
+                        </div>
+                        <div class="Code_Output">
+                            <pre>4×4 Matrix{Rational{Int64}}:
+ 4//9  2//9  1//9  2//9
+ 2//9  4//9  2//9  1//9
+ 1//9  2//9  4//9  2//9
+ 2//9  1//9  2//9  4//9</pre>
+                        </div>
+                        <p>$\mathbf{M_e} = |J|\,M = \frac{1}{4}\,M$</p>
+                        <p class="Equations">
+                            $$
+                            \boxed{
+                            \mathbf{M_e}
+                            =
+                            \frac1{36}
+                            \begin{bmatrix}
+                            4&2&1&2\\
+                            2&4&2&1\\
+                            1&2&4&2\\
+                            2&1&2&4
+                            \end{bmatrix}
+                            }
+                            $$
+                        </p>
+                    </div>
+
+                    <br>
+                    <div class="K_e">
+                        <p class="Math">
+                            <strong>Solving For $\mathbf{K_e}$</strong>
+                            $$
+                            K_e
+                            =
+                            \int_{\Omega_e}(\nabla\mathbf N)^T(\nabla\mathbf N)\,\,d\Omega
+                            =
+                            \int_{-1}^{1}\int_{-1}^{1} (\nabla_{\xi\,\eta}\,\mathbf N)^T \cdot
+
+                            (\nabla_{\xi\,\eta}\,\mathbf N) \,\,\,(\mathbf J\,\mathbf J^{T})^{-1}\,\,|J|\,\,d\xi\,d\eta
+                            $$
+                        </p>
+                        <div class="Code_Block">
+                            <pre data-lang="JULIA"><code class="language-julia">Julia Code</code></pre>
+                        </div>
+                        <div class="Code_Output">
+                            Julia Code output
+                        </div>
+                    </div>
             </article>
 
             <br>
