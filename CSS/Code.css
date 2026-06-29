@@ -78,7 +78,7 @@ pre {
   /* ---- pin to top-right of .Code_Block ---- */
   position: absolute;
   top:      0;
-  right:    0;
+  right:    0.8rem;
   z-index:  10;
 
   /* ---- layout ---- */
@@ -178,7 +178,7 @@ pre {
 /* Base pre reset */
 pre {
   display:    block;
-  width:      100%;
+  width:      98%;
   box-sizing: border-box;
   margin:     0;                   /* .Code_Block handles margin */
 
@@ -268,7 +268,7 @@ pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
 .Code_Output {
   display:    block;
   position:   relative;
-  width:      100%;
+  width:      98%;
   box-sizing: border-box;
 
   margin-top:    0.2rem;    /* small gap below the code block */
