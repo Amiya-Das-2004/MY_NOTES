@@ -910,12 +910,11 @@ dN_dξ = diff.(N, ξ)
 dN_dη = diff.(N, η)
 
 ∇N = Matrix{Sym}[]
-
 for (ξg,ηg) in GP
     dNξ = subs.(dN_dξ, ξ=>ξg, η=>ηg)
     dNη = subs.(dN_dη, ξ=>ξg, η=>ηg)
 
-    ∇N = [dNξ'; dNη']
+    push!(∇N, [dNξ'; dNη'])
 end
 </code></pre>
                         </div>
@@ -995,7 +994,7 @@ end
      0 1
 ]
 
-J = (∇N * 𝐗)'
+J = (∇N[1] * 𝐗)'
 Determinant_Of_J = J.det()
 </code></pre>
                         </div>
@@ -1034,12 +1033,13 @@ Determinant_Of_J = J.det()
                             $$
                         </p>
                         <div class="Code_Block">
-                            <pre data-lang="JULIA"><code class="language-julia">M = zeros(4,4)
-    for j in 1:4
-    for i in 1:4
-        M[j,i] = sum(subs(Nᵢ[j,i], ξ=>ξg, η=>ηg) for (ξg,ηg) in GP)
-    end
+                            <pre data-lang="JULIA"><code class="language-julia">M = zeros(Sym,4,4)
+Nᵢ = N*N'
+for (ξg,ηg) in GP
+    M .+= subs.(Nᵢ, ξ=>ξg, η=>ηg)
 end
+
+M = Float64.(sympy.N.(M))
 
 rationalize.(M)
 </code></pre>
@@ -1084,11 +1084,35 @@ rationalize.(M)
                             $$
                         </p>
                         <div class="Code_Block">
-                            <pre data-lang="JULIA"><code class="language-julia">Julia Code</code></pre>
+                            <pre data-lang="JULIA"><code class="language-julia">K = zeros(Sym,4,4)
+for i in 1:4
+    K .+= simplify.(transpose(∇N[i]) * ∇N[i])
+end
+
+K = Float64.(sympy.N.(K))
+
+rationalize.(K)</code></pre>
                         </div>
                         <div class="Code_Output">
-                            Julia Code output
+                            <pre>4×4 Matrix{Rational{Int64}}:
+  2//3  -1//6  -1//3  -1//6
+ -1//6   2//3  -1//6  -1//3
+ -1//3  -1//6   2//3  -1//6
+ -1//6  -1//3  -1//6   2//3</pre>
                         </div>
+                        <p class="Math">
+                            $$
+                            K_e
+                            =
+                            \frac16
+                            \begin{bmatrix}
+                            4&-1&-2&-1\\
+                            -1&4&-1&-2\\
+                            -2&-1&4&-1\\
+                            -1&-2&-1&4
+                            \end{bmatrix}
+                            $$
+                        </p>
                     </div>
             </article>
 
