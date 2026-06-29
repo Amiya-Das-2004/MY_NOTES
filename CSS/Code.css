@@ -62,7 +62,8 @@ pre {
 .Code_Block {
   position: relative;   /* anchor for .Code_Lang_Label     */
   display:  block;
-  margin:   1rem 0;  /* breathing room above/below      */
+  margin:   1rem 20px 0 0;  /* breathing room above/below      */
+  
 }
 
 
@@ -78,7 +79,7 @@ pre {
   /* ---- pin to top-right of .Code_Block ---- */
   position: absolute;
   top:      0;
-  right:    0.8rem;
+  right:    0;
   z-index:  10;
 
   /* ---- layout ---- */
@@ -178,7 +179,7 @@ pre {
 /* Base pre reset */
 pre {
   display:    block;
-  width:      98%;
+  width:      100%;
   box-sizing: border-box;
   margin:     0;                   /* .Code_Block handles margin */
 
@@ -268,11 +269,12 @@ pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
 .Code_Output {
   display:    block;
   position:   relative;
-  width:      98%;
+  width:      auto;
   box-sizing: border-box;
 
   margin-top:    0.2rem;    /* small gap below the code block */
   margin-bottom: 1.25rem;
+  margin-right: 20px;
 
   background-color: var(--output-bg);
   color:            var(--output-text);
@@ -280,13 +282,12 @@ pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
   border-radius:    var(--code-block-radius);
 
   /* Jupyter-style: same side padding as pre, generous top for label */
-  padding:     0.75rem 1.25rem 0.9rem;
+  padding:     0.75rem 20px 0.9rem;
   padding-top: 2rem;
 
   font-family: var(--font-mono);
   font-size:   0.875em;
   line-height: 1.65;
-  /* white-space: pre; */
   word-wrap:   normal;
 
   /* scrollable */
