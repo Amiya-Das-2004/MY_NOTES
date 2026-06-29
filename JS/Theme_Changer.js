@@ -7,12 +7,13 @@
     'use strict';
     var themes = ['light', 'dark'];
     var storedTheme = localStorage.getItem('theme');
-    var currentTheme = themes.indexOf(storedTheme) !== -1 ? storedTheme : 'light';
+    var systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    var currentTheme = themes.indexOf(storedTheme) !== -1 ? storedTheme : systemTheme;
     var toggleBtn = document.getElementById('theme-toggle');
 
-// Function: updateThemeIcon()
-// Purpose: Updates the theme toggle icon and aria-label for the current theme
-function updateThemeIcon() {
+    // Function: updateThemeIcon()
+    // Purpose: Updates the theme toggle icon and aria-label for the current theme
+    function updateThemeIcon() {
         if (!toggleBtn) {
             return;
         }

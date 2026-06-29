@@ -542,7 +542,7 @@ hr {
 /* --- 8f. INLINE CODE & KEYBOARD --- */
 
 /* Inline code chip */
-.Content code {
+/* .Content code {
   background-color: var(--color-code-bg);
   color: var(--color-code-text);
   font-family: var(--font-mono);
@@ -566,7 +566,7 @@ hr {
 .Content h5 code,
 .Content h6 code {
   color: var(--color-heading);
-}
+} */
 
 
 /* --- 8g. SUPERSCRIPT / SUBSCRIPT --- */
@@ -664,7 +664,7 @@ strong {
 
 /* ============================================================
    9. MATH  (.Math)
-   KaTeX / MathJax display panel.
+   KaTeX display panel.
    ============================================================ */
 
 /* .Math: coloured panel wrapping display-mode equations */
@@ -679,7 +679,7 @@ strong {
 
 #Page .Main>article .Equations,
 #Page .Main>article .Eq {
-  background-color: var(--color-surface);
+  background-color: transparent;
   color: var(--math-color-text);
   padding: 0.5rem 0.1rem;
   padding-right: 2rem;
@@ -694,6 +694,14 @@ strong {
   border-left: 3px solid transparent;
   display: flex;
   justify-content: center;
+}
+
+.Eq .katex-display {
+    text-align: left;
+}
+
+.Eq .katex-display > .katex {
+    display: inline-block;
 }
 
 .katex-display,
@@ -806,14 +814,12 @@ mjx-container,
   margin-left: auto;
   margin-right: auto;
   flex: 0 1 auto;
-  min-width: 300px;
   text-align: center;
   width: 100%;
 }
 
 .Text_Holder {
   flex: 0 1 auto;
-  min-width: 500px;
   text-align: left;
   width: 100%;
 }

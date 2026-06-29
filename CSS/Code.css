@@ -271,7 +271,7 @@ pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
   width:      100%;
   box-sizing: border-box;
 
-  margin-top:    0.35rem;    /* small gap below the code block */
+  margin-top:    0.2rem;    /* small gap below the code block */
   margin-bottom: 1.25rem;
 
   background-color: var(--output-bg);
@@ -286,7 +286,7 @@ pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
   font-family: var(--font-mono);
   font-size:   0.875em;
   line-height: 1.65;
-  white-space: pre;
+  /* white-space: pre; */
   word-wrap:   normal;
 
   /* scrollable */

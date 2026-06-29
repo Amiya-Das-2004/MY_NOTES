@@ -203,22 +203,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="Code_Block">
-                    <pre data-lang="JULIA"><code class="language-julia">g = sqrt(Sym(1)/3)
-for j in 1:4
-    for i in 1:4
-        M[j,i] =
-            subs(Nᵢ[j,i], ξ=>-g, η=>-g) +
-            subs(Nᵢ[j,i], ξ=> g, η=>-g) +
-            subs(Nᵢ[j,i], ξ=> g, η=> g) +
-            subs(Nᵢ[j,i], ξ=>-g, η=> g) +22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
-    end
-end
-M</code></pre>
-                </div>
-
-                <!-- output directly below, small gap handled by CSS -->
-                <pre class="Code_Output">3 subs(Nᵢ[j,i], ξ=>-g, η=> g) +22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222</pre>
 
                 <!-- Heading -->
                 <h2 id="H03">
@@ -412,7 +396,7 @@ M</code></pre>
                     </p>
 
                     <div class="Columns">
-                        <div class="SVG_Holder">
+                        <div class="SVG_Holder" style="min-width: 300px;">
                             <p><u><strong>Naural Coordinate system</strong></u></p>
                             <svg width="100%" viewBox="-100 -100 200 200"
                                 style="max-width: 600px; display: block; margin-inline: auto;"
@@ -462,7 +446,7 @@ M</code></pre>
                             </svg>
                         </div>
                         <div class="Text_Holder "
-                            style="padding-left: 1em; padding-right: 1em; padding-top: 0em; padding-bottom: 0em;">
+                            style="min-width: 300px; padding-left: 1em; padding-right: 1em; padding-top: 0em; padding-bottom: 0em;">
                             <p><strong><u>Isoparametric Mapping</u></strong></p>
                             <p>$\small \text{Natural Coordinate} \,\, (\xi,\eta) \longrightarrow \,\,\text{Global
                                 Coordinate}
@@ -817,7 +801,7 @@ M</code></pre>
                         </p>
                     </div>
                 </div>
-
+                
             </article>
 
             <br>
