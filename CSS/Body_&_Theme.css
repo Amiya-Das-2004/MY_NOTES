@@ -32,7 +32,7 @@
 
   /* --- Inline code --- */
   --color-code-bg: #f0ede6;
-  --color-code-text: #a3320d;
+  --color-code-text: #a3315d;
 
   /* --- Typography --- */
   --font-body: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -669,20 +669,20 @@ strong {
 
 /* .Math: coloured panel wrapping display-mode equations */
 #Page .Main>article .Math {
+  width: auto;
   background-color: var(--math-color-bg);
   color: var(--math-color-text);
   border-radius: 4px;
-  padding: 0.75rem 1rem;
-  padding-right: 1rem;
+  padding: 0.75rem 15px 0.75rem 15px;
   margin: 1rem 0;
 }
 
 #Page .Main>article .Equations,
 #Page .Main>article .Eq {
+  width: 100%;
   background-color: transparent;
   color: var(--math-color-text);
-  padding: 0.5rem 0.1rem;
-  padding-right: 2rem;
+  padding: 0.5rem 1rem 0.5rem 0.1rem;
   margin: 0 0;
 }
 

@@ -60,10 +60,10 @@ pre {
    ============================================================ */
 
 .Code_Block {
+  width: auto;
   position: relative;   /* anchor for .Code_Lang_Label     */
   display:  block;
-  margin:   1rem 20px 0 0;  /* breathing room above/below      */
-  
+  margin:   1rem 0;  /* breathing room above/below      */
 }
 
 
@@ -274,7 +274,6 @@ pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
 
   margin-top:    0.2rem;    /* small gap below the code block */
   margin-bottom: 1.25rem;
-  margin-right: 20px;
 
   background-color: var(--output-bg);
   color:            var(--output-text);
@@ -282,7 +281,7 @@ pre::-webkit-scrollbar-thumb:hover  { background: var(--color-text-muted); }
   border-radius:    var(--code-block-radius);
 
   /* Jupyter-style: same side padding as pre, generous top for label */
-  padding:     0.75rem 20px 0.9rem;
+  padding:     0.75rem 15px 0.9rem;
   padding-top: 2rem;
 
   font-family: var(--font-mono);
