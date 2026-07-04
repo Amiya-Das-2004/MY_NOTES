@@ -260,17 +260,39 @@ ul.file-menu li {
 /* The link inside each heading item — full width */
 ul.internal .tocitem,
 ul.file-menu .tocitem {
-  display:     block;
-  width:       100%;
-  padding:     0.25rem 0.5rem;
+  display:       block;
+  box-sizing:    border-box;
+
+  /* top/right/bottom = the old spacing; left = marker gutter */
+  padding:       0.25rem 0.5rem 0.25rem 1.1rem;
+  text-indent:   -1.1rem;          /* ← hanging indent = same as left gutter */
 }
 
-/* Heading-level bullet uses a hollow circle to distinguish from page bullets */
+/* --- H1 rows: hollow circle marker (∘) --- */
 ul.internal .tocitem::before,
-ul.file-menu li > a.tocitem::before {
+ul.file-menu li.level-h1 > a.tocitem::before {
   content:      "∘ ";
+  margin-left: 0.3em;
+  margin-right: 0.23em;
+  color:        var(--sidebar-text-muted, var(--color-text-muted, #6b6b6b));
+}
+
+/* --- H2 rows: dash marker (–) --- */
+ul.file-menu li.level-h2 > a.tocitem::before {
+  content:      "– ";
   margin-right: 0.3em;
   color:        var(--sidebar-text-muted, var(--color-text-muted, #6b6b6b));
+}
+
+/* --- H2 group: indented block under its parent H1, with a
+       vertical rule separating the H2 level from the H1 level --- */
+ul.file-menu .h2-group {
+  list-style:   none;
+  margin:       0.15rem 0 0.3rem;
+  padding:      0;
+  margin-left:  1rem;
+  padding-left: 0.75rem;
+  border-left:  1px solid var(--sidebar-border);
 }
 
 /* Permalink items default to normal weight, transparent bg */

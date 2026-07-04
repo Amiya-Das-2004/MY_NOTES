@@ -159,7 +159,7 @@
                 btn.setAttribute('aria-expanded', String(open));
                 folderLi.classList.toggle('is-open', open);
                 subList.classList.toggle('is-open', open);
-                try { sessionStorage.setItem('nav-open:' + item.id, String(open)); } catch (_) {}
+                try { sessionStorage.setItem('nav-open:' + item.id, String(open)); } catch (_) { }
             });
 
             // Page links
@@ -237,11 +237,27 @@
         var activeLink = navMount.querySelector('a.is-active');
         if (!activeLink) return;
 
-        var headings = document.querySelectorAll('h1[id], h2[id], h3[id]');
+        var headings = document.querySelectorAll('h1[id], h2[id]');
         if (!headings.length) return;
 
         var fileMenu = activeLink.parentNode.querySelector('.file-menu');
         if (!fileMenu) return;
+
+        // headings.forEach(function (h) {
+        //     var li = document.createElement('li');
+        //     var a = document.createElement('a');
+        //     a.href = '#' + h.id;
+        //     a.className = 'tocitem';
+        //     // Get heading text, excluding nested .Heading_Anchor links
+        //     var anchorEl = h.querySelector('.Heading_Anchor');
+        //     var headingText = anchorEl ? anchorEl.textContent.trim() : h.textContent.trim();
+        //     a.textContent = headingText;
+        //     li.appendChild(a);
+        //     fileMenu.appendChild(li);
+        // });
+
+        var currentH1Li = null;
+        var currentH2Group = null;
 
         headings.forEach(function (h) {
             var li = document.createElement('li');
@@ -253,7 +269,27 @@
             var headingText = anchorEl ? anchorEl.textContent.trim() : h.textContent.trim();
             a.textContent = headingText;
             li.appendChild(a);
-            fileMenu.appendChild(li);
+
+            if (h.tagName.toLowerCase() === 'h1') {
+                li.className = 'level-h1';
+                fileMenu.appendChild(li);
+                currentH1Li = li;
+                currentH2Group = null;          // reset h2 grouping for the new h1
+            } else {                             // h2
+                li.className = 'level-h2';
+                if (currentH1Li) {
+                    // Lazily create the indented h2-group under its parent h1
+                    // (first h2 after an h1 is what draws the vertical line)
+                    if (!currentH2Group) {
+                        currentH2Group = document.createElement('ul');
+                        currentH2Group.className = 'h2-group';
+                        currentH1Li.appendChild(currentH2Group);
+                    }
+                    currentH2Group.appendChild(li);
+                } else {
+                    fileMenu.appendChild(li);   // h2 with no preceding h1 → top-level row
+                }
+            }
         });
     }
 
