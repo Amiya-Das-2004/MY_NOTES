@@ -76,7 +76,7 @@
   --color-text: #e8e6e0;
   --color-text-muted: #9a9890;
   --color-primary: #d987ff;
-  --color-primary-dark: #90b8f0;
+  --color-primary-dark: #75c1e4;
   --color-heading: #f0ede6;
 
   --math-color-bg: #464646;
@@ -176,6 +176,7 @@ th:not([align]) {
    ============================================================ */
 
 /* html: page background, font rendering, scroll */
+/* Defines: html, body, button, input, optgroup, select, textarea */
 html {
   background-color: var(--color-bg);
   font-size: 16px;
@@ -188,7 +189,8 @@ html {
   text-size-adjust: 100%;
 }
 
-/* body: base font family, colour, line-height */
+/* body: base font family, colour, line-height
+   Defines: body (base text color and line-height for reading) */
 body,
 button,
 input,
@@ -315,7 +317,8 @@ hr {
 
 /* --- 8a. Paragraphs, definition lists, block-level spacing --- */
 
-/* Spacing below block elements that are NOT last-child */
+/* .Content p:not(:last-child): Spacing below block elements (no margin on last child)
+   Defines: .Content p, .Content dl, .Content ol, .Content ul, .Content blockquote, .Content pre, .Content table */
 .Content p:not(:last-child),
 .Content dl:not(:last-child),
 .Content ol:not(:last-child),

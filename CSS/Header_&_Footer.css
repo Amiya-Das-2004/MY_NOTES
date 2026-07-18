@@ -15,7 +15,8 @@
    ============================================================ */
 
 /* header.Header: flex row, vertically centred, white background,
-   light bottom border to separate from content below */
+   light bottom border to separate from content below
+   Defines: #Page .Main header.Header (sticky header bar) */
 #Page .Main header.Header {
   display:          flex;
   align-items:      center;          /* vertically centre every child   */

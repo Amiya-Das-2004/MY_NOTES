@@ -243,19 +243,6 @@
         var fileMenu = activeLink.parentNode.querySelector('.file-menu');
         if (!fileMenu) return;
 
-        // headings.forEach(function (h) {
-        //     var li = document.createElement('li');
-        //     var a = document.createElement('a');
-        //     a.href = '#' + h.id;
-        //     a.className = 'tocitem';
-        //     // Get heading text, excluding nested .Heading_Anchor links
-        //     var anchorEl = h.querySelector('.Heading_Anchor');
-        //     var headingText = anchorEl ? anchorEl.textContent.trim() : h.textContent.trim();
-        //     a.textContent = headingText;
-        //     li.appendChild(a);
-        //     fileMenu.appendChild(li);
-        // });
-
         var currentH1Li = null;
         var currentH2Group = null;
 
